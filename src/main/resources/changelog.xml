@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+    <changeSet id="1.1.0" author="crash">
+
+        <createTable tableName="authors">
+            <column nameManufacture="id" autoIncrement="true" type="bigint">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="author_pk"/>
+            </column>
+            <column nameManufacture="nameManufacture" type="varchar(128)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="publishers">
+            <column nameManufacture="id" autoIncrement="true" type="bigint">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="publisher_pk"/>
+            </column>
+            <column nameManufacture="nameManufacture" type="varchar(256)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="books">
+            <column nameManufacture="id" autoIncrement="true" type="bigint">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="book_pk"/>
+            </column>
+            <column nameManufacture="title" type="varchar(256)">
+                <constraints nullable="false"/>
+            </column>
+            <column nameManufacture="description" type="varchar(512)"/>
+            <column nameManufacture="publisher_id" type="bigint">
+                <constraints
+                        foreignKeyName="book_publishers_fk"
+                        referencedTableName="publishers"
+                        referencedColumnNames="id"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="metadata">
+            <column nameManufacture="id" autoIncrement="true" type="bigint">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="metadata_pk"/>
+            </column>
+            <column nameManufacture="url" type="varchar(256)">
+                <constraints nullable="true"/>
+            </column>
+            <column nameManufacture="picture" type="varchar(256)">
+                <constraints nullable="true"/>
+            </column>
+            <column nameManufacture="book_id" type="bigint">
+                <constraints
+                        foreignKeyName="metadata_books_fk"
+                        referencedTableName="books"
+                        referencedColumnNames="id"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="authors_books">
+            <column nameManufacture="author_id" type="bigint">
+                <constraints nullable="false"
+                        foreignKeyName="authors_books_author_id_fk"
+                        referencedTableName="authors"
+                        referencedColumnNames="id"
+                        deleteCascade="true"
+                />
+            </column>
+            <column nameManufacture="book_id" type="bigint">
+                <constraints nullable="false"
+                        foreignKeyName="authors_books_book_id_fk"
+                        referencedTableName="books"
+                        referencedColumnNames="id"
+                        deleteCascade="true"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey tableName="authors_books" columnNames="author_id,book_id"/>
+    </changeSet>
+
+    <changeSet id="1.1.1" author="crash" context="test">
+        <insert tableName="authors">
+            <column nameManufacture="nameManufacture" value="Maxim Gorky"/>
+        </insert>
+
+        <insert tableName="authors">
+            <column nameManufacture="nameManufacture" value="Ilya Ilf"/>
+        </insert>
+
+        <insert tableName="authors">
+            <column nameManufacture="nameManufacture" value="Eugeny Petrov"/>
+        </insert>
+
+        <insert tableName="publishers">
+            <column nameManufacture="nameManufacture" value="Open Book"/>
+        </insert>
+
+        <insert tableName="publishers">
+            <column nameManufacture="nameManufacture" value="Azbuka"/>
+        </insert>
+
+        <insert tableName="books">
+            <column nameManufacture="title" value="Mother"/>
+            <column nameManufacture="publisher_id" valueNumeric="1"/>
+        </insert>
+
+        <insert tableName="books">
+            <column nameManufacture="title" value="The Lower Depths"/>
+            <column nameManufacture="publisher_id" valueNumeric="1"/>
+        </insert>
+
+        <insert tableName="books">
+            <column nameManufacture="title" value="The Twelve Chairs"/>
+            <column nameManufacture="publisher_id" valueNumeric="1"/>
+        </insert>
+
+        <insert tableName="authors_books">
+            <column nameManufacture="author_id" valueNumeric="1"/>
+            <column nameManufacture="book_id" valueNumeric="1"/>
+        </insert>
+
+        <insert tableName="authors_books">
+            <column nameManufacture="author_id" valueNumeric="1"/>
+            <column nameManufacture="book_id" valueNumeric="2"/>
+        </insert>
+
+        <insert tableName="authors_books">
+            <column nameManufacture="author_id" valueNumeric="2"/>
+            <column nameManufacture="book_id" valueNumeric="3"/>
+        </insert>
+
+        <insert tableName="authors_books">
+            <column nameManufacture="author_id" valueNumeric="3"/>
+            <column nameManufacture="book_id" valueNumeric="3"/>
+        </insert>
+
+        <insert tableName="metadata">
+            <column nameManufacture="picture" value="docs/booksPicture/TheTwelveChairs.jpg"/>
+            <column nameManufacture="book_id" valueNumeric="3"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
