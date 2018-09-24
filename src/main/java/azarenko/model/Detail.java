@@ -9,7 +9,7 @@ public class Detail extends BaseEntity {
     //заказ
     private long orderBy;
     //материал кромки
-    private EdgeMaterial edgeMaterial;
+    private Set<EdgeMaterial> edgeMaterial;
 
     //имя
     private String name;
@@ -46,7 +46,7 @@ public class Detail extends BaseEntity {
     public Detail() {
     }
 
-    public Detail(Long id, long orderBy, EdgeMaterial edgeMaterial, String name, int thickness, int x, int y,
+    public Detail(Long id, long orderBy, Set<EdgeMaterial> edgeMaterial, String name, int thickness, int x, int y,
                   Set<ButtClose> buttCloses, int count, Material material, Color color) {
         super(id);
         this.orderBy = orderBy;
@@ -85,11 +85,11 @@ public class Detail extends BaseEntity {
         this.name = name;
     }
 
-    public EdgeMaterial getEdgeMaterial() {
+    public Set<EdgeMaterial> getEdgeMaterial() {
         return edgeMaterial;
     }
 
-    public void setEdgeMaterial(EdgeMaterial edgeMaterial) {
+    public void setEdgeMaterial(Set<EdgeMaterial> edgeMaterial) {
         this.edgeMaterial = edgeMaterial;
     }
 

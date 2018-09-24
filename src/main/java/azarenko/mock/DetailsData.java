@@ -27,7 +27,7 @@ public class DetailsData {
 
         detailList.add(new Detail(1L, 1L, DataEdgeMaterial.edgeMaterial, "sidewall", 18,
                 380, 1000, buttCloseSetSidewall, 2, Material.DSP, color));
-        detailList.add(new Detail(2L, 1L, DataEdgeMaterial.edgeMaterial, "counter top", 18,
+        detailList.add(new Detail(2L, 1L, DataEdgeMaterial.edgeMaterial, " table top", 18,
                 410, 1000, buttCloseSetCounterTop, 1, Material.DSP, color));
         detailList.add(new Detail(3L, 1L, DataEdgeMaterial.edgeMaterial, "floor", 18,
                 964, 380, buttCloseSetCounterTop, 1, Material.DSP, color));

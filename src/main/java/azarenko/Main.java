@@ -1,6 +1,7 @@
 package azarenko;
 
 import azarenko.mock.DataOrder;
+import azarenko.model.Detail;
 import azarenko.model.Furniture;
 import azarenko.model.furnitures.Handle;
 
@@ -23,7 +24,9 @@ public class Main {
             }
         }
         System.out.println("Ручки: - " + handle);
-
+        System.out.println("Деталировка: ");
+        List<Detail> list = DataOrder.order.getModuleList().get(0).getDetailList();
+        list.forEach(m -> System.out.println(m.getX() + " * " + m.getY() + " - " + m.getCount() +"  " + m.getName()));
 
     }
 }
