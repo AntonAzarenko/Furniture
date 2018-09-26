@@ -63,8 +63,9 @@ public class Module extends BaseEntity {
         this.facadeList = facadeList;
     }
 
-    public Module( List<Detail> detailList, List<Furniture> furnitureList, List<Facade> facadeList) {
-
+    public Module(Long id, String name, List<Detail> detailList, List<Furniture> furnitureList, List<Facade> facadeList) {
+        super(id);
+        this.name = name;
         this.detailList = detailList;
         this.furnitureList = furnitureList;
         this.facadeList = facadeList;

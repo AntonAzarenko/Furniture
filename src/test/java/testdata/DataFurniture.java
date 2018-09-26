@@ -10,12 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataFurniture {
-    public static Loops loops = new Loops(
-            "BLUM", Country.AUSTRIA, new Angle(1L, "Stanadart 90", 90D), TypeLoop.OVERHEAD);
+    public static Loops loops = new Loops(25456,
+            "BLUM", Country.AUSTRIA, new Angle(1L, "Stanadart 90", 90D), TypeLoop.OVERHEAD, false);
 
     public static Other other = new Other("Полкодержатели");
 
-    public static Handle handle = new Handle("h2345", HandleColor.CHROME_BRIGHT, 128);
+    public static Handle handle = new Handle(25648, HandleColor.CHROME_BRIGHT, 128);
 
     public static List<Furniture> getList() {
         List<Furniture> furnitureList = new ArrayList<>();
