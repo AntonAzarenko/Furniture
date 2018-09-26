@@ -1,7 +1,6 @@
 package azarenko.entity;
 
 
-import org.hibernate.validator.constraints.Length;
 
 import java.util.Collections;
 import java.util.Date;
@@ -22,10 +21,7 @@ public class User extends BaseEntity {
 
     private String email;
 
-
-    @Length(min = 5)
     private String password;
-
 
     private boolean enabled = true;
 
