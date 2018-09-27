@@ -2,8 +2,8 @@ package azarenko.repository;
 
 import java.util.List;
 
-public interface CrudDao<ID, T> extends BaseDao<T> {
-    void create(T o);
+public interface CrudRepository<ID, T> extends Repository<T> {
+    void save(T o);
 
     T read(ID id);
 

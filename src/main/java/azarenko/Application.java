@@ -2,6 +2,7 @@ package azarenko;
 
 import azarenko.entity.*;
 import azarenko.repository.DetailRepository;
+import azarenko.repository.logic.proxy.ProxyDetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,7 +15,7 @@ import java.util.Set;
 @SpringBootApplication
 public class Application implements CommandLineRunner {
     @Autowired
-    private DetailRepository repository;
+    private ProxyDetailRepository repository;
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -37,9 +38,6 @@ public class Application implements CommandLineRunner {
         }
 
         System.out.println();
-        for (Detail detail : repository.findByOrderBy(1L)) {
-            System.out.println(detail);
-        }
     }
 
 
