@@ -42,7 +42,8 @@ public class DetailRepositoryImplTest {
 
     @Test
     public void save() {
-        repository.save(DetailsData.detailList.get(6));
+        Detail detail = DetailsData.detail;
+        repository.save(detail);
     }
 
     @Test
@@ -55,7 +56,7 @@ public class DetailRepositoryImplTest {
 
     @Test
     public void update() {
-        Detail detail = DetailsData.detailList.get(6);
+        Detail detail = DetailsData.detailList.get(2);
     }
 
     @Test

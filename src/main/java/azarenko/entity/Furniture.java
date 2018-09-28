@@ -14,7 +14,7 @@ public class Furniture<T> extends BaseEntity {
     public Furniture() {
     }
 
-    public Furniture(Long id, T furnitures, int count, BigDecimal price) {
+    public Furniture(String id, T furnitures, int count, BigDecimal price) {
         super(id);
         this.furnitures = furnitures;
         this.count = count;

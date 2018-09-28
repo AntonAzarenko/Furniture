@@ -6,20 +6,20 @@ import org.springframework.data.annotation.Id;
 
 public class BaseEntity implements Serializable {
     @Id
-    private Long id;
+    private String id;
 
     public BaseEntity() {
     }
 
-    public BaseEntity(Long id) {
+    public BaseEntity(String id) {
         this.id = id;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 }

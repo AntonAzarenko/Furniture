@@ -12,7 +12,13 @@ public class Color extends BaseEntity {
     public Color() {
     }
 
-    public Color(Long id, String title, String nameManufacture, Country countryManufacture) {
+    public Color(String title, String nameManufacture, Country countryManufacture) {
+        this.title = title;
+        this.nameManufacture = nameManufacture;
+        this.countryManufacture = countryManufacture;
+    }
+
+    public Color(String id, String title, String nameManufacture, Country countryManufacture) {
         super(id);
         this.title = title;
         this.nameManufacture = nameManufacture;

@@ -43,7 +43,7 @@ public class User extends BaseEntity {
         this.registered = registered;
     }
 
-    public User(Long id, String name, String email, String password, boolean enabled, Role roles, Date registered) {
+    public User(String id, String name, String email, String password, boolean enabled, Role roles, Date registered) {
         super(id);
         this.name = name;
         this.email = email;

@@ -23,7 +23,17 @@ public class EdgeMaterial extends BaseEntity {
     public EdgeMaterial() {
     }
 
-    public EdgeMaterial(Long id, Country manufacturer, String name, EdgeType edgeType, String color, BigDecimal price,
+    public EdgeMaterial(Country manufacturer, String name, EdgeType edgeType, String color, BigDecimal price, double thickness, ButtClose buttCloses) {
+        this.manufacturer = manufacturer;
+        this.name = name;
+        this.edgeType = edgeType;
+        this.color = color;
+        this.price = price;
+        this.thickness = thickness;
+        this.buttCloses = buttCloses;
+    }
+
+    public EdgeMaterial(String id, Country manufacturer, String name, EdgeType edgeType, String color, BigDecimal price,
                         double thickness, ButtClose buttCloses) {
         super(id);
         this.manufacturer = manufacturer;

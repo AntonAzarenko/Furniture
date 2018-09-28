@@ -15,7 +15,7 @@ public class Angle extends BaseEntity {
     public Angle() {
     }
 
-    public Angle(Long id, String name, double angle) {
+    public Angle(String id, String name, double angle) {
         super(id);
         this.name = name;
         this.angle = angle;

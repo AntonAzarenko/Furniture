@@ -22,7 +22,7 @@ public class Order extends BaseEntity {
     public Order() {
     }
 
-    public Order(Long id, String name, Author author, OrderTypeChoise orderTypeChoise, List<Module> moduleList,
+    public Order(String id, String name, Author author, OrderTypeChoise orderTypeChoise, List<Module> moduleList,
                  List<Detail> detailList, List<Furniture> furnitureList, List<Facade> facadeList) {
         super(id);
 

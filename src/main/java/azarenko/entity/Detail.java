@@ -31,6 +31,9 @@ public class Detail extends BaseEntity {
     //цвет
     private Color color;
 
+    public Detail(Long l, Object o, String back_side, int i, int i1, int i2, int i3, Material dvp, Object o1) {
+    }
+
     //цвет
     public Color getColor() {
         return color;
@@ -43,7 +46,7 @@ public class Detail extends BaseEntity {
     public Detail() {
     }
 
-    public Detail(Long id, long orderBy, Set<EdgeMaterial> edgeMaterial, String name, int thickness, int x, int y,
+    public Detail(String id, long orderBy, Set<EdgeMaterial> edgeMaterial, String name, int thickness, int x, int y,
                   int count, Material material, Color color) {
         super(id);
         this.orderBy = orderBy;

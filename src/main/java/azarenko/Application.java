@@ -24,11 +24,12 @@ public class Application implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         repository.deleteAll(); //
-
-        repository.save(new Detail(1L, 1L, edgeMaterialSideWall, "sidewall", 18,
+        repository.save(new Detail( null,1L, edgeMaterialSideWall, "sidewall", 18,
                 380, 1000, 2, Material.DSP, color));
-        repository.save(new Detail(2L, 1L, edgeMaterialCounterTop, " table top", 18,
+        repository.save(new Detail( null,1L, edgeMaterialCounterTop, " table top", 18,
                 410, 1000, 1, Material.DSP, color));
+        repository.save(new Detail(null,1L, null, "back side", 4,
+                995, 955, 1, Material.DVP, null));
 
         System.out.println("Customers found with findAll():");
         System.out.println("-------------------------------");
@@ -45,19 +46,19 @@ public class Application implements CommandLineRunner {
     public static Set<EdgeMaterial> edgeMaterialCounterTop = new HashSet<>();
     public static Set<EdgeMaterial> edgeMaterialFloor = new HashSet<>();
     public static Set<EdgeMaterial> buttCloseFacade = new HashSet<>();
-    public static Color color = new Color(1L, "Аляска", "Swisspan", Country.POLAND);
+    public static Color color = new Color( "Аляска", "Swisspan", Country.POLAND);
 
 
     static {
-        edgeMaterialSideWall.add(new EdgeMaterial(1L, Country.RUSSIA, "Egger", EdgeType.ABC, "pepel",
+        edgeMaterialSideWall.add(new EdgeMaterial(Country.RUSSIA, "Egger", EdgeType.ABC, "pepel",
                 new BigDecimal(0.35), 1, ButtClose.BUTT_Y));
-        edgeMaterialSideWall.add(new EdgeMaterial(2L, Country.RUSSIA, "noname", EdgeType.MALMIN, "pepel",
+        edgeMaterialSideWall.add(new EdgeMaterial( Country.RUSSIA, "noname", EdgeType.MALMIN, "pepel",
                 new BigDecimal(0.01), 0.2, ButtClose.BUTT_X));
-        edgeMaterialCounterTop.add(new EdgeMaterial(3L, Country.RUSSIA, "Egger", EdgeType.ABC, "pepel",
+        edgeMaterialCounterTop.add(new EdgeMaterial( Country.RUSSIA, "Egger", EdgeType.ABC, "pepel",
                 new BigDecimal(1.2), 2, ButtClose.BUTT_ARROUND));
-        edgeMaterialFloor.add(new EdgeMaterial(4L, Country.RUSSIA, "Egger", EdgeType.ABC, "pepel",
+        edgeMaterialFloor.add(new EdgeMaterial( Country.RUSSIA, "Egger", EdgeType.ABC, "pepel",
                 new BigDecimal(0.35), 1, ButtClose.BUTT_Y));
-        buttCloseFacade.add(new EdgeMaterial(5L, Country.AUSTRIA, "Arpa", EdgeType.PVH, "graphit",
+        buttCloseFacade.add(new EdgeMaterial( Country.AUSTRIA, "Arpa", EdgeType.PVH, "graphit",
                 new BigDecimal(2.3), 2, ButtClose.BUTT_ARROUND));
 
     }
