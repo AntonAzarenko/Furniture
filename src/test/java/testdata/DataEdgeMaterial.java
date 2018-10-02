@@ -4,13 +4,14 @@ import azarenko.entity.*;
 
 import java.math.BigDecimal;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class DataEdgeMaterial {
-    public static Set<EdgeMaterial> edgeMaterialSideWall = new HashSet<>();
-    public static Set<EdgeMaterial> edgeMaterialCounterTop = new HashSet<>();
-    public static Set<EdgeMaterial> edgeMaterialFloor = new HashSet<>();
-    public static Set<EdgeMaterial> buttCloseFacade = new HashSet<>();
+    public static Set<EdgeMaterial> edgeMaterialSideWall = new LinkedHashSet<>();
+    public static Set<EdgeMaterial> edgeMaterialCounterTop = new LinkedHashSet<>();
+    public static Set<EdgeMaterial> edgeMaterialFloor = new LinkedHashSet<>();
+    public static Set<EdgeMaterial> buttCloseFacade = new LinkedHashSet<>();
 
     static {
         edgeMaterialSideWall.add(new EdgeMaterial(null, Country.RUSSIA, "Egger", EdgeType.ABC, "pepel",

@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import testdata.DataOrder;
 import testdata.DetailsData;
 
 import java.util.Objects;
@@ -27,7 +28,7 @@ public class DetailRepositoryImplTest {
     public void getByName() {
         Detail detail = repository.getByName("sidewall");
         if (Objects.nonNull(detail)) {
-            log.info(detail.toString());
+            DataOrder.assertMatch(detail, DetailsData.detailList.get(0));
         } else {
             log.info("ERROR");
         }

@@ -38,7 +38,6 @@ public class Order extends BaseEntity {
     @Override
     public String toString() {
         return "Order{" +
-
                 ", name='" + name + '\'' +
                 ", author=" + author +
                 ", orderTypeChoise=" + orderTypeChoise +
@@ -65,11 +64,8 @@ public class Order extends BaseEntity {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(name, author, orderTypeChoise, moduleList, detailList, furnitureList, facadeList);
     }
-
-
 
     public String getName() {
         return name;

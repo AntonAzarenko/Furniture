@@ -26,8 +26,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> getByAuthor(String name) {
-        return repository.getByAuthor(name);
+    public List<Order> getByAuthor(String firstName, String lastName) {
+        return repository.getByAuthor(firstName, lastName);
     }
 
     @Override

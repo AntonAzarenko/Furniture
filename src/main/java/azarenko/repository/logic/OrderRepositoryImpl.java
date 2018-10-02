@@ -19,11 +19,9 @@ public class OrderRepositoryImpl implements OrderRepository {
     }
 
     @Override
-    public List<Order> getByAuthor(String author) {
-        return proxy.getAllByAuthor(author);
+    public List<Order> getByAuthor(String firstName, String lastNAme) {
+        return proxy.getAllByAuthor(firstName, lastNAme);
     }
-
-
 
     @Override
     public void save(Order order) {

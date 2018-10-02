@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import testdata.DataOrder;
+import testdata.DetailsData;
+
+import java.util.List;
 
 import static testdata.DataOrder.orderTest;
 
@@ -22,18 +25,25 @@ public class OrderRepositoryImplTest {
     @Autowired
     private OrderRepository repository;
 
-    @Test
+ /*   @Test
     public void getByName() {
         Order order = repository.getByName("Камод");
         log.info(order.toString());
         DataOrder.assertMatch(order, orderTest);
-
-
     }
 
     @Test
     public void getByAuthor() {
-    }
+        List<Order> order = repository.getByAuthor("Anton", "Azarenko");
+        if (order != null || order.size() != 0) {
+            for (Order cur : order) {
+                log.info(cur.toString());
+            }
+            DataOrder.assertMatch(order, orderTest);
+        } else {
+            log.error("error");
+        }
+    }*/
 
     @Test
     public void getByModuleName() {
