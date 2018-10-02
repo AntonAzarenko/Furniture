@@ -11,7 +11,7 @@ import java.util.List;
 
 public class DataFurniture {
     public static Loops loops = new Loops(25456,
-            "BLUM", Country.AUSTRIA, new Angle(1L, "Stanadart 90", 90D), TypeLoop.OVERHEAD, false);
+            "BLUM", Country.AUSTRIA, new Angle(null, "Stanadart 90", 90D), TypeLoop.OVERHEAD, false);
 
     public static Other other = new Other("Полкодержатели");
 
@@ -19,9 +19,9 @@ public class DataFurniture {
 
     public static List<Furniture> getList() {
         List<Furniture> furnitureList = new ArrayList<>();
-        furnitureList.add(new Furniture(1L, loops, 4, new BigDecimal(1.25)));
-        furnitureList.add(new Furniture(2L, other, 12, new BigDecimal(0.21)));
-        furnitureList.add(new Furniture(3L, handle, 2, new BigDecimal(1.5)));
+        furnitureList.add(new Furniture(null, loops, 4, new BigDecimal(1.25)));
+        furnitureList.add(new Furniture(null, other, 12, new BigDecimal(0.21)));
+        furnitureList.add(new Furniture(null, handle, 2, new BigDecimal(1.5)));
         return furnitureList;
     }
 }

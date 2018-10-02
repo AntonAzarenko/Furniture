@@ -25,8 +25,8 @@ public class DetailRepositoryImpl implements DetailRepository {
     }
 
     @Override
-    public Detail read(Long id) {
-        return proxy.findById(id);
+    public Detail read(String id) {
+        return proxy.getById(id);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class DetailRepositoryImpl implements DetailRepository {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(String id) {
         proxy.deleteById(id);
     }
 }

@@ -7,9 +7,9 @@ public interface ProxyDetailRepository extends MongoRepository<Detail, String> {
 
     Detail findByName(String name);
 
-    Detail findById(Long id);
+    Detail getById(String id);
 
-    void deleteById(Long id);
+    void deleteById(String id);
 
 
 }

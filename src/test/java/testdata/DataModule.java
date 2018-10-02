@@ -13,7 +13,7 @@ public class DataModule {
     public static List<Module> getModule() {
         facades.add(DataFacade.facade);
         List<Module> list = new ArrayList<>();
-        Module module = new Module(1L,"Камод", DetailsData.detailList, DataFurniture.getList(), facades);
+        Module module = new Module(null,"Камод", DetailsData.detailList, DataFurniture.getList(), facades);
         list.add(module);
         return list;
     }

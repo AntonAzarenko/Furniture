@@ -24,6 +24,7 @@ dependencies {
     compile 'org.springframework.data:spring-data-jpa:2.1.0.RELEASE'
     compile 'org.springframework.data:spring-data-mongodb-parent:2.1.0.RELEASE'
     compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+    compile 'org.jboss.forge.addon:assertj:3.6.2'
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 

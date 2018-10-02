@@ -26,7 +26,7 @@ public class Application implements CommandLineRunner {
         repository.deleteAll(); //
         repository.save(new Detail( null,1L, edgeMaterialSideWall, "sidewall", 18,
                 380, 1000, 2, Material.DSP, color));
-        repository.save(new Detail( null,1L, edgeMaterialCounterTop, " table top", 18,
+        repository.save(new Detail( null,1L, edgeMaterialCounterTop, "table top", 18,
                 410, 1000, 1, Material.DSP, color));
         repository.save(new Detail(null,1L, null, "back side", 4,
                 995, 955, 1, Material.DVP, null));
@@ -37,6 +37,7 @@ public class Application implements CommandLineRunner {
         for (Detail detail : repository.findAll()) {
             System.out.println(detail);
         }
+        System.out.println(repository.findByName("back side"));
 
         System.out.println();
     }
