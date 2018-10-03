@@ -1,14 +1,14 @@
 package azarenko.entity;
 
 
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 public class Detail extends BaseEntity {
     //заказ
     private long orderBy;
     //материал кромки
-    private Set<EdgeMaterial> edgeMaterial;
+    private List<EdgeMaterial> edgeMaterial;
 
     //имя
     private String name;
@@ -31,9 +31,6 @@ public class Detail extends BaseEntity {
     //цвет
     private Color color;
 
-    public Detail(Long l, Object o, String back_side, int i, int i1, int i2, int i3, Material dvp, Object o1) {
-    }
-
     //цвет
     public Color getColor() {
         return color;
@@ -46,7 +43,7 @@ public class Detail extends BaseEntity {
     public Detail() {
     }
 
-    public Detail(String id, long orderBy, Set<EdgeMaterial> edgeMaterial, String name, int thickness, int x, int y,
+    public Detail(String id, long orderBy, List<EdgeMaterial> edgeMaterial, String name, int thickness, int x, int y,
                   int count, Material material, Color color) {
         super(id);
         this.orderBy = orderBy;
@@ -85,11 +82,11 @@ public class Detail extends BaseEntity {
         this.name = name;
     }
 
-    public Set<EdgeMaterial> getEdgeMaterial() {
+    public List<EdgeMaterial> getEdgeMaterial() {
         return edgeMaterial;
     }
 
-    public void setEdgeMaterial(Set<EdgeMaterial> edgeMaterial) {
+    public void setEdgeMaterial(List<EdgeMaterial> edgeMaterial) {
         this.edgeMaterial = edgeMaterial;
     }
 

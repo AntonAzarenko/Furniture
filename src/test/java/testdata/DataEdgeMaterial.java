@@ -3,15 +3,13 @@ package testdata;
 import azarenko.entity.*;
 
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 public class DataEdgeMaterial {
-    public static Set<EdgeMaterial> edgeMaterialSideWall = new LinkedHashSet<>();
-    public static Set<EdgeMaterial> edgeMaterialCounterTop = new LinkedHashSet<>();
-    public static Set<EdgeMaterial> edgeMaterialFloor = new LinkedHashSet<>();
-    public static Set<EdgeMaterial> buttCloseFacade = new LinkedHashSet<>();
+    public static List<EdgeMaterial> edgeMaterialSideWall = new ArrayList<>();
+    public static List<EdgeMaterial> edgeMaterialCounterTop = new ArrayList<>();
+    public static List<EdgeMaterial> edgeMaterialFloor = new ArrayList<>();
+    public static List<EdgeMaterial> buttCloseFacade = new ArrayList<>();
 
     static {
         edgeMaterialSideWall.add(new EdgeMaterial(null, Country.RUSSIA, "Egger", EdgeType.ABC, "pepel",

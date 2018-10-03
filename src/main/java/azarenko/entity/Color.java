@@ -1,5 +1,6 @@
 package azarenko.entity;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Color extends BaseEntity {
@@ -9,20 +10,40 @@ public class Color extends BaseEntity {
 
     private Country countryManufacture;
 
+    private BigDecimal price;
+
     public Color() {
     }
 
-    public Color(String title, String nameManufacture, Country countryManufacture) {
+    public Color(String title, String nameManufacture, Country countryManufacture, BigDecimal price) {
         this.title = title;
         this.nameManufacture = nameManufacture;
         this.countryManufacture = countryManufacture;
+        this.price = price;
     }
 
-    public Color(String id, String title, String nameManufacture, Country countryManufacture) {
+    public Color(String id, String title, String nameManufacture, Country countryManufacture, BigDecimal price) {
         super(id);
         this.title = title;
         this.nameManufacture = nameManufacture;
         this.countryManufacture = countryManufacture;
+        this.price = price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Color)) return false;
+        Color color = (Color) o;
+        return Objects.equals(title, color.title) &&
+                Objects.equals(nameManufacture, color.nameManufacture) &&
+                countryManufacture == color.countryManufacture &&
+                Objects.equals(price, color.price);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, nameManufacture, countryManufacture, price);
     }
 
     @Override
@@ -31,23 +52,16 @@ public class Color extends BaseEntity {
                 "title='" + title + '\'' +
                 ", nameManufacture='" + nameManufacture + '\'' +
                 ", countryManufacture=" + countryManufacture +
+                ", price=" + price +
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Color color = (Color) o;
-        return Objects.equals(title, color.title) &&
-                Objects.equals(nameManufacture, color.nameManufacture) &&
-                countryManufacture == color.countryManufacture;
+    public BigDecimal getPrice() {
+        return price;
     }
 
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(title, nameManufacture, countryManufacture);
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     public String getTitle() {

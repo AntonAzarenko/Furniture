@@ -26,12 +26,7 @@ public class DetailRepositoryImplTest {
 
     @Test
     public void getByName() {
-        Detail detail = repository.getByName("sidewall");
-        if (Objects.nonNull(detail)) {
-            DataOrder.assertMatch(detail, DetailsData.detailList.get(0));
-        } else {
-            log.info("ERROR");
-        }
+        Detail detail = repository.getByName("facade");
     }
 
     @Test(expected = NullPointerException.class)
@@ -57,6 +52,7 @@ public class DetailRepositoryImplTest {
     @Test
     public void update() {
         Detail detail = DetailsData.detailList.get(2);
+        repository.update(detail);
     }
 
     @Test

@@ -19,8 +19,13 @@ public class OrderRepositoryImpl implements OrderRepository {
     }
 
     @Override
-    public List<Order> getByAuthor(String firstName, String lastNAme) {
-        return proxy.getAllByAuthor(firstName, lastNAme);
+    public List<Order> getByAuthor(String firstName) {
+        return proxy.getAllByAuthor(firstName);
+    }
+
+    @Override
+    public List<Order> getByModuleName(String name) {
+        return null;
     }
 
     @Override
@@ -40,7 +45,7 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     @Override
     public void update(Order o) {
-
+        proxy.save(o);
     }
 
     @Override

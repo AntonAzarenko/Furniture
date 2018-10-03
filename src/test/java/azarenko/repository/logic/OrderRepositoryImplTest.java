@@ -4,15 +4,19 @@ import azarenko.entity.Order;
 import azarenko.repository.OrderRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import testdata.DataOrder;
-import testdata.DetailsData;
 
+import javax.naming.Context;
 import java.util.List;
+
 
 import static testdata.DataOrder.orderTest;
 
@@ -25,28 +29,22 @@ public class OrderRepositoryImplTest {
     @Autowired
     private OrderRepository repository;
 
- /*   @Test
+
+    @Test
     public void getByName() {
         Order order = repository.getByName("Камод");
-        log.info(order.toString());
         DataOrder.assertMatch(order, orderTest);
     }
 
     @Test
     public void getByAuthor() {
-        List<Order> order = repository.getByAuthor("Anton", "Azarenko");
-        if (order != null || order.size() != 0) {
-            for (Order cur : order) {
-                log.info(cur.toString());
-            }
-            DataOrder.assertMatch(order, orderTest);
-        } else {
-            log.error("error");
-        }
-    }*/
+        List<Order> order = repository.getByAuthor("Anton");
+        DataOrder.assertMatch(order, orderTest);
+    }
 
     @Test
     public void getByModuleName() {
+
     }
 
     @Test
@@ -66,9 +64,10 @@ public class OrderRepositoryImplTest {
     public void update() {
     }
 
-    @Test
+    @Test(expected = NullPointerException.class)
     public void delete() {
         Order order = repository.getByName("Камод");
         repository.delete(order.getId());
+        log.info(repository.readAll().toString());
     }
 }

@@ -11,7 +11,7 @@ public interface ProxyOrderRepository extends MongoRepository<Order, String> {
     Order getByName(String name);
 
     @Query(value = "{'Author.firstName' :?0}")
-    List<Order> getAllByAuthor(String firstName, String lastName);
+    List<Order> getAllByAuthor(String firstName);
 
     Order getById(String id);
 

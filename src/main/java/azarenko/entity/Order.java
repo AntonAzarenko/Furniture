@@ -1,8 +1,11 @@
 package azarenko.entity;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.List;
 import java.util.Objects;
 
+@Document
 public class Order extends BaseEntity {
 
     private String name;

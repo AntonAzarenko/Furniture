@@ -9,7 +9,7 @@ public interface OrderService {
 
     List<Order> getAll();
 
-    List<Order> getByAuthor(String firstName, String lastName);
+    List<Order> getByAuthor(String firstName);
 
     Order getByName(String name);
 

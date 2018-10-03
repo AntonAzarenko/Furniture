@@ -27,7 +27,6 @@ public class Module extends BaseEntity {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(name, detailList, furnitureList, facadeList);
     }
 
