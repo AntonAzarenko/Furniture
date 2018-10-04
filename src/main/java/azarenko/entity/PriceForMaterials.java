@@ -29,21 +29,7 @@ public class PriceForMaterials {
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        PriceForMaterials that = (PriceForMaterials) o;
-        return material == that.material &&
-                facadeType == that.facadeType &&
-                Objects.equals(price, that.price);
-    }
 
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(material, facadeType, price);
-    }
 
     public Material getMaterial() {
         return material;
