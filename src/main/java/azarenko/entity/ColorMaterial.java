@@ -3,7 +3,7 @@ package azarenko.entity;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class Color extends BaseEntity {
+public class ColorMaterial extends BaseEntity {
     private String title;
 
     private String nameManufacture;
@@ -12,17 +12,17 @@ public class Color extends BaseEntity {
 
     private BigDecimal price;
 
-    public Color() {
+    public ColorMaterial() {
     }
 
-    public Color(String title, String nameManufacture, Country countryManufacture, BigDecimal price) {
+    public ColorMaterial(String title, String nameManufacture, Country countryManufacture, BigDecimal price) {
         this.title = title;
         this.nameManufacture = nameManufacture;
         this.countryManufacture = countryManufacture;
         this.price = price;
     }
 
-    public Color(String id, String title, String nameManufacture, Country countryManufacture, BigDecimal price) {
+    public ColorMaterial(String id, String title, String nameManufacture, Country countryManufacture, BigDecimal price) {
         super(id);
         this.title = title;
         this.nameManufacture = nameManufacture;
@@ -31,24 +31,8 @@ public class Color extends BaseEntity {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Color)) return false;
-        Color color = (Color) o;
-        return Objects.equals(title, color.title) &&
-                Objects.equals(nameManufacture, color.nameManufacture) &&
-                countryManufacture == color.countryManufacture &&
-                Objects.equals(price, color.price);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(title, nameManufacture, countryManufacture, price);
-    }
-
-    @Override
     public String toString() {
-        return "Color{" +
+        return "ColorMaterial{" +
                 "title='" + title + '\'' +
                 ", nameManufacture='" + nameManufacture + '\'' +
                 ", countryManufacture=" + countryManufacture +

@@ -29,22 +29,22 @@ public class Detail extends BaseEntity {
     private Material material;
 
     //цвет
-    private Color color;
+    private ColorMaterial colorMaterial;
 
     //цвет
-    public Color getColor() {
-        return color;
+    public ColorMaterial getColorMaterial() {
+        return colorMaterial;
     }
 
-    public void setColor(Color color) {
-        this.color = color;
+    public void setColorMaterial(ColorMaterial colorMaterial) {
+        this.colorMaterial = colorMaterial;
     }
 
     public Detail() {
     }
 
     public Detail(String id, long orderBy, List<EdgeMaterial> edgeMaterial, String name, int thickness, int x, int y,
-                  int count, Material material, Color color) {
+                  int count, Material material, ColorMaterial colorMaterial) {
         super(id);
         this.orderBy = orderBy;
         this.edgeMaterial = edgeMaterial;
@@ -55,7 +55,7 @@ public class Detail extends BaseEntity {
 
         this.count = count;
         this.material = material;
-        this.color = color;
+        this.colorMaterial = colorMaterial;
     }
 
     public long getOrderBy() {
@@ -121,27 +121,6 @@ public class Detail extends BaseEntity {
 
     public void setCount(int count) {
         this.count = count;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Detail detail = (Detail) o;
-        return orderBy == detail.orderBy &&
-                thickness == detail.thickness &&
-                Double.compare(detail.x, x) == 0 &&
-                Double.compare(detail.y, y) == 0 &&
-                count == detail.count &&
-                Objects.equals(edgeMaterial, detail.edgeMaterial) &&
-                Objects.equals(name, detail.name) &&
-                material == detail.material;
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(orderBy, edgeMaterial, name, thickness, x, y, count, material);
     }
 
     @Override
