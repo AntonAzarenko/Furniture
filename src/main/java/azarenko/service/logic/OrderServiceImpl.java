@@ -31,7 +31,9 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order getByName(String name) {
+    public List<Order> getByName(String name) {
         return repository.getByName(name);
     }
+
+
 }

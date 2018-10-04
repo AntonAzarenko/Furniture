@@ -2,44 +2,49 @@ package azarenko.repository.logic;
 
 import azarenko.entity.Order;
 import azarenko.repository.OrderRepository;
+import azarenko.repository.logic.proxy.ProxyOrderRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 import testdata.DataOrder;
 
-import javax.naming.Context;
 import java.util.List;
 
 
-import static testdata.DataOrder.orderTest;
+import static testdata.DataOrder.ORDER_TEST;
+import static testdata.DataOrder.ORDER_TEST2;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootApplication
-public class OrderRepositoryImplTest {
+@RunWith(SpringRunner.class)
+@SpringBootTest
+public class OrderRepositoryImplTest  {
 
-    private final static Logger log = LoggerFactory.getLogger(DetailRepositoryImplTest.class);
+    private final static Logger log = LoggerFactory.getLogger(OrderRepositoryImplTest.class);
 
     @Autowired
     private OrderRepository repository;
 
-
     @Test
     public void getByName() {
         Order order = repository.getByName("Камод");
-        DataOrder.assertMatch(order, orderTest);
+        log.info(order.toString());
+        DataOrder.assertMatch(order, ORDER_TEST);
+    }
+
+    @Test
+    public void getById() {
+        Order order = repository.read("5bb4f3602294ff2214d0c659");
+        log.info(order.toString());
+        DataOrder.assertMatch(order, ORDER_TEST);
     }
 
     @Test
     public void getByAuthor() {
         List<Order> order = repository.getByAuthor("Anton");
-        DataOrder.assertMatch(order, orderTest);
+        DataOrder.assertMatch(order, ORDER_TEST, ORDER_TEST2);
     }
 
     @Test
@@ -49,7 +54,8 @@ public class OrderRepositoryImplTest {
 
     @Test
     public void save() {
-        repository.save(orderTest);
+        repository.save(ORDER_TEST);
+        repository.save(ORDER_TEST2);
     }
 
     @Test
@@ -58,16 +64,20 @@ public class OrderRepositoryImplTest {
 
     @Test
     public void readAll() {
+
     }
 
     @Test
     public void update() {
+        repository.save(ORDER_TEST2);
     }
 
-    @Test(expected = NullPointerException.class)
+    @Autowired
+    ProxyOrderRepository proxyOrderRepository;
+
+    @Test()
     public void delete() {
-        Order order = repository.getByName("Камод");
-        repository.delete(order.getId());
-        log.info(repository.readAll().toString());
+       proxyOrderRepository.deleteAll();
     }
+
 }

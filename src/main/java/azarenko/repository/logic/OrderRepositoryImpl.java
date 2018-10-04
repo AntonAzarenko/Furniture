@@ -14,7 +14,7 @@ public class OrderRepositoryImpl implements OrderRepository {
     private ProxyOrderRepository proxy;
 
     @Override
-    public Order getByName(String name) {
+    public List<Order> getByName(String name) {
         return proxy.getByName(name);
     }
 
