@@ -43,22 +43,6 @@ public class Lifts extends Furniture<Lifts> {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Lifts lifts = (Lifts) o;
-        return Objects.equals(nameManufacture, lifts.nameManufacture) &&
-                country == lifts.country &&
-                lift == lifts.lift;
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(nameManufacture, country, lift);
-    }
-
-    @Override
     public String toString() {
         return "Lifts{" +
                 "nameManufacture='" + nameManufacture + '\'' +

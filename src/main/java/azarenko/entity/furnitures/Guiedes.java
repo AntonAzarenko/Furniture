@@ -19,25 +19,6 @@ public class Guiedes extends Furniture<Guiedes> {
     public Guiedes() {
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        Guiedes guiedes = (Guiedes) o;
-        return articul == guiedes.articul &&
-                length == guiedes.length &&
-                microlift == guiedes.microlift &&
-                Objects.equals(nameManufacture, guiedes.nameManufacture) &&
-                typeLifts == guiedes.typeLifts;
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(super.hashCode(), articul, nameManufacture, typeLifts, length, microlift);
-    }
-
     public int getArticul() {
         return articul;
     }

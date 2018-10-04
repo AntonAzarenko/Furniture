@@ -65,25 +65,7 @@ public class Loops extends Furniture<Loops>  {
         this.type = type;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        Loops loops = (Loops) o;
-        return articul == loops.articul &&
-                microlift == loops.microlift &&
-                Objects.equals(nameManufacture, loops.nameManufacture) &&
-                manufactureCountry == loops.manufactureCountry &&
-                Objects.equals(angle, loops.angle) &&
-                type == loops.type;
-    }
 
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(super.hashCode(), articul, nameManufacture, manufactureCountry, angle, type, microlift);
-    }
 
     @Override
     public String toString() {

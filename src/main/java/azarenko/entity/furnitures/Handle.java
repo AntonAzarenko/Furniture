@@ -45,22 +45,6 @@ public class Handle extends Furniture<Handle> {
         this.centerDistance = centerDistance;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        Handle handle = (Handle) o;
-        return centerDistance == handle.centerDistance &&
-                Objects.equals(articul, handle.articul) &&
-                color == handle.color;
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(super.hashCode(), articul, color, centerDistance);
-    }
 
     @Override
     public String toString() {
