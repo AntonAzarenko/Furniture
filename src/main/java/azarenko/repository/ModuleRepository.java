@@ -3,6 +3,8 @@ package azarenko.repository;
 import azarenko.entity.Module;
 import azarenko.repository.CrudRepository;
 
-public interface ModuleRepository extends CrudRepository<String, Module> {
+import java.util.List;
 
+public interface ModuleRepository extends CrudRepository<String, Module> {
+     List<Module> getByName(String name);
 }

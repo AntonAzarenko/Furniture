@@ -12,6 +12,9 @@ public interface ModuleService {
 
     List<Module> getByName(String name);
 
+    List<Module> getAll();
+
+
 
 
 }

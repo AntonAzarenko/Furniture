@@ -29,7 +29,7 @@ public class OrderRepositoryImplTest  {
 
     @Test
     public void getByName() {
-        Order order = repository.getByName("Камод");
+        List<Order> order = repository.getByName("Камод");
         log.info(order.toString());
         DataOrder.assertMatch(order, ORDER_TEST);
     }

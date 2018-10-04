@@ -12,21 +12,21 @@ import java.util.List;
 public class ModuleRepositoryImpl implements ModuleRepository {
 
     @Autowired
-    private ProxyModuleRepository repository;
+    private ProxyModuleRepository proxy;
 
     @Override
     public void save(Module module) {
-        repository.save(module);
+        proxy.save(module);
     }
 
     @Override
     public Module read(String id) {
-        return repository.getById(id);
+        return proxy.getById(id);
     }
 
     @Override
     public List<Module> readAll() {
-        return repository.findAll();
+        return proxy.findAll();
     }
 
     @Override
@@ -36,6 +36,11 @@ public class ModuleRepositoryImpl implements ModuleRepository {
 
     @Override
     public void delete(String id) {
-        repository.deleteById(id);
+        proxy.deleteById(id);
+    }
+
+    @Override
+    public List<Module> getByName(String name) {
+        return proxy.getByName(name);
     }
 }

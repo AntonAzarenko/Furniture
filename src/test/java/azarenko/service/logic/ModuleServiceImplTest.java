@@ -9,21 +9,21 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class OrderServiceImplTest {
+public class ModuleServiceImplTest {
 
     @Test
-    public void getByID() {
+    public void save() {
     }
 
     @Test
-    public void getAll() {
-    }
-
-    @Test
-    public void getByAuthor() {
+    public void getById() {
     }
 
     @Test
     public void getByName() {
+    }
+
+    @Test
+    public void getAll() {
     }
 }
