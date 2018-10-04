@@ -7,14 +7,6 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-
-/**
- * Класс хранит информацию о пользователе: ID, имя, почту(используеться как LOGIN), пароль, enabled(авторизован
- * ли пользователь если осуществляет переход по страницам), дату регистрации.
- *
- * @author Anton Azarenko
- */
-
 public class User extends BaseEntity {
 
     private String name;
@@ -104,28 +96,7 @@ public class User extends BaseEntity {
         this.registered = registered;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof User)) return false;
 
-        User user = (User) o;
-
-        if (getName() != null ? !getName().equals(user.getName()) : user.getName() != null) return false;
-        if (getEmail() != null ? !getEmail().equals(user.getEmail()) : user.getEmail() != null) return false;
-        if (getPassword() != null ? !getPassword().equals(user.getPassword()) : user.getPassword() != null)
-            return false;
-        return getRoles() != null ? getRoles().equals(user.getRoles()) : user.getRoles() == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = getName() != null ? getName().hashCode() : 0;
-        result = 31 * result + (getEmail() != null ? getEmail().hashCode() : 0);
-        result = 31 * result + (getPassword() != null ? getPassword().hashCode() : 0);
-        result = 31 * result + (getRoles() != null ? getRoles().hashCode() : 0);
-        return result;
-    }
 
     @Override
     public String toString() {
