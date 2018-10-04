@@ -14,6 +14,12 @@ public class Author extends BaseEntity {
         this.lastName = lastName;
     }
 
+    public Author(String id, String firstName, String lastName) {
+        super(id);
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
     public String getFirstName() {
         return firstName;
     }
