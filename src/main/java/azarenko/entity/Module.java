@@ -1,9 +1,6 @@
 package azarenko.entity;
 
-import com.fasterxml.jackson.databind.ser.Serializers;
-
 import java.util.List;
-import java.util.Objects;
 
 public class Module extends BaseEntity {
     private String name;
@@ -13,22 +10,6 @@ public class Module extends BaseEntity {
     private List<Furniture> furnitureList;
 
     private List<Facade> facadeList;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Module module = (Module) o;
-        return Objects.equals(name, module.name) &&
-                Objects.equals(detailList, module.detailList) &&
-                Objects.equals(furnitureList, module.furnitureList) &&
-                Objects.equals(facadeList, module.facadeList);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, detailList, furnitureList, facadeList);
-    }
 
     public String getName() {
         return name;
