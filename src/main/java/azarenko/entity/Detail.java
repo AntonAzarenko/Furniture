@@ -98,7 +98,7 @@ public class Detail extends BaseEntity {
         this.thickness = thickness;
     }
 
-    public double getX() {
+    public int getX() {
         return x;
     }
 
@@ -106,7 +106,7 @@ public class Detail extends BaseEntity {
         this.x = x;
     }
 
-    public double getY() {
+    public int getY() {
         return y;
     }
 

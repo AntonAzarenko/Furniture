@@ -35,5 +35,15 @@ public class OrderServiceImpl implements OrderService {
         return repository.getByName(name);
     }
 
+    @Override
+    public void save(Order order) {
+
+    }
+
+    @Override
+    public void delete(String id) {
+
+    }
+
 
 }

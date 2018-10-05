@@ -16,7 +16,7 @@ public class DetailsData {
     static {
         detailList.add(new Detail(null, 1L, DataEdgeMaterial.edgeMaterialSideWall, "sidewall", 18,
                 380, 1000, 2, Material.DSP, colorMaterial));
-       /* detailList.add(new Detail(null, 1L, DataEdgeMaterial.edgeMaterialCounterTop, " table top", 18,
+        detailList.add(new Detail(null, 1L, DataEdgeMaterial.edgeMaterialCounterTop, " table top", 18,
                 410, 1000, 1, Material.DSP, colorMaterial));
         detailList.add(new Detail(null, 1L, DataEdgeMaterial.edgeMaterialFloor, "floor", 18,
                 964, 380, 1, Material.DSP, colorMaterial));
@@ -27,7 +27,7 @@ public class DetailsData {
         detailList.add(new Detail(null, 1L, DataEdgeMaterial.buttCloseFacade, "shelf", 18,
                 963, 360, 3, Material.DSP, colorMaterial));
         detail = new Detail(null, 1L, DataEdgeMaterial.buttCloseFacade, "facade", 18, 496, 956, 2, Material.DSP,
-                new ColorMaterial(null, "white", "Arpa", Country.AUSTRIA, new BigDecimal(45)));*/
+                new ColorMaterial(null, "white", "Arpa", Country.AUSTRIA, new BigDecimal(45)));
     }
 
 }
