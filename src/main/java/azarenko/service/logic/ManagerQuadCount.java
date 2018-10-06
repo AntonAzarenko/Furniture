@@ -61,3 +61,4 @@ public class ManagerQuadCount {
         return sum;
     }
 }
+
