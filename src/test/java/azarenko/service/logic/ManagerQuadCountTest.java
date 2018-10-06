@@ -12,6 +12,7 @@ import testdata.DataOrder;
 import testdata.DetailsData;
 
 import static org.junit.Assert.*;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ManagerQuadCountTest {
@@ -23,13 +24,13 @@ public class ManagerQuadCountTest {
 
     @Test
     public void getCountSquareDetail() {
-        double q = managerQuadCount.getCountSquareDetail(458,598);
+        double q = managerQuadCount.getCountSquareDetail(458, 598);
         log.info(String.valueOf(q));
     }
 
     @Test
     public void getCountSquareDetailsList() {
-       double q = managerQuadCount.getCountSquareDetailsList(DetailsData.detailList);
+        double q = managerQuadCount.getCountSquareDetailsList(DetailsData.detailList);
         log.info(String.valueOf(q));
     }
 

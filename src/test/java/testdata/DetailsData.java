@@ -1,12 +1,13 @@
 package testdata;
 
 import azarenko.entity.*;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Component
 public class DetailsData {
     public static List<Detail> detailList = new ArrayList<>();
 
@@ -26,8 +27,8 @@ public class DetailsData {
                 964, 60, 1, Material.DSP, colorMaterial));
         detailList.add(new Detail(null, 1L, DataEdgeMaterial.buttCloseFacade, "shelf", 18,
                 963, 360, 3, Material.DSP, colorMaterial));
-        detail = new Detail(null, 1L, DataEdgeMaterial.buttCloseFacade, "facade", 18, 496, 956, 2, Material.DSP,
-                new ColorMaterial(null, "white", "Arpa", Country.AUSTRIA, new BigDecimal(45)));
+        /*detail = new Detail(null, 1L, DataEdgeMaterial.buttCloseFacade, "facade", 18, 496, 956, 2, Material.DSP,
+                new ColorMaterial(null, "white", "Arpa", Country.AUSTRIA, new BigDecimal(45)));*/
     }
 
 }
