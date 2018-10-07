@@ -3,18 +3,21 @@ package azarenko.service.logic;
 import azarenko.entity.*;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static azarenko.entity.ButtClose.BUTT_X;
 
 @Component
 public class ManagerEdgeCount {
 
-    public Map<EdgeType, Double> getLengthEdgeMaterialForOrder(Order order) {
-        Map<EdgeType, Double> map = new HashMap<>();
+    private ConcurrentHashMap<BigDecimal, Double> map = new ConcurrentHashMap<>();
+
+    public ConcurrentHashMap<BigDecimal, Double> getLengthEdgeMaterialForOrder(Order order) {
         List<Module> moduleList = order.getModuleList();
         List<Detail> detailList = order.getDetailList();
         if (Objects.nonNull(moduleList)) {
@@ -30,29 +33,27 @@ public class ManagerEdgeCount {
         return map;
     }
 
-    public Map<EdgeType, Double> getLengthEdgeMaterialForModule(Module module) {
+    public ConcurrentHashMap<BigDecimal, Double> getLengthEdgeMaterialForModule(Module module) {
         return getLengthEdgeMaterialForDetailList(module.getDetailList());
     }
 
-    public Map<EdgeType, Double> getLengthEdgeMaterialForDetailList(List<Detail> detailList) {
-        Map<EdgeType, Double> map = new HashMap<>();
+    public ConcurrentHashMap<BigDecimal, Double> getLengthEdgeMaterialForDetailList(List<Detail> detailList) {
         if (Objects.nonNull(detailList)) {
             for (Detail detail : detailList) {
-                map.putAll(getLengthEdgeMaterialForDetail(detail));
+                map = getLengthEdgeMaterialForDetail(detail);
             }
         }
         return map;
     }
 
-    public Map<EdgeType, Double> getLengthEdgeMaterialForDetail(Detail detail) {
-        Map<EdgeType, Double> map = new HashMap<>();
-        return getButtClose(detail.getX(), detail.getY(), detail.getEdgeMaterial(), map);
+    public ConcurrentHashMap<BigDecimal, Double> getLengthEdgeMaterialForDetail(Detail detail) {
+        return getButtClose(detail.getX(), detail.getY(), detail.getEdgeMaterial());
     }
 
-    private Map<EdgeType, Double> getButtClose(int x, int y, List<EdgeMaterial> edgeMaterials, Map<EdgeType, Double> map) {
+    private ConcurrentHashMap<BigDecimal, Double> getButtClose(int x, int y, List<EdgeMaterial> edgeMaterials) {
         if (Objects.nonNull(edgeMaterials)) {
             for (EdgeMaterial material : edgeMaterials) {
-                map.put(material.getEdgeType(), getlength(x, y, material));
+                map.merge(material.getPrice(), getlength(x, y, material), (oldValue , newValue) -> oldValue + newValue);
             }
         }
         return map;

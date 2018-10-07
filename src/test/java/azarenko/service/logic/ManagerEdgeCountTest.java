@@ -17,8 +17,10 @@ import testdata.DataModule;
 import testdata.DataOrder;
 import testdata.DetailsData;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static org.junit.Assert.*;
 import static testdata.DetailsData.colorMaterial;
@@ -29,39 +31,40 @@ public class ManagerEdgeCountTest {
 
     private final static Logger log = LoggerFactory.getLogger(OrderRepositoryImplTest.class);
 
+
     @Autowired
     private ManagerEdgeCount managerEdgeCount;
 
     @Test
     public void getLengthEdgeMaterialForOrder() {
-        Map<EdgeType, Double> map = managerEdgeCount.getLengthEdgeMaterialForOrder(DataOrder.ORDER_TEST2);
-        for (Map.Entry<EdgeType, Double> pair : map.entrySet()) {
+        ConcurrentHashMap<BigDecimal, Double> map = managerEdgeCount.getLengthEdgeMaterialForOrder(DataOrder.ORDER_TEST2);
+        for (Map.Entry<BigDecimal, Double> pair : map.entrySet()) {
             log.info(String.valueOf(pair.getKey()) + " " + String.valueOf(pair.getValue()));
         }
     }
 
     @Test
     public void getLengthEdgeMaterialForModule() {
-        Map<EdgeType, Double> map = managerEdgeCount.getLengthEdgeMaterialForModule(DataModule.getModule().get(0));
-        for (Map.Entry<EdgeType, Double> pair : map.entrySet()) {
+        Map<BigDecimal, Double> map = managerEdgeCount.getLengthEdgeMaterialForModule(DataModule.getModule().get(0));
+        for (Map.Entry<BigDecimal, Double> pair : map.entrySet()) {
             log.info(String.valueOf(pair.getKey()) + " " + String.valueOf(pair.getValue()));
         }
     }
 
     @Test
     public void getLengthEdgeMaterialForDetailList() {
-        Map<EdgeType, Double> map = managerEdgeCount.getLengthEdgeMaterialForDetailList(DetailsData.detailList);
-        for (Map.Entry<EdgeType, Double> pair : map.entrySet()) {
+        Map<BigDecimal, Double> map = managerEdgeCount.getLengthEdgeMaterialForDetailList(DetailsData.detailList);
+        for (Map.Entry<BigDecimal, Double> pair : map.entrySet()) {
             log.info(String.valueOf(pair.getKey()) + " " + String.valueOf(pair.getValue()));
         }
     }
 
     @Test
     public void getLengthEdgeMaterialForDetail() {
-        Map<EdgeType, Double> map = managerEdgeCount.getLengthEdgeMaterialForDetail(new Detail(null, 1L, DataEdgeMaterial.edgeMaterialCounterTop, " table top", 18,
+        Map<BigDecimal, Double> map = managerEdgeCount.getLengthEdgeMaterialForDetail(new Detail(null, 1L, DataEdgeMaterial.edgeMaterialCounterTop, " table top", 18,
                 410, 1000, 1, Material.DSP, colorMaterial));
-        for (Map.Entry<EdgeType, Double> pair : map.entrySet()) {
-            log.info(String.valueOf(pair.getKey()) + "-" + String.valueOf(pair.getValue()));
+        for (Map.Entry<BigDecimal, Double> pair : map.entrySet()) {
+            log.info(String.valueOf(pair.getKey()) + " - " + String.valueOf(pair.getValue()));
         }
     }
 }
