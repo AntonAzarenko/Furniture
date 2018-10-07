@@ -15,7 +15,7 @@ public class DataEdgeMaterial {
         edgeMaterialSideWall.add(new EdgeMaterial(null, Country.RUSSIA, "Egger", EdgeType.ABC, "pepel",
                 new BigDecimal(0.35), 1, ButtClose.BUTT_Y));
         edgeMaterialSideWall.add(new EdgeMaterial(null, Country.RUSSIA, "noname", EdgeType.MALMIN, "pepel",
-                new BigDecimal(0.01), 0.2, ButtClose.BUTT_Y));
+                new BigDecimal(0.01), 0.2, ButtClose.BUTT_X));
         edgeMaterialCounterTop.add(new EdgeMaterial(null, Country.RUSSIA, "Egger", EdgeType.ABC, "pepel",
                 new BigDecimal(1.2), 2, ButtClose.BUTT_ARROUND));
         edgeMaterialFloor.add(new EdgeMaterial(null, Country.RUSSIA, "Egger", EdgeType.ABC, "pepel",

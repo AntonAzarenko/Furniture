@@ -3,50 +3,61 @@ package azarenko.service.logic;
 import azarenko.entity.*;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 import static azarenko.entity.ButtClose.BUTT_X;
 
 @Component
 public class ManagerEdgeCount {
 
-    public double getLengthEdgeMaterialForOrder(Order order) {
-        double sum = 0d;
+    public Map<EdgeType,Double> getLengthEdgeMaterialForOrder(Order order) {
+        Map<EdgeType, Double> map = new HashMap<>();
         List<Module> moduleList = order.getModuleList();
         List<Detail> detailList = order.getDetailList();
-        for(Module module : moduleList){
-            sum+= getLengthEdgeMaterialForModule(module);
+        if(Objects.nonNull(moduleList)) {
+            for (Module module : moduleList) {
+                map = getLengthEdgeMaterialForModule(module);
+            }
         }
-
-        for (Detail detail : detailList){
-            sum+= getLengthEdgeMaterialForDetail(detail);
+        if(Objects.nonNull(detailList)) {
+            for (Detail detail : detailList) {
+                map.putAll(getLengthEdgeMaterialForDetailList(detailList));
+            }
         }
-        return sum;
+        return map;
     }
 
-    public double getLengthEdgeMaterialForModule(Module module) {
+    public Map<EdgeType,Double> getLengthEdgeMaterialForModule(Module module) {
         return getLengthEdgeMaterialForDetailList(module.getDetailList());
     }
 
-    public double getLengthEdgeMaterialForDetailList(List<Detail> detailList) {
-        double sum = 0d;
-        for (Detail detail : detailList) {
-            sum += getLengthEdgeMaterialForDetail(detail);
+    public Map<EdgeType,Double> getLengthEdgeMaterialForDetailList(List<Detail> detailList) {
+        Map<EdgeType, Double> map = new HashMap<>();
+        if(Objects.nonNull(detailList)) {
+            for (Detail detail : detailList) {
+                map =  getLengthEdgeMaterialForDetail(detail);
+            }
         }
-        return sum;
+        return map;
     }
 
-    public double getLengthEdgeMaterialForDetail(Detail detail) {
-        double sum = getButtClose(detail.getX(), detail.getY(), detail.getEdgeMaterial());
-        return sum = sum + (sum / 100 * 10);
+    public Map<EdgeType,Double> getLengthEdgeMaterialForDetail(Detail detail) {
+        Map<EdgeType, Double> map = new HashMap<>();
+        map = getButtClose(detail.getX(), detail.getY(), detail.getEdgeMaterial());
+        return map;
     }
 
-    private double getButtClose(int x, int y, List<EdgeMaterial> edgeMaterials) {
-        double sum = 0d;
-        for (EdgeMaterial material : edgeMaterials) {
-            sum += getlength(x, y, material);
+    private Map<EdgeType,Double> getButtClose(int x, int y, List<EdgeMaterial> edgeMaterials) {
+       Map<EdgeType, Double> map = new HashMap<>();
+        if(Objects.nonNull(edgeMaterials)) {
+            for (EdgeMaterial material : edgeMaterials) {
+                map.put(material.getEdgeType(),getlength(x, y, material));
+            }
         }
-        return sum;
+        return map;
     }
 
     private double getlength(int x, int y, EdgeMaterial material) {

@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 @SpringBootTest
 public class ManagerQuadCountTest {
 
-    private final static Logger log = LoggerFactory.getLogger(OrderRepositoryImplTest.class);
+    private final static Logger log = LoggerFactory.getLogger(ManagerQuadCountTest.class);
 
     @Autowired
     private ManagerQuadCount managerQuadCount;

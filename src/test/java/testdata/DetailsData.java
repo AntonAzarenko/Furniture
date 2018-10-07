@@ -21,8 +21,8 @@ public class DetailsData {
                 410, 1000, 1, Material.DSP, colorMaterial));
         detailList.add(new Detail(null, 1L, DataEdgeMaterial.edgeMaterialFloor, "floor", 18,
                 964, 380, 1, Material.DSP, colorMaterial));
-        detailList.add(new Detail(null, 1L, null, "back side", 4, 995, 955,
-                1, Material.DVP, null));
+       /* detailList.add(new Detail(null, 1L, null, "back side", 4, 995, 955,
+                1, Material.DVP, null));*/
         detailList.add(new Detail(null, 1L, DataEdgeMaterial.edgeMaterialSideWall, "socle", 18,
                 964, 60, 1, Material.DSP, colorMaterial));
         detailList.add(new Detail(null, 1L, DataEdgeMaterial.buttCloseFacade, "shelf", 18,
