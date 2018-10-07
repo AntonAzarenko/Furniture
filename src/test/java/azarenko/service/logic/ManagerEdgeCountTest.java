@@ -58,8 +58,8 @@ public class ManagerEdgeCountTest {
 
     @Test
     public void getLengthEdgeMaterialForDetail() {
-        Map<EdgeType, Double> map = managerEdgeCount.getLengthEdgeMaterialForDetail(new Detail(null, 1L, DataEdgeMaterial.edgeMaterialSideWall, "sidewall", 18,
-                380, 1000, 2, Material.DSP, colorMaterial));
+        Map<EdgeType, Double> map = managerEdgeCount.getLengthEdgeMaterialForDetail(new Detail(null, 1L, DataEdgeMaterial.edgeMaterialCounterTop, " table top", 18,
+                410, 1000, 1, Material.DSP, colorMaterial));
         for (Map.Entry<EdgeType, Double> pair : map.entrySet()) {
             log.info(String.valueOf(pair.getKey()) + "-" + String.valueOf(pair.getValue()));
         }
