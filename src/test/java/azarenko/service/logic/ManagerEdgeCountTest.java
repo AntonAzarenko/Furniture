@@ -18,11 +18,9 @@ import testdata.DataOrder;
 import testdata.DetailsData;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static org.junit.Assert.*;
 import static testdata.DetailsData.colorMaterial;
 
 @RunWith(SpringRunner.class)
@@ -30,7 +28,6 @@ import static testdata.DetailsData.colorMaterial;
 public class ManagerEdgeCountTest {
 
     private final static Logger log = LoggerFactory.getLogger(OrderRepositoryImplTest.class);
-
 
     @Autowired
     private ManagerEdgeCount managerEdgeCount;

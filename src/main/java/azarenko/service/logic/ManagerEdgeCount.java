@@ -4,13 +4,10 @@ import azarenko.entity.*;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static azarenko.entity.ButtClose.BUTT_X;
 
 @Component
 public class ManagerEdgeCount {
@@ -25,12 +22,17 @@ public class ManagerEdgeCount {
                 map = getLengthEdgeMaterialForModule(module);
             }
         }
+
+        ConcurrentHashMap<BigDecimal, Double> map2 = new ConcurrentHashMap<>();
         if (Objects.nonNull(detailList)) {
             for (Detail detail : detailList) {
-                map.putAll(getLengthEdgeMaterialForDetailList(detailList));
+                map2 = (getLengthEdgeMaterialForDetailList(detailList));
             }
         }
-        return map;
+
+        ConcurrentHashMap<BigDecimal, Double> mapFull = new ConcurrentHashMap<>(map);
+        map2.forEach((k, v) -> mapFull.merge(k, v, (a, b) -> a + b));
+        return mapFull;
     }
 
     public ConcurrentHashMap<BigDecimal, Double> getLengthEdgeMaterialForModule(Module module) {
@@ -53,7 +55,7 @@ public class ManagerEdgeCount {
     private ConcurrentHashMap<BigDecimal, Double> getButtClose(int x, int y, List<EdgeMaterial> edgeMaterials, int count) {
         if (Objects.nonNull(edgeMaterials)) {
             for (EdgeMaterial material : edgeMaterials) {
-                map.merge(material.getPrice(), getlength(x, y, material, count), (oldValue , newValue) -> oldValue + newValue);
+                map.merge(material.getPrice(), getlength(x, y, material, count), (oldValue, newValue) -> oldValue + newValue);
             }
         }
         return map;
@@ -62,7 +64,7 @@ public class ManagerEdgeCount {
     private double getlength(int x, int y, EdgeMaterial material, int count) {
         switch (material.getButtCloses()) {
             case BUTT_X:
-                return (double) x *count;
+                return (double) x * count;
             case BUTT_Y:
                 return (double) y * count;
             case BUTT_DOUBLE_X:

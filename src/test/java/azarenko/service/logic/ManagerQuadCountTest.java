@@ -41,13 +41,13 @@ public class ManagerQuadCountTest {
 
     @Test
     public void getCountSquareDetailsForModule() {
-        double q = managerQuadCount.getCountSquareDetailsForModuleList(DataOrder.ORDER_TEST2.getModuleList());
-        log.info(String.valueOf(q));
+        Map<BigDecimal, Double> map = managerQuadCount.getCountSquareDetailsForModuleList(DataOrder.ORDER_TEST2.getModuleList());
+        log.info(String.valueOf(map));
     }
 
     @Test
     public void getCountSquareForOrder() {
-        double q = managerQuadCount.getCountSquareForOrder(DataOrder.ORDER_TEST2);
-        log.info(String.valueOf(q));
+        Map<BigDecimal, Double> map = managerQuadCount.getCountSquareForOrder(DataOrder.ORDER_TEST2);
+        log.info(String.valueOf(map));
     }
 }
