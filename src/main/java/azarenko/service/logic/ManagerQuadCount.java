@@ -5,60 +5,62 @@ import azarenko.entity.Module;
 import azarenko.entity.Order;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 @Component
 public class ManagerQuadCount {
 
-    public double getCountSquareDetail(int x, int y) {
-        return ((double)x / 1000) * ((double) y / 1000);
+    public double getCountSquareDetail(int x, int y,int count) {
+        return (((double)x / 1000) * ((double) y / 1000)) * count;
     }
 
-    public double getCountSquareDetailsList(List<Detail> detailList) {
-        double sum = 0;
+    public Map<BigDecimal,Double> getCountSquareDetailsList(List<Detail> detailList) {
+        Map<BigDecimal,Double> map = new HashMap<>();
         if (Objects.nonNull(detailList)) {
             for (Detail detail : detailList) {
-                sum += getCountSquareDetail(detail.getX(), detail.getY());
+                map.merge(detail.getColorMaterial().getPrice(), getCountSquareDetail(detail.getX(),detail.getY(),detail.getCount()),(a,b) -> a + b);
             }
         }
-        return sum;
+        return map;
     }
 
-    public double getCountSquareDetailsForModule(Module module) {
-        double sum = 0;
+    public Map<BigDecimal,Double> getCountSquareDetailsForModule(Module module) {
+        Map<BigDecimal,Double> map = new HashMap<>();
         if (Objects.nonNull(module)) {
             List<Detail> detailList = module.getDetailList();
             if (Objects.nonNull(detailList)) {
-                sum = getCountSquareDetailsList(detailList);
+               map = getCountSquareDetailsList(detailList);
             }
         }
-        return sum;
+        return map;
     }
 
-    public double getCountSquareForOrder(Order order) {
-        double sum = 0;
+    public Map<BigDecimal,Double> getCountSquareForOrder(Order order) {
+        Map<BigDecimal,Double> map = new HashMap<>();
         if (Objects.nonNull(order)) {
             List<Detail> detailList = order.getDetailList();
             List<Module> moduleList = order.getModuleList();
             if (Objects.nonNull(detailList)) {
-                sum += getCountSquareDetailsList(detailList);
+               map = getCountSquareDetailsList(detailList);
             }
             if (Objects.nonNull(moduleList)) {
-                sum += getCountSquareDetailsForModuleList(moduleList);
+                //map.merge getCountSquareDetailsForModuleList(moduleList);
             }
         }
-        return sum;
+        return map;
     }
 
-    public double getCountSquareDetailsForModuleList(List<Module> moduleList) {
-        double sum = 0;
+    public Map<BigDecimal,Double> getCountSquareDetailsForModuleList(List<Module> moduleList) {
+        Map<BigDecimal,Double> map = new HashMap<>();
         if (Objects.nonNull(moduleList)) {
             for (Module module : moduleList) {
-                sum += getCountSquareDetailsForModule(module);
+                map = getCountSquareDetailsForModule(module);
             }
         }
-        return sum;
+        return map;
     }
 }
-

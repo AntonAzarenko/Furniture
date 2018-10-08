@@ -1,6 +1,7 @@
 package azarenko.service.logic;
 
 import azarenko.entity.Detail;
+import azarenko.entity.EdgeMaterial;
 import azarenko.entity.Module;
 
 import org.springframework.stereotype.Component;
@@ -16,6 +17,10 @@ public class Booker {
 
     public BigDecimal getPriceModule(Module module) {
         return null;
+    }
+
+    public BigDecimal getPriceEdgeMaterial(EdgeMaterial material) {
+        return material.getPrice();
     }
 
 

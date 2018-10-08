@@ -24,7 +24,7 @@ public class DataEdgeMaterial {
         buttCloseFacade.add(new EdgeMaterial(null, Country.AUSTRIA, "Arpa", EdgeType.PVH, "graphit",
                 new BigDecimal(2.3), 2, ButtClose.BUTT_ARROUND));
         edgeMaterialSocle.add(new EdgeMaterial(null, Country.RUSSIA, "noname", EdgeType.MALMIN, "pepel",
-                new BigDecimal(0.01), 0.2, ButtClose.BUTT_Y));
+                new BigDecimal(0.01), 0.2, ButtClose.BUTT_X));
     }
 
 

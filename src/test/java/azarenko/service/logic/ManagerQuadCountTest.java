@@ -11,6 +11,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import testdata.DataOrder;
 import testdata.DetailsData;
 
+import java.math.BigDecimal;
+import java.util.Map;
+
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
@@ -24,14 +27,16 @@ public class ManagerQuadCountTest {
 
     @Test
     public void getCountSquareDetail() {
-        double q = managerQuadCount.getCountSquareDetail(458, 598);
+        double q = managerQuadCount.getCountSquareDetail(458, 598, 2);
         log.info(String.valueOf(q));
     }
 
     @Test
     public void getCountSquareDetailsList() {
-        double q = managerQuadCount.getCountSquareDetailsList(DetailsData.detailList);
-        log.info(String.valueOf(q));
+        Map<BigDecimal, Double> map = managerQuadCount.getCountSquareDetailsList(DetailsData.detailList);
+        for (Map.Entry<BigDecimal, Double> pair : map.entrySet()) {
+            log.info(String.valueOf(pair.getKey()) + " " + String.valueOf(pair.getValue()));
+        }
     }
 
     @Test
