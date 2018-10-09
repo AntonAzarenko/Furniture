@@ -4,5 +4,11 @@ public enum Country {
     AUSTRIA,
     GERMANY,
     POLAND,
-    RUSSIA;
+    RUSSIA,
+    UKRAINE,
+    BELARUS,
+    CHINA,
+    RUSSIAN
+    ;
+
 }
