@@ -47,8 +47,12 @@ public class Furniture<T> extends BaseEntity {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Furniture<?> furniture = (Furniture<?>) o;
         return count == furniture.count &&
                 Objects.equals(furnitures, furniture.furnitures) &&

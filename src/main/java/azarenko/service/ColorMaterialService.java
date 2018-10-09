@@ -2,7 +2,6 @@ package azarenko.service;
 
 
 import azarenko.entity.ColorMaterial;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 

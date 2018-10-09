@@ -35,8 +35,12 @@ public class Angle extends BaseEntity {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Angle angle1 = (Angle) o;
         return Double.compare(angle1.angle, angle) == 0 &&
                 Objects.equals(name, angle1.name);

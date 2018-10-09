@@ -111,8 +111,12 @@ public class EdgeMaterial extends BaseEntity {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         EdgeMaterial that = (EdgeMaterial) o;
         return manufacturer == that.manufacturer &&
                 Objects.equals(name, that.name) &&

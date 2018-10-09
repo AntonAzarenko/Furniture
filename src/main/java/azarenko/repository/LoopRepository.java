@@ -1,6 +1,5 @@
 package azarenko.repository;
 
-import azarenko.entity.Angle;
 import azarenko.entity.Country;
 import azarenko.entity.furnitures.Loops;
 import azarenko.entity.furnitures.TypeLoop;

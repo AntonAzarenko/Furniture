@@ -2,7 +2,6 @@ package azarenko.entity;
 
 
 import java.util.List;
-import java.util.Objects;
 
 public class Detail extends BaseEntity {
     //заказ

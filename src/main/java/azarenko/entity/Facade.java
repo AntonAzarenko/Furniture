@@ -42,8 +42,12 @@ public class Facade extends BaseEntity {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()){
+            return false;
+        }
         Facade facade = (Facade) o;
         return facadeType == facade.facadeType &&
                 Objects.equals(detail, facade.detail);
