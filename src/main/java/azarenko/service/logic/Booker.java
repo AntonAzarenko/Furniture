@@ -1,9 +1,7 @@
 package azarenko.service.logic;
 
 import azarenko.entity.Detail;
-import azarenko.entity.EdgeMaterial;
 import azarenko.entity.Module;
-
 import azarenko.entity.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,8 +11,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import static java.math.BigInteger.ZERO;
+
 @Service
 public class Booker {
+
+    private final int COUNT_PERCENT = 10;
 
     @Autowired
     private ManagerQuadCount managerQuadCount;
@@ -23,7 +25,7 @@ public class Booker {
     private ManagerEdgeCount managerEdgeCount;
 
     public BigDecimal getPriceModule(Module module) {
-        BigDecimal price = new BigDecimal(0);
+        BigDecimal price = new BigDecimal(ZERO);
         if (Objects.nonNull(module)) {
             List<Detail> list = module.getDetailList();
 
@@ -39,7 +41,7 @@ public class Booker {
     }
 
     public BigDecimal getPriceOrder(Order order) {
-        BigDecimal price = new BigDecimal(0);
+        BigDecimal price = new BigDecimal(ZERO);
         if (Objects.nonNull(order)) {
             for (Module module : order.getModuleList()) {
                 price = price.add(getPriceModule(module));
@@ -52,7 +54,7 @@ public class Booker {
     }
 
     private BigDecimal getPriceForDetailMap(Map<BigDecimal, Double> map) {
-        BigDecimal price = new BigDecimal(0);
+        BigDecimal price = new BigDecimal(ZERO);
 
         for (Map.Entry<BigDecimal, Double> pair : map.entrySet()) {
             BigDecimal temp = new BigDecimal(pair.getValue());
@@ -62,10 +64,10 @@ public class Booker {
     }
 
     private BigDecimal getPriceForEdgeMap(Map<BigDecimal, Double> map) {
-        BigDecimal price = new BigDecimal(0);
+        BigDecimal price = new BigDecimal(ZERO);
 
         for (Map.Entry<BigDecimal, Double> pair : map.entrySet()) {
-            BigDecimal temp = new BigDecimal((pair.getValue() + (pair.getValue() / 100 * 10))/1000);
+            BigDecimal temp = new BigDecimal((pair.getValue() + (pair.getValue() / 100 * COUNT_PERCENT))/1000);
             price = price.add(new BigDecimal(String.valueOf(pair.getKey().multiply(temp))));
         }
         return price;

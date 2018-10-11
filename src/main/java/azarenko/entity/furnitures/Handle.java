@@ -2,8 +2,6 @@ package azarenko.entity.furnitures;
 
 import azarenko.entity.Furniture;
 
-import java.util.Objects;
-
 public class Handle extends Furniture<Handle> {
 
     private int articul;

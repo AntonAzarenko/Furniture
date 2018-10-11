@@ -1,11 +1,8 @@
 package azarenko.entity.furnitures;
 
 import azarenko.entity.Angle;
-
 import azarenko.entity.Country;
 import azarenko.entity.Furniture;
-
-import java.util.Objects;
 
 public class Loops extends Furniture<Loops>  {
 

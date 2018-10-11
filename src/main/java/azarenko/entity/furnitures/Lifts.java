@@ -3,10 +3,8 @@ package azarenko.entity.furnitures;
 import azarenko.entity.Country;
 import azarenko.entity.Furniture;
 
-import java.util.Objects;
-
-
 public class Lifts extends Furniture<Lifts> {
+
     private int articul;
 
     private String nameManufacture;
@@ -16,6 +14,14 @@ public class Lifts extends Furniture<Lifts> {
     private TypeLift lift;
 
     public Lifts() {
+    }
+
+    public int getArticul() {
+        return articul;
+    }
+
+    public void setArticul(int articul) {
+        this.articul = articul;
     }
 
     public String getNameManufacture() {
@@ -45,7 +51,8 @@ public class Lifts extends Furniture<Lifts> {
     @Override
     public String toString() {
         return "Lifts{" +
-                "nameManufacture='" + nameManufacture + '\'' +
+                "articul=" + articul +
+                ", nameManufacture='" + nameManufacture + '\'' +
                 ", country=" + country +
                 ", lift=" + lift +
                 '}';

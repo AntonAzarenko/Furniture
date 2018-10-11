@@ -1,7 +1,6 @@
 package azarenko.repository.logic.proxy;
 
 import azarenko.entity.Order;
-import azarenko.repository.OrderRepository;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 

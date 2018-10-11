@@ -26,7 +26,7 @@ public class ManagerEdgeCount {
         ConcurrentHashMap<BigDecimal, Double> map2 = new ConcurrentHashMap<>();
         if (Objects.nonNull(detailList)) {
             for (Detail detail : detailList) {
-                map2 = (getLengthEdgeMaterialForDetailList(detailList));
+                map2 = (getLengthEdgeMaterialForDetail(detail));
             }
         }
 
