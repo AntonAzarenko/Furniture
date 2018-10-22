@@ -25,6 +25,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-data-mongodb")
     compile 'org.mockito:mockito-core:2.22.0'
     compile 'com.airhacks:jaxrs-cors:0.0.2'
+    compile 'com.xfvape.cors:cors-spring-boot-starter:0.0.4-RELEASE'
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 

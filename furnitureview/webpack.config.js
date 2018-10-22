@@ -4,7 +4,8 @@ var UglifyJSPlugin = require('uglifyjs-webpack-plugin'); // плагин мин�
 module.exports = {
     entry: {
         'polyfills': './src/polyfills.ts',
-        'app': './src/main.ts'
+        'app': './src/main.ts',
+        'server': './src/server.ts'
       },
    output:{
        path: path.resolve(__dirname, './public'),     // путь к каталогу выходных файлов - папка public

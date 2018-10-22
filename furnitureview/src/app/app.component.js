@@ -10,17 +10,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 var AppComponent = /** @class */ (function () {
+    /*  orders = [
+          {
+              "id": "5bbcb04bde0f5a4098b32ec9",
+              "name": "Камод2",
+              "author": {
+                  "id": "null",
+                  "firstName": "Anton",
+                  "lastName": "Azarenko"
+              },
+              "orderTypeChoise": "CHEST_OF_DRAWERS",
+              "moduleList": "null",
+              "detailList": "null",
+              "furnitureList": "null",
+              "facadeList": "null"
+          }
+      ];*/
     function AppComponent(http) {
         this.http = http;
-        this.orders = this.http.get('http://localhost:8080/order/all');
     }
-    AppComponent.prototype.getMeApp = function () {
-        return this.http.get('http://localhost:8080/order/all');
+    AppComponent.prototype.ngOnInit = function () {
+        //this.http.get('http://localhost:8080/order/all').toPromise().then(o => o.json()).then(o => this.orders = o);
+        this.http.get('http://localhost:8080/order/all').subscribe(function (data) { JSON.stringify(data); });
     };
     AppComponent = __decorate([
         Component({
             selector: 'my-app',
-            template: "<label>Order</label>\n    <ol>\n    <li *ngFor=\"let order of orders\">{{order.id}}</li>\n    </ol>"
+            template: '<h1>{{orders[1].name}}</h1>'
         }),
         __metadata("design:paramtypes", [HttpClient])
     ], AppComponent);
