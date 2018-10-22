@@ -46,7 +46,7 @@ public class Booker {
                     price = price.add(getPriceModule(module));
                 }
             }
-            if(Objects.nonNull(order.getDetailList())) {
+            if(Objects.nonNull(order.getDetailList())) { //TODO this block is not covered by the tests
                 price = price.add(getPriceForDetailMap(getPriceDetail(order.getDetailList())));
                 Map<BigDecimal, Double> priceEdge = getPriceEdge(order.getDetailList());
                 price = price.add(getPriceForEdgeMap(priceEdge));
@@ -58,7 +58,7 @@ public class Booker {
     private BigDecimal getPriceForDetailMap(Map<BigDecimal, Double> map) {
         BigDecimal price = new BigDecimal(ZERO);
 
-        for (Map.Entry<BigDecimal, Double> pair : map.entrySet()) {
+        for (Map.Entry<BigDecimal, Double> pair : map.entrySet()) { //TODO this block is not covered by the tests
             BigDecimal temp = new BigDecimal(pair.getValue());
             price = price.add(new BigDecimal(String.valueOf(pair.getKey().multiply(temp))));
         }
@@ -68,7 +68,7 @@ public class Booker {
     private BigDecimal getPriceForEdgeMap(Map<BigDecimal, Double> map) {
         BigDecimal price = new BigDecimal(ZERO);
         if(Objects.nonNull(map)) {
-            for (Map.Entry<BigDecimal, Double> pair : map.entrySet()) {
+            for (Map.Entry<BigDecimal, Double> pair : map.entrySet()) { //TODO this block is not covered by the tests
                 int ONE_HUNDRED_PERCENT = 100;
                 int ONE_THOUSAND_MM = 1000;
                 int COUNT_PERCENT = 10;

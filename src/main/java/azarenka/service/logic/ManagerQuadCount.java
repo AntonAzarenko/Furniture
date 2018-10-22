@@ -44,7 +44,7 @@ public class ManagerQuadCount {
         List<Detail> detailList = order.getDetailList();
         List<Module> moduleList = order.getModuleList();
         if (Objects.nonNull(detailList)) {
-            map = getCountSquareDetailsList(detailList);
+            map = getCountSquareDetailsList(detailList); //TODO this block is not covered by the tests
         }
         Map<BigDecimal, Double> map2 = new HashMap<>();
         if (Objects.nonNull(moduleList)) {

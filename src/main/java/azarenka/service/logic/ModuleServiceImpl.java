@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ModuleServiceImpl implements ModuleService {
+public class ModuleServiceImpl implements ModuleService { //TODO class uncovered by the tests
 
     @Autowired
     private ModuleRepository repository;

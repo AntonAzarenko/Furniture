@@ -24,7 +24,7 @@ public class OrderController {
     @PostMapping(value = "/remove/{id}")
     public void remove(@PathVariable("id")String id){
         service.delete(id);
-    }
+    } //TODO cover with tests
 
     @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void add(Order order){
@@ -34,7 +34,7 @@ public class OrderController {
     @GetMapping(value = "/get/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Order get(@PathVariable("id")String id){
        return service.getByID(id);
-    }
+    } //TODO cover with tests
 
     @GetMapping(value = "/getByName/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Order> getByName(@PathVariable("name")String name){

@@ -21,7 +21,7 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class OrderServiceFunctionalImplTest {
+public class OrderServiceFunctionalImplTest { // TODO fix tests. Test data accumulating
 
     @Autowired
     private OrderService service;
@@ -50,7 +50,7 @@ public class OrderServiceFunctionalImplTest {
     @Test
     public void getAll() {
         List<Order> list = service.getAll();
-        assertThat(list).isEqualTo(Arrays.asList(DataOrder.ORDER_TEST, DataOrder.ORDER_TEST2));
+        assertThat(list).isEqualTo(Arrays.asList(DataOrder.ORDER_TEST, DataOrder.ORDER_TEST2)); // TODO test failed with the ComparisonFailure
     }
 
     @Test
@@ -69,7 +69,7 @@ public class OrderServiceFunctionalImplTest {
     public void create() {
         service.create(DataOrder.ORDER_TEST3);
         List<Order> list = service.getAll();
-        assertThat(list.size()).isEqualTo(3);
+        assertThat(list.size()).isEqualTo(3); //TODO test failed with the ComparisonFailure
     }
 
     @Test
@@ -87,6 +87,6 @@ public class OrderServiceFunctionalImplTest {
         String id = service.getByName("Камод3").get(0).getId();
         service.delete(id);
         List<Order> list = service.getAll();
-        assertThat(list.size()).isEqualTo(2);
+        assertThat(list.size()).isEqualTo(2); //TODO test failed with the ComparisonFailure
     }
 }

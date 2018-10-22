@@ -14,7 +14,7 @@ import javax.annotation.PostConstruct;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @WebAppConfiguration
-public class WebTest{
+public abstract class WebTest{ // TODO such classes should be abstract
 
     protected MockMvc mockMvc;
 

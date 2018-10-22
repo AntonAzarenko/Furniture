@@ -28,7 +28,7 @@ public class ManagerEdgeCount {
         }
 
         Map<BigDecimal, Double> map2 = new ConcurrentHashMap<>();
-        if (Objects.nonNull(detailList)) {
+        if (Objects.nonNull(detailList)) { //TODO this block is not covered by the tests
             for (Detail detail : detailList) {
                 map2 = (getLengthEdgeMaterialForDetail(detail));
             }
@@ -66,7 +66,7 @@ public class ManagerEdgeCount {
     }
 
     private double getlength(int x, int y, EdgeMaterial material, int count) {
-        switch (material.getButtCloses()) {
+        switch (material.getButtCloses()) { // TODO not all cases covered by the tests
             case BUTT_X:
                 return (double) x * count;
             case BUTT_Y:

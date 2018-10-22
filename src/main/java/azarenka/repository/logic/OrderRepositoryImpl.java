@@ -24,7 +24,7 @@ public class OrderRepositoryImpl implements OrderRepository {
     }
 
     @Override
-    public List<Order> getByModuleName(String name) {
+    public List<Order> getByModuleName(String name) { //TODO cover by the test. I see that this method is not implemented, but test should exist
         return null;
     }
 
@@ -44,7 +44,7 @@ public class OrderRepositoryImpl implements OrderRepository {
     }
 
     @Override
-    public void update(Order o) {
+    public void update(Order o) { //TODO cover by the tests
         proxy.save(o);
     }
 

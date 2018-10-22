@@ -30,7 +30,7 @@ public class ColorRepositoryImpl implements ColorMaterialRepository {
     }
 
     @Override
-    public void update(ColorMaterial colorMaterial) {
+    public void update(ColorMaterial colorMaterial) { //TODO method is not covered by the tests
         save(colorMaterial);
     }
 
