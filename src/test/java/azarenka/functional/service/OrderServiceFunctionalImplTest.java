@@ -24,7 +24,7 @@ import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class OrderServiceFunctionalImplTest { // TODO fix tests. Test data accumulating
+public class OrderServiceFunctionalImplTest {
 
     private final static Logger log = LoggerFactory.getLogger(ColorMaterialServiceImplTest.class);
 

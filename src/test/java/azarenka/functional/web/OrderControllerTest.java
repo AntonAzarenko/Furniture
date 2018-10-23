@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class OrderControllerTest extends WebTest { // TODO fix tests. Test data accumulating
+public class OrderControllerTest extends WebTest {
 
     @Autowired
     private OrderService service;
