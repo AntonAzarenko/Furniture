@@ -60,21 +60,18 @@ public class OrderServiceImplTest {
 
     @Test
     public void save() {
-//        doNothing().when(repository).save(DataOrder.ORDER_TEST2); TODO Unnecessary stubbing
         service.create(DataOrder.ORDER_TEST);
         verify(repository).save(DataOrder.ORDER_TEST);
     }
 
     @Test
     public void update() {
-//        doNothing().when(repository).save(DataOrder.ORDER_TEST2); TODO Unnecessary stubbing
         service.update(DataOrder.ORDER_TEST);
-        verify(repository).save(DataOrder.ORDER_TEST);
+        verify(repository).update(DataOrder.ORDER_TEST);
     }
 
     @Test
     public void delete() {
-//        doNothing().when(repository).delete(anyString()); TODO Unnecessary stubbing
         service.delete(anyString());
         verify(repository).delete(anyString());
     }

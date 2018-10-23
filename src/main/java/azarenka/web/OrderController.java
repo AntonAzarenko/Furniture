@@ -32,9 +32,9 @@ public class OrderController {
     }
 
     @GetMapping(value = "/get/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Order get(@PathVariable("id")String id){
+    public Order getById(@PathVariable("id")String id){
        return service.getByID(id);
-    } //TODO cover with tests
+    }
 
     @GetMapping(value = "/getByName/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Order> getByName(@PathVariable("name")String name){

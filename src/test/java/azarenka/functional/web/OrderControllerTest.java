@@ -7,15 +7,12 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.json.GsonJsonParser;
 import org.springframework.http.MediaType;
 import resources.DataOrder;
 
-
+import java.util.ArrayList;
 import java.util.List;
 
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -35,10 +32,10 @@ public class OrderControllerTest extends WebTest { // TODO fix tests. Test data 
 
     @After
     public void tearDown() throws Exception {
-        String id = service.getByName("Камод").get(0).getId();
-        service.delete(id);
-        String id2 = service.getByName("Камод2").get(0).getId();
-        service.delete(id2);
+        List<Order> list = service.getAll();
+        List<String> listId = new ArrayList<>();
+        list.forEach(order -> listId.add(order.getId()));
+        listId.forEach(id -> service.delete(id));
     }
 
     @Test
@@ -52,7 +49,7 @@ public class OrderControllerTest extends WebTest { // TODO fix tests. Test data 
     @Test
     public void remove() throws Exception {
         List<Order> orders = service.getAll();
-        mockMvc.perform(delete("/order/remove/{id}", orders.get(0).getId()))
+        mockMvc.perform(post("/order/remove/{id}", orders.get(0).getId()))
                 .andExpect(status().isOk());
     }
 
@@ -67,9 +64,9 @@ public class OrderControllerTest extends WebTest { // TODO fix tests. Test data 
     }
 
     @Test
-    public void getOne() throws Exception{
+    public void getById() throws Exception {
         List<Order> orders = service.getAll();
-        mockMvc.perform(get("/orger/get/{id}",orders.get(0).getId()))
+        mockMvc.perform(get("/order/get/{id}", orders.get(0).getId()))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().json("{'name':'Камод'}"));
@@ -77,7 +74,8 @@ public class OrderControllerTest extends WebTest { // TODO fix tests. Test data 
 
     @Test
     public void getByName() throws Exception {
-        mockMvc.perform(get("/order/getByName/{name}", "Камод"))
+        String name = "Камод2";
+        mockMvc.perform(get("/order/getByName/{name}", name))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().json("[{'name':'Камод'}]"));
