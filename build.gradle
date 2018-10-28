@@ -1,17 +1,12 @@
 group = 'com.azarenka'
 version '1.0-SNAPSHOT'
 
+
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
-apply plugin: 'war'
-apply plugin: 'pmd'
 
-bootJar {
-    baseName = 'gs-accessing-data-mongodb'
-    version =  '0.1.0'
-}
 
 repositories {
     mavenCentral()
