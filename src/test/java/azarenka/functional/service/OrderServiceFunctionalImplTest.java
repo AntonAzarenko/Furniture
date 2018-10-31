@@ -65,9 +65,37 @@ public class OrderServiceFunctionalImplTest {
     }
 
     @Test
+    public void getByAuthorIsNull() {
+        List<Order> listIsEmpty = new ArrayList<>();
+        List<Order> list = service.getByAuthor(null);
+        assertThat(list).isEqualTo(listIsEmpty);
+    }
+
+    @Test
+    public void getByAuthorIsEmpty() {
+        List<Order> list = service.getByAuthor("");
+        List<Order> listIsEmpty = new ArrayList<>();
+        assertThat(list).isEqualTo(listIsEmpty);
+    }
+
+    @Test
     public void getByName() {
         List<Order> list = service.getByName("Камод");
         assertThat(list).isEqualTo(Collections.singletonList(DataOrder.ORDER_TEST));
+    }
+
+    @Test
+    public void getByNameIsNull() {
+        List<Order> listIsEmpty = new ArrayList<>();
+        List<Order> list = service.getByName(null);
+        assertThat(list).isEqualTo(listIsEmpty);
+    }
+
+    @Test
+    public void getByNameisEmpty() {
+        List<Order> listIsEmpty = new ArrayList<>();
+        List<Order> list = service.getByName("");
+        assertThat(list).isEqualTo(listIsEmpty);
     }
 
     @Test

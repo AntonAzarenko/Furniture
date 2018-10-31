@@ -52,6 +52,17 @@ public class ColorMaterialServiceImplTest {
         ColorMaterial colorMaterial = service.getByID(listId.get(0));
         assertThat(colorMaterial).isEqualTo(DataColorMaterial.colorMaterialOne);
     }
+    @Test()
+    public void getByIDisNull() {
+        ColorMaterial colorMaterial = service.getByID(null);
+        assertThat(colorMaterial).isEqualTo(null);
+    }
+
+    @Test
+    public void getByIDisEmpty() {
+        ColorMaterial colorMaterial = service.getByID("");
+        assertThat(colorMaterial).isEqualTo(null);
+    }
 
     @Test
     public void getAll() {
@@ -62,6 +73,17 @@ public class ColorMaterialServiceImplTest {
     @Test
     public void getByName() throws NotFoundException {
         ColorMaterial colorMaterial = service.getByName("Орех");
+        assertThat(colorMaterial).isEqualTo(DataColorMaterial.colorMaterialFour);
+    }
+
+    @Test(expected = NotFoundException.class)
+    public void getByNameIsNull() throws NotFoundException {
+        ColorMaterial colorMaterial = service.getByName(null);
+        assertThat(colorMaterial).isEqualTo(DataColorMaterial.colorMaterialFour);
+    }
+    @Test(expected = NotFoundException.class)
+    public void getByNameIsEmpty() throws NotFoundException {
+        ColorMaterial colorMaterial = service.getByName("");
         assertThat(colorMaterial).isEqualTo(DataColorMaterial.colorMaterialFour);
     }
 
