@@ -7,6 +7,7 @@ import azarenka.entity.Order;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -16,7 +17,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class ManagerEdgeCount {
 
-    private Map<BigDecimal, Double> map = new ConcurrentHashMap<>();
+    private Map<BigDecimal, Double> map = new HashMap<>();
 
     public Map<BigDecimal, Double> getLengthEdgeMaterialForOrder(Order order) {
         List<Module> moduleList = order.getModuleList();
@@ -27,14 +28,14 @@ public class ManagerEdgeCount {
             }
         }
 
-        Map<BigDecimal, Double> map2 = new ConcurrentHashMap<>();
+        Map<BigDecimal, Double> map2 = new HashMap<>();
         if (Objects.nonNull(detailList)) { //TODO this block is not covered by the tests
             for (Detail detail : detailList) {
                 map2 = (getLengthEdgeMaterialForDetail(detail));
             }
         }
 
-        Map<BigDecimal, Double> mapFull = new ConcurrentHashMap<>(map);
+        Map<BigDecimal, Double> mapFull = new HashMap<>(map);
         map2.forEach((k, v) -> mapFull.merge(k, v, (a, b) -> a + b));
         return mapFull;
     }
