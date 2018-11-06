@@ -5,7 +5,7 @@ import java.util.Objects;
 
 import org.springframework.data.annotation.Id;
 
-public class BaseEntity implements Serializable {
+public abstract class BaseEntity implements Serializable {
     @Id
     private String id;
 
@@ -36,7 +36,6 @@ public class BaseEntity implements Serializable {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(getId());
     }
 }
