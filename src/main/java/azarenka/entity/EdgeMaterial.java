@@ -1,48 +1,63 @@
 package azarenka.entity;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
+@Entity
+@Table(name = "edge_material")
 public class EdgeMaterial extends BaseEntity {
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "country")
     private Country manufacturer;
 
+    @Column(name = "name")
     private String name;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "edge_type")
     private EdgeType edgeType;
 
+    @Column(name = "color_detail")
     private String color;
 
+    @Column(name = "price")
     private BigDecimal price;
 
+    @Column(name = "thickness")
     private double thickness;
 
-    //по каким сторонам кромим
-    private ButtClose buttCloses;
+    @Enumerated(EnumType.STRING)
+    @CollectionTable(name = "edge_material_has_side",
+            joinColumns = @JoinColumn(name = "edge_material_id"))
+    @Column(name = "side")
+    @ElementCollection(fetch = FetchType.EAGER)
+    private Set<EdgeSide> edgeSide;
+
+
+
+    public List<Detail> getDetails() {
+        return details;
+    }
+
+    public void setDetails(List<Detail> details) {
+        this.details = details;
+    }
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<Detail> details;
 
     public EdgeMaterial() {
     }
 
-    public EdgeMaterial(Country manufacturer, String name, EdgeType edgeType, String color, BigDecimal price, double thickness, ButtClose buttCloses) {
-        this.manufacturer = manufacturer;
-        this.name = name;
-        this.edgeType = edgeType;
-        this.color = color;
-        this.price = price;
-        this.thickness = thickness;
-        this.buttCloses = buttCloses;
+    public Set<EdgeSide> getEdgeSide() {
+        return edgeSide;
     }
 
-    public EdgeMaterial(String id, Country manufacturer, String name, EdgeType edgeType, String color, BigDecimal price,
-                        double thickness, ButtClose buttCloses) {
-        super(id);
-        this.manufacturer = manufacturer;
-        this.name = name;
-        this.edgeType = edgeType;
-        this.color = color;
-        this.price = price;
-        this.thickness = thickness;
-        this.buttCloses = buttCloses;
+    public void setEdgeSide(Set<EdgeSide> edgeSide) {
+        this.edgeSide = edgeSide;
     }
 
     public double getThickness() {
@@ -51,14 +66,6 @@ public class EdgeMaterial extends BaseEntity {
 
     public void setThickness(double thickness) {
         this.thickness = thickness;
-    }
-
-    public ButtClose getButtCloses() {
-        return buttCloses;
-    }
-
-    public void setButtCloses(ButtClose buttCloses) {
-        this.buttCloses = buttCloses;
     }
 
     public String getName() {
@@ -109,36 +116,4 @@ public class EdgeMaterial extends BaseEntity {
         this.price = price;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        EdgeMaterial that = (EdgeMaterial) o;
-        return manufacturer == that.manufacturer &&
-                Objects.equals(name, that.name) &&
-                edgeType == that.edgeType &&
-                Objects.equals(color, that.color) &&
-                Objects.equals(price, that.price);
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(manufacturer, name, edgeType, color, price);
-    }
-
-    @Override
-    public String toString() {
-        return "EdgeMaterial{" +
-                "manufacturer=" + manufacturer +
-                ", name='" + name + '\'' +
-                ", edgeType=" + edgeType +
-                ", color='" + color + '\'' +
-                ", price=" + price +
-                '}';
-    }
 }

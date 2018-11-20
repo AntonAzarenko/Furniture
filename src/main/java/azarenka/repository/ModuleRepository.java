@@ -4,6 +4,7 @@ import azarenka.entity.Module;
 
 import java.util.List;
 
-public interface ModuleRepository extends CrudRepository<String, Module> {
+public interface ModuleRepository  {
      List<Module> getByName(String name);
+     Module getById (Long id);
 }

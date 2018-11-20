@@ -1,8 +1,8 @@
 package resources;
 
-import azarenka.entity.Angle;
+import azarenka.entity.stillunused.Angle;
 import azarenka.entity.Country;
-import azarenka.entity.Furniture;
+import azarenka.entity.stillunused.Furniture;
 import azarenka.entity.furnitures.*;
 
 import java.math.BigDecimal;

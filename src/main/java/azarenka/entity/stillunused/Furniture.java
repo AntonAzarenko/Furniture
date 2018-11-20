@@ -1,4 +1,6 @@
-package azarenka.entity;
+package azarenka.entity.stillunused;
+
+import azarenka.entity.BaseEntity;
 
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -14,7 +16,7 @@ public class Furniture<T> extends BaseEntity {
     public Furniture() {
     }
 
-    public Furniture(String id, T furnitures, int count, BigDecimal price) {
+    public Furniture(Long id, T furnitures, int count, BigDecimal price) {
         super(id);
         this.furnitures = furnitures;
         this.count = count;

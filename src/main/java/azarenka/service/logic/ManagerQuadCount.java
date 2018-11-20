@@ -14,7 +14,7 @@ import java.util.Objects;
 @Component
 public class ManagerQuadCount {
 
-    public double getCountSquareDetail(int x, int y, int count) {
+   /* public double getCountSquareDetail(int x, int y, int count) {
         return (((double) x / 1000) * ((double) y / 1000)) * count;
     }
 
@@ -22,7 +22,7 @@ public class ManagerQuadCount {
         Map<BigDecimal, Double> map = new HashMap<>();
         if (Objects.nonNull(detailList)) {
             for (Detail detail : detailList) {
-                map.merge(detail.getColorMaterial().getPrice(), getCountSquareDetail(detail.getX(), detail.getY(), detail.getCount()), (a, b) -> a + b);
+                map.merge(detail.getColorDetail().getPrice(), getCountSquareDetail(detail.getX(), detail.getY(), detail.getCount()), (a, b) -> a + b);
             }
         }
         return map;
@@ -64,5 +64,5 @@ public class ManagerQuadCount {
             }
         }
         return map;
-    }
+    }*/
 }

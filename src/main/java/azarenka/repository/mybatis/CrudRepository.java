@@ -1,7 +1,8 @@
-package azarenka.repository;
+package azarenka.repository.mybatis;
 
 import java.util.List;
 
+@org.springframework.stereotype.Repository
 public interface CrudRepository<ID, T> extends Repository<T> {
     void save(T o);
 

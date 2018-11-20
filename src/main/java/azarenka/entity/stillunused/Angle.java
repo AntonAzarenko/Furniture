@@ -1,4 +1,6 @@
-package azarenka.entity;
+package azarenka.entity.stillunused;
+
+import azarenka.entity.BaseEntity;
 
 import java.util.Objects;
 
@@ -15,7 +17,7 @@ public class Angle extends BaseEntity {
     public Angle() {
     }
 
-    public Angle(String id, String name, double angle) {
+    public Angle(Long id, String name, double angle) {
         super(id);
         this.name = name;
         this.angle = angle;

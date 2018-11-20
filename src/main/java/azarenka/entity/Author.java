@@ -1,46 +1,11 @@
 package azarenka.entity;
 
-public class Author extends BaseEntity {
+import azarenka.entity.stillunused.User;
 
-    private String firstName;
+import java.util.Date;
 
-    private String lastName;
-
-    public Author() {
-    }
-
-    public Author(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
-    public Author(String id, String firstName, String lastName) {
-        super(id);
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    @Override
-    public String toString() {
-        return "Author{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                '}';
+public class Author extends User {
+    public Author(String name, String email, String password, boolean enabled, Role roles, Date registered) {
+        super(name, email, password, enabled, roles, registered);
     }
 }

@@ -1,0 +1,17 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="azarenko.repository.mybatis.ColorDetailMapper">
+
+
+    <resultMap type="ColorDetail" id="colormap">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="title_manufacurer" property="title_manufacurer"/>
+        <result column="country_manufacturer" property="Country"/>
+        <result column="price" property="price"/>
+    </resultMap>
+    <select id="findAll" resultMap="colormap">
+        SELECT * FROM color_detail
+    </select>
+</mapper>

@@ -16,7 +16,7 @@ import static java.math.BigInteger.ZERO;
 @Service
 public class Booker {
 
-    @Autowired
+   /* @Autowired
     private ManagerQuadCount managerQuadCount;
 
     @Autowired
@@ -85,5 +85,5 @@ public class Booker {
 
     private Map<BigDecimal, Double> getPriceEdge(List<Detail> object) {
         return managerEdgeCount.getLengthEdgeMaterialForDetailList(object);
-    }
+    }*/
 }

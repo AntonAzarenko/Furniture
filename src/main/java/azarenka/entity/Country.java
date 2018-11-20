@@ -8,7 +8,6 @@ public enum Country {
     UKRAINE,
     BELARUS,
     CHINA,
-    RUSSIAN
-    ;
+    RUSSIAN;
 
 }

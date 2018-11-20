@@ -3,6 +3,7 @@ package azarenka.repository;
 import azarenka.entity.Country;
 import azarenka.entity.furnitures.Loops;
 import azarenka.entity.furnitures.TypeLoop;
+import azarenka.repository.mybatis.CrudRepository;
 
 import java.util.List;
 

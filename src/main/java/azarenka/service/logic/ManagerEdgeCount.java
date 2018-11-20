@@ -15,11 +15,11 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Component
 public class ManagerEdgeCount {
-
+/*
     private Map<BigDecimal, Double> map = new HashMap<>();
 
     public Map<BigDecimal, Double> getLengthEdgeMaterialForOrder(Order order) {
-        List<Module> moduleList = order.getModuleList();
+       *//* List<Module> moduleList = order.getModuleList();
         List<Detail> detailList = order.getDetailList();
         if (Objects.nonNull(moduleList)) {
             for (Module module : moduleList) {
@@ -36,7 +36,7 @@ public class ManagerEdgeCount {
 
         Map<BigDecimal, Double> mapFull = new HashMap<>(map);
         map2.forEach((k, v) -> mapFull.merge(k, v, (a, b) -> a + b));
-        return mapFull;
+        return mapFull;*//*
     }
 
     public Map<BigDecimal, Double> getLengthEdgeMaterialForModule(Module module) {
@@ -85,5 +85,5 @@ public class ManagerEdgeCount {
                 return (double) y * 2 + x * count;
         }
         return 0d;
-    }
+    }*/
 }

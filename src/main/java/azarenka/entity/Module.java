@@ -1,5 +1,6 @@
 package azarenka.entity;
 
+import javax.persistence.Entity;
 import java.util.List;
 
 public class Module extends BaseEntity {
@@ -7,16 +8,12 @@ public class Module extends BaseEntity {
 
     private List<Detail> detailList;
 
-    private List<Furniture> furnitureList;
+    private ModuleType moduleType;
 
-    private List<Facade> facadeList;
-
-    public Module(String id, String name, List<Detail> detailList, List<Furniture> furnitureList, List<Facade> facadeList) {
+    public Module(Long id, String name, List<Detail> detailList) {
         super(id);
         this.name = name;
         this.detailList = detailList;
-        this.furnitureList = furnitureList;
-        this.facadeList = facadeList;
     }
 
     public String getName() {
@@ -33,35 +30,5 @@ public class Module extends BaseEntity {
 
     public void setDetailList(List<Detail> detailList) {
         this.detailList = detailList;
-    }
-
-    public List<Furniture> getFurnitureList() {
-        return furnitureList;
-    }
-
-    public void setFurnitureList(List<Furniture> furnitureList) {
-        this.furnitureList = furnitureList;
-    }
-
-    public List<Facade> getFacadeList() {
-        return facadeList;
-    }
-
-    public void setFacadeList(List<Facade> facadeList) {
-        this.facadeList = facadeList;
-    }
-
-    public Module() {
-
-    }
-
-    @Override
-    public String toString() {
-        return "Module{" +
-                "name='" + name + '\'' +
-                ", detailList=" + detailList +
-                ", furnitureList=" + furnitureList +
-                ", facadeList=" + facadeList +
-                '}';
     }
 }

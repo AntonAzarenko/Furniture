@@ -1,7 +1,7 @@
 package azarenka.entity.furnitures;
 
 import azarenka.entity.Country;
-import azarenka.entity.Furniture;
+import azarenka.entity.stillunused.Furniture;
 
 public class Lifts extends Furniture<Lifts> {
 

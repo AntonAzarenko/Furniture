@@ -1,4 +1,7 @@
-package azarenka.entity;
+package azarenka.entity.stillunused;
+
+import azarenka.entity.BaseEntity;
+import azarenka.entity.Role;
 
 import java.util.Collections;
 import java.util.Date;
@@ -33,7 +36,7 @@ public class User extends BaseEntity {
         this.registered = registered;
     }
 
-    public User(String id, String name, String email, String password, boolean enabled, Role roles, Date registered) {
+    public User(Long id, String name, String email, String password, boolean enabled, Role roles, Date registered) {
         super(id);
         this.name = name;
         this.email = email;

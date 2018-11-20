@@ -1,8 +1,8 @@
 package azarenka.entity.furnitures;
 
-import azarenka.entity.Angle;
+import azarenka.entity.stillunused.Angle;
 import azarenka.entity.Country;
-import azarenka.entity.Furniture;
+import azarenka.entity.stillunused.Furniture;
 
 public class Loops extends Furniture<Loops>  {
 

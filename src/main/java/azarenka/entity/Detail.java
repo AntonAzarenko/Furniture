@@ -1,68 +1,52 @@
 package azarenka.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import java.util.List;
+import javax.persistence.*;
+import java.util.Set;
 
+@Entity
+@Table(name = "details")
 public class Detail extends BaseEntity {
-    //заказ
-    private long orderBy;
-    //материал кромки
-    private List<EdgeMaterial> edgeMaterial;
 
-    //имя
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "details_has_edge_material",
+            joinColumns = @JoinColumn(name="details_id"),
+            inverseJoinColumns = @JoinColumn(name = "edge_material_id"))
+    private Set<EdgeMaterial> edgeMaterial;
+
+    @Column(name = "name")
     private String name;
 
-    //толщина
+    @Column(name = "thickness")
     private int thickness;
 
-    //размер по Х
+    @Column(name = "x")
     private int x;
 
-    //размр по У
+    @Column(name = "y")
     private int y;
 
-    //количество
+    @Column(name = "count")
     private int count;
 
-    //Основа
+    @Enumerated(EnumType.STRING)
+    @Column(name = "materal")
     private Material material;
 
-    //цвет
-    private ColorMaterial colorMaterial;
+    @OneToOne
+    @JoinColumn(name = "color_detail_id")
+    private ColorDetail colorDetail;
 
-    //цвет
-    public ColorMaterial getColorMaterial() {
-        return colorMaterial;
+    public ColorDetail getColorDetail() {
+        return colorDetail;
     }
 
-    public void setColorMaterial(ColorMaterial colorMaterial) {
-        this.colorMaterial = colorMaterial;
+    public void setColorDetail(ColorDetail colorDetail) {
+        this.colorDetail = colorDetail;
     }
 
     public Detail() {
-    }
-
-    public Detail(String id, long orderBy, List<EdgeMaterial> edgeMaterial, String name, int thickness, int x, int y,
-                  int count, Material material, ColorMaterial colorMaterial) {
-        super(id);
-        this.orderBy = orderBy;
-        this.edgeMaterial = edgeMaterial;
-        this.name = name;
-        this.thickness = thickness;
-        this.x = x;
-        this.y = y;
-
-        this.count = count;
-        this.material = material;
-        this.colorMaterial = colorMaterial;
-    }
-
-    public long getOrderBy() {
-        return orderBy;
-    }
-
-    public void setOrderBy(long orderBy) {
-        this.orderBy = orderBy;
     }
 
     public Material getMaterial() {
@@ -81,11 +65,12 @@ public class Detail extends BaseEntity {
         this.name = name;
     }
 
-    public List<EdgeMaterial> getEdgeMaterial() {
+
+    public Set<EdgeMaterial> getEdgeMaterial() {
         return edgeMaterial;
     }
 
-    public void setEdgeMaterial(List<EdgeMaterial> edgeMaterial) {
+    public void setEdgeMaterial(Set<EdgeMaterial> edgeMaterial) {
         this.edgeMaterial = edgeMaterial;
     }
 
@@ -113,26 +98,11 @@ public class Detail extends BaseEntity {
         this.y = y;
     }
 
-
     public int getCount() {
         return count;
     }
 
     public void setCount(int count) {
         this.count = count;
-    }
-
-    @Override
-    public String toString() {
-        return "Detail{" +
-                "orderBy=" + orderBy +
-                ", edgeMaterial=" + edgeMaterial +
-                ", name='" + name + '\'' +
-                ", thickness=" + thickness +
-                ", x=" + x +
-                ", y=" + y +
-                ", count=" + count +
-                ", material=" + material +
-                '}';
     }
 }

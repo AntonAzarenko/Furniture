@@ -8,7 +8,7 @@ public interface ModuleService {
 
     void save(Module module);
 
-    Module getById(String id);
+    Module getById(Long id);
 
     List<Module> getByName(String name);
 

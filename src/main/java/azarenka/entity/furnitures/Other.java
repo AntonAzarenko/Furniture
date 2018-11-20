@@ -1,6 +1,6 @@
 package azarenka.entity.furnitures;
 
-import azarenka.entity.Furniture;
+import azarenka.entity.stillunused.Furniture;
 
 public class Other extends Furniture<Other> {
     private String name;

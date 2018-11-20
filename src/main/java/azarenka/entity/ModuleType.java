@@ -1,6 +1,6 @@
 package azarenka.entity;
 
-public enum OrderTypeChoise {
+public enum ModuleType {
 
     CUTTING,
     KITCHEN,

@@ -1,6 +1,5 @@
 package azarenka.functional.service;
 
-import azarenka.entity.Author;
 import azarenka.entity.Order;
 import azarenka.service.OrderService;
 import org.junit.After;
@@ -26,7 +25,7 @@ import java.util.List;
 @SpringBootTest
 public class OrderServiceFunctionalImplTest {
 
-    private final static Logger log = LoggerFactory.getLogger(ColorMaterialServiceImplTest.class);
+    private final static Logger log = LoggerFactory.getLogger(ColorDetailServiceImplTest.class);
 
     @Autowired
     private OrderService service;

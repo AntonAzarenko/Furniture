@@ -1,6 +1,7 @@
 package azarenka.repository;
 
-import azarenka.entity.User;
+import azarenka.entity.stillunused.User;
+import azarenka.repository.mybatis.CrudRepository;
 
 import java.util.List;
 

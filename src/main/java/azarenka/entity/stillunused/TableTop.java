@@ -1,4 +1,6 @@
-package azarenka.entity;
+package azarenka.entity.stillunused;
+
+import azarenka.entity.BaseEntity;
 
 import java.math.BigDecimal;
 import java.util.Objects;

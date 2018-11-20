@@ -1,6 +1,6 @@
 package azarenka.service.logic;
 
-import azarenka.entity.ColorMaterial;
+import azarenka.entity.ColorDetail;
 import azarenka.repository.ColorMaterialRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,43 +18,43 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ColorMaterialServiceImplTest {
+public class ColorDetailServiceImplTest {
 
     @InjectMocks
-    private ColorMaterialServiceImpl service;
+    private ColorDetailServiceImpl service;
 
     @Mock
     private ColorMaterialRepository repository;
 
     @Test
     public void getByID() {
-        when(repository.read(anyString())).thenReturn(DataColorMaterial.colorMaterialFive);
-        ColorMaterial colorMaterial = service.getByID(anyString());
-        assertThat(colorMaterial).isEqualTo(DataColorMaterial.colorMaterialFive);
+        when(repository.read(anyString())).thenReturn(DataColorMaterial.colorDetailFive);
+        ColorDetail colorDetail = service.getByID(anyString());
+        assertThat(colorDetail).isEqualTo(DataColorMaterial.colorDetailFive);
         verify(repository).read(anyString());
     }
 
     @Test
     public void getAll() {
-        when(repository.readAll()).thenReturn(DataColorMaterial.colorMaterials);
-        List<ColorMaterial> colorMaterial = service.getAll();
-        assertThat(colorMaterial).isEqualTo(DataColorMaterial.colorMaterials);
+        when(repository.readAll()).thenReturn(DataColorMaterial.colorDetails);
+        List<ColorDetail> colorDetail = service.getAll();
+        assertThat(colorDetail).isEqualTo(DataColorMaterial.colorDetails);
         verify(repository).readAll();
     }
 
     @Test
     public void getByName() {
-        when(repository.read(anyString())).thenReturn(DataColorMaterial.colorMaterialFive);
-        ColorMaterial colorMaterial = service.getByID(anyString());
-        assertThat(colorMaterial).isEqualTo(DataColorMaterial.colorMaterialFive);
+        when(repository.read(anyString())).thenReturn(DataColorMaterial.colorDetailFive);
+        ColorDetail colorDetail = service.getByID(anyString());
+        assertThat(colorDetail).isEqualTo(DataColorMaterial.colorDetailFive);
         verify(repository).read(anyString());
     }
 
     @Test
     public void save() {
-        doNothing().when(repository).save(DataColorMaterial.colorMaterialFour);
-        service.save(DataColorMaterial.colorMaterialFour);
-        verify(repository).save(DataColorMaterial.colorMaterialFour);
+        doNothing().when(repository).save(DataColorMaterial.colorDetailFour);
+        service.save(DataColorMaterial.colorDetailFour);
+        verify(repository).save(DataColorMaterial.colorDetailFour);
     }
 
     @Test

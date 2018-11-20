@@ -17,7 +17,7 @@ import resources.DetailsData;
 import java.math.BigDecimal;
 import java.util.Map;
 
-import static resources.DetailsData.colorMaterial;
+import static resources.DetailsData.colorDetail;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -55,7 +55,7 @@ public class ManagerEdgeCountTest {
     @Test
     public void getLengthEdgeMaterialForDetail() {
         Map<BigDecimal, Double> map = managerEdgeCount.getLengthEdgeMaterialForDetail(new Detail(null, 1L, DataEdgeMaterial.edgeMaterialCounterTop, " table top", 18,
-                410, 1000, 1, Material.DSP, colorMaterial));
+                410, 1000, 1, Material.DSP, colorDetail));
         for (Map.Entry<BigDecimal, Double> pair : map.entrySet()) {
             log.info(String.valueOf(pair.getKey()) + " - " + String.valueOf(pair.getValue()));
         }

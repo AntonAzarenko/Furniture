@@ -18,7 +18,7 @@ public class Facade extends BaseEntity {
     public Facade() {
     }
 
-    public Facade(String id, FacadeType facadeType, Detail detail) {
+    public Facade(Long id, FacadeType facadeType, Detail detail) {
         super(id);
         this.facadeType = facadeType;
         this.detail = detail;

@@ -46,7 +46,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `Furniture`.`edge_material` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
-  `colorMaterial` VARCHAR(45) NOT NULL,
+  `colorDetail` VARCHAR(45) NOT NULL,
   `price` DECIMAL NOT NULL,
   `thickness` DOUBLE NOT NULL,
   `country` VARCHAR(45) NOT NULL,
@@ -448,7 +448,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Furniture`.`handle_color` (
   `handle_articul` INT NOT NULL,
-  `colorMaterial` VARCHAR(45) NULL,
+  `colorDetail` VARCHAR(45) NULL,
   INDEX `fk_handle_color_handle1_idx` (`handle_articul` ASC),
   CONSTRAINT `fk_handle_color_handle1`
     FOREIGN KEY (`handle_articul`)
