@@ -24,6 +24,14 @@ public class ColorDetail extends BaseEntity {
     public ColorDetail() {
     }
 
+    public ColorDetail(Long id, String title, String nameManufacturer, Country countryManufacturer, BigDecimal price) {
+        super(id);
+        this.title = title;
+        this.nameManufacturer = nameManufacturer;
+        this.countryManufacturer = countryManufacturer;
+        this.price = price;
+    }
+
     public BigDecimal getPrice() {
         return price;
     }

@@ -1,8 +1,8 @@
 package azarenka.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -31,7 +31,7 @@ public class Detail extends BaseEntity {
     private int count;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "materal")
+    @Column(name = "material")
     private Material material;
 
     @OneToOne
@@ -97,6 +97,7 @@ public class Detail extends BaseEntity {
     public void setY(int y) {
         this.y = y;
     }
+
 
     public int getCount() {
         return count;

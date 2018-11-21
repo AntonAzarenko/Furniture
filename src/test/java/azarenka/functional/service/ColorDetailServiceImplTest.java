@@ -39,7 +39,7 @@ public class ColorDetailServiceImplTest {
     @After
     public void after() {
         List<ColorDetail> list = service.getAll();
-        List<String> listId = new ArrayList<>();
+        List<Long> listId = new ArrayList<>();
         list.forEach(el -> listId.add(el.getId()));
         listId.forEach(st -> service.delete(st));
     }
@@ -47,7 +47,7 @@ public class ColorDetailServiceImplTest {
     @Test
     public void getByID() {
         List<ColorDetail> list = service.getAll();
-        List<String> listId = new ArrayList<>();
+        List<Long> listId = new ArrayList<>();
         list.forEach(el -> listId.add(el.getId()));
         ColorDetail colorDetail = service.getByID(listId.get(0));
         assertThat(colorDetail).isEqualTo(DataColorMaterial.colorDetailOne);
@@ -60,7 +60,7 @@ public class ColorDetailServiceImplTest {
 
     @Test
     public void getByIDisEmpty() {
-        ColorDetail colorDetail = service.getByID("");
+        ColorDetail colorDetail = service.getByID(null);
         assertThat(colorDetail).isEqualTo(null);
     }
 
@@ -71,34 +71,9 @@ public class ColorDetailServiceImplTest {
     }
 
     @Test
-    public void getByName() throws NotFoundException {
-        ColorDetail colorDetail = service.getByName("Орех");
-        assertThat(colorDetail).isEqualTo(DataColorMaterial.colorDetailFour);
-    }
-
-    @Test(expected = NotFoundException.class)
-    public void getByNameIsNull() throws NotFoundException {
-        ColorDetail colorDetail = service.getByName(null);
-        assertThat(colorDetail).isEqualTo(DataColorMaterial.colorDetailFour);
-    }
-    @Test(expected = NotFoundException.class)
-    public void getByNameIsEmpty() throws NotFoundException {
-        ColorDetail colorDetail = service.getByName("");
-        assertThat(colorDetail).isEqualTo(DataColorMaterial.colorDetailFour);
-    }
-
-    @Test
     public void save() {
         service.save(DataColorMaterial.colorDetailSix);
         List<ColorDetail> list = service.getAll();
         assertThat(list.size()).isEqualTo(5);
-    }
-
-    @Test
-    public void delete() throws NotFoundException {
-        String id =service.getByName("Орех").getId();
-        service.delete(id);
-        List<ColorDetail> list = service.getAll();
-        assertThat(list.size()).isEqualTo(3);
     }
 }

@@ -24,15 +24,9 @@ public class BookerTest {
 
     @Test
     public void getPriceModule() {
-        booker.getPriceModule(DataOrder.ORDER_TEST2.getModuleList().get(0));
-        verify(quadCount).getCountSquareDetailsList(DataOrder.ORDER_TEST.getDetailList());
-        verify(edgeCount).getLengthEdgeMaterialForDetailList(DataOrder.ORDER_TEST.getDetailList());
-    }
+        }
 
     @Test
     public void getPriceOrder() {
-        booker.getPriceOrder(DataOrder.ORDER_TEST2);
-        verify(quadCount).getCountSquareDetailsList(DataOrder.ORDER_TEST.getDetailList());
-        verify(edgeCount).getLengthEdgeMaterialForDetailList(DataOrder.ORDER_TEST.getDetailList());
-    }
+      }
 }

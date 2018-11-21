@@ -11,10 +11,11 @@ public class DataModule {
     public static List<Facade> facades = new ArrayList<>();
 
     public static List<Module> getModule() {
-        facades.add(DataFacade.facade);
+       /* facades.add(DataFacade.facade);
         List<Module> list = new ArrayList<>();
         list.add(new Module(null,"Камод", DetailsData.detailList, DataFurniture.getList(), facades));
-        return list;
+        */
+        return null;
     }
 
 }
