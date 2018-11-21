@@ -9,7 +9,7 @@ import java.util.Set;
 @Table(name = "details")
 public class Detail extends BaseEntity {
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany()
     @JoinTable(name = "details_has_edge_material",
             joinColumns = @JoinColumn(name="details_id"),
             inverseJoinColumns = @JoinColumn(name = "edge_material_id"))

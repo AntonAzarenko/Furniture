@@ -51,16 +51,16 @@ public class DetailServiceImplTest {
 
     @Test
     public void save() {
-        Material material = Material.DSP;
+        Material material = Material.DVP;
         EdgeMaterial edgeMaterial = edgeMaterialService.getById(1L);
         Set<EdgeMaterial> materialSet = new HashSet<>();
         ColorDetail colorDetail = colorDetailService.getByID(1L);
         materialSet.add(edgeMaterial);
         Detail detail = new Detail();
-        detail.setName("Столешница");
+        detail.setName("Столешница4");
         detail.setCount(1);
         detail.setThickness(18);
-        detail.setMaterial(Material.DSP);
+        detail.setMaterial(Material.DVP);
         detail.setEdgeMaterial(materialSet);
         detail.setX(600);
         detail.setY(1000);
