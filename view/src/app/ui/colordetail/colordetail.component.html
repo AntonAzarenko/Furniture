@@ -1,0 +1,10 @@
+<script src="../../app.module.ts"></script>
+<div class="container">
+  <label>ColorDetail</label>
+  <div>
+    <select onchange="($event())">
+    <option *ngFor="let x of colors"  [value]="x.id" [selected]="idcolor == x.id">{{x.title}}</option>
+    </select>
+  </div>
+  <p>{{idcolor}}</p>
+</div>
