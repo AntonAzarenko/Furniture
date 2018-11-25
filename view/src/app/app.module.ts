@@ -1,13 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {UiModule} from "./ui/ui.module";
-import { ColordetailComponent } from './ui/colordetail/colordetail.component';
 import {HttpClientModule} from "@angular/common/http";
-
-
+import {FormsModule} from "@angular/forms";
+import {MatPaginatorModule, MatRowDef, MatSortModule, MatTableModule} from "@angular/material";
 
 @NgModule({
   declarations: [
@@ -17,7 +15,11 @@ import {HttpClientModule} from "@angular/common/http";
     BrowserModule,
     AppRoutingModule,
     UiModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]
