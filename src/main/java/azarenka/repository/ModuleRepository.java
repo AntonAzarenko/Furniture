@@ -1,10 +1,12 @@
 package azarenka.repository;
 
 import azarenka.entity.Module;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface ModuleRepository  {
-     List<Module> getByName(String name);
+@Repository
+public interface ModuleRepository extends JpaRepository<Module, Long> {
      Module getById (Long id);
 }

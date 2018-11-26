@@ -33,4 +33,9 @@ public class DetailServiceImpl implements DetailService{
     public void delete(Long id) {
         repository.deleteById(id);
     }
+
+    @Override
+    public List<Detail> getByModuleId(Long id) {
+        return repository.getAllByModule_Id(id);
+    }
 }

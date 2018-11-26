@@ -24,7 +24,7 @@ public class OrderController {
     @PostMapping(value = "/remove/{id}")
     public void remove(@PathVariable("id")String id){
         service.delete(id);
-    } //TODO cover with tests
+    }
 
     @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void add(Order order){

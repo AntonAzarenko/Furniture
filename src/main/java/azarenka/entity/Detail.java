@@ -38,6 +38,10 @@ public class Detail extends BaseEntity {
     @JoinColumn(name = "color_detail_id")
     private ColorDetail colorDetail;
 
+    @ManyToOne()
+    @JoinColumn(name = "module_id", nullable = false)
+    private Module module;
+
     public ColorDetail getColorDetail() {
         return colorDetail;
     }
@@ -64,7 +68,6 @@ public class Detail extends BaseEntity {
     public void setName(String name) {
         this.name = name;
     }
-
 
     public Set<EdgeMaterial> getEdgeMaterial() {
         return edgeMaterial;
@@ -97,7 +100,6 @@ public class Detail extends BaseEntity {
     public void setY(int y) {
         this.y = y;
     }
-
 
     public int getCount() {
         return count;

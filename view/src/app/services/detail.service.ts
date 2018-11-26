@@ -12,4 +12,8 @@ export class DetailService {
   getAllDetail(){
     return this.http.get('http://localhost:8080/detail');
   }
+
+  getDetailsByModuleId(id: number){
+    return this.http.get('http://localhost:8080/detail/' + id);
+  }
 }

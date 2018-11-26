@@ -1,7 +1,6 @@
 package azarenka.entity;
 
 public enum ModuleType {
-
     CUTTING,
     KITCHEN,
     CUPBOARD,

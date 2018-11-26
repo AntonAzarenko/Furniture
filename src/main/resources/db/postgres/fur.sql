@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS furniture;
 -- -----------------------------------------------------
 -- Table `Furniture`.`order`
 -- -----------------------------------------------------
-CREATE TABLE order (
+CREATE TABLE orders (
   id     BIGSERIAL   NOT NULL PRIMARY KEY,
   name   VARCHAR(45) NOT NULL,
   author VARCHAR(45) NOT NULL
@@ -37,8 +37,8 @@ CREATE TABLE edge_material (
 -- Table `Furniture`.`edge_material has side`
 -- -----------------------------------------------------
 CREATE TABLE edge_material_has_side (
- edge_material_id INTEGER NOT NULL ,
-  side VARCHAR(45),
+  edge_material_id INTEGER NOT NULL,
+  side             VARCHAR(45),
   FOREIGN KEY (edge_material_id) REFERENCES edge_material (id)
 
 );
@@ -47,15 +47,21 @@ CREATE TABLE edge_material_has_side (
 -- Table `Furniture`.`details`
 -- -----------------------------------------------------
 CREATE TABLE details (
-  id               BIGSERIAL        NOT NULL PRIMARY KEY,
-  name             VARCHAR(45)      NOT NULL,
-  x                INT              NOT NULL,
-  y                INT              NOT NULL,
-  count            INT              NOT NULL,
-  color_detail_id  INT              NOT NULL,
-  material        VARCHAR(45) NOT NULL ,
-  thickness        DOUBLE PRECISION NOT NULL,
+  id              BIGSERIAL        NOT NULL PRIMARY KEY,
+  name            VARCHAR(45)      NOT NULL,
+  x               INT              NOT NULL,
+  y               INT              NOT NULL,
+  count           INT              NOT NULL,
+  color_detail_id INT              NOT NULL,
+  material        VARCHAR(45)      NOT NULL,
+  thickness       DOUBLE PRECISION NOT NULL,
+  module_id       INT NOT NULL,
 
+  CONSTRAINT fk_module
+  FOREIGN KEY (module_id)
+  REFERENCES module (id)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
 
   CONSTRAINT fk_details_color_detail1
   FOREIGN KEY (color_detail_id)
@@ -65,21 +71,21 @@ CREATE TABLE details (
 );
 
 -- -----------------------------------------------------
--- Table `Furniture`.`order_has_details`
+-- Table details_has_edge_material
 -- -----------------------------------------------------
 CREATE TABLE details_has_edge_Material (
   edge_material_id INT NOT NULL,
-  details_id INT NOT NULL,
-PRIMARY KEY (edge_material_id, details_id),
-CONSTRAINT fk_order_has_details_order1
-FOREIGN KEY (edge_material_id)
-REFERENCES  edge_material  (id)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION,
-CONSTRAINT fk_order_has_details_details1
-FOREIGN KEY (details_id) REFERENCES details (id)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
+  details_id       INT NOT NULL,
+  PRIMARY KEY (edge_material_id, details_id),
+  CONSTRAINT fk_order_has_details_order1
+  FOREIGN KEY (edge_material_id)
+  REFERENCES edge_material (id)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+  CONSTRAINT fk_order_has_details_details1
+  FOREIGN KEY (details_id) REFERENCES details (id)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION
 );
 
 -- -----------------------------------------------------
@@ -223,7 +229,7 @@ ON UPDATE NO ACTION
 -- -----------------------------------------------------
 -- Table `Furniture`.`roles`
 -- -----------------------------------------------------
-CREATE TABLE roles (
+/*CREATE TABLE roles (
   users_id INT         NOT NULL,
   roles    VARCHAR(45) NOT NULL,
   CONSTRAINT fk_roles_users1
@@ -231,83 +237,18 @@ CREATE TABLE roles (
   REFERENCES users (id)
   ON DELETE NO ACTION
   ON UPDATE NO ACTION
-);
+);*/
 
 -- -----------------------------------------------------
 -- Table `Furniture`.`module`
 -- -----------------------------------------------------
 CREATE TABLE module (
-  id    BIGSERIAL   NOT NULL,
-  title VARCHAR(45) NOT NULL,
+  id          BIGSERIAL   NOT NULL,
+  title       VARCHAR(45) NOT NULL,
+  module_type VARCHAR(45) NOT NULL,
   PRIMARY KEY (id)
 );
 
--- -----------------------------------------------------
--- Table `Furniture`.`edge_type`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS ` Furniture`.`edge_type` (
-  `edge_material_id` INT NOT NULL,
-  ` TYPE ` VARCHAR (45
-) NOT NULL,
-INDEX `fk_edge_type_edge_material1_idx` (`edge_material_id` ASC
-),
-CONSTRAINT `fk_edge_type_edge_material1`
-FOREIGN KEY (`edge_material_id`
-)
-REFERENCES `Furniture`.`edge_material` (`id`
-)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-)
-  ENGINE = InnoDB;
-
--- -----------------------------------------------------
--- Table `Furniture`.`order_type`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS ` Furniture`.`order_type` (
-  `order_id` INT NOT NULL,
-  ` TYPE ` VARCHAR (45
-) NOT NULL,
-INDEX `fk_order_type_order1_idx` (`order_id` ASC
-),
-CONSTRAINT `fk_order_type_order1`
-FOREIGN KEY (`order_id`
-)
-REFERENCES `Furniture`.` ORDER ` (`id`
-)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-)
-  ENGINE = InnoDB;
-
--- -----------------------------------------------------
--- Table `Furniture`.`module_has_details`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS ` Furniture`.`module_has_details` (
-  `module_id` INT NOT NULL,
-  `details_id` INT NOT NULL,
-PRIMARY KEY (`module_id`, `details_id`
-),
-INDEX `fk_module_has_details_details1_idx` (`details_id` ASC
-),
-INDEX `fk_module_has_details_module1_idx` (`module_id` ASC
-),
-CONSTRAINT `fk_module_has_details_module1`
-FOREIGN KEY (`module_id`
-)
-REFERENCES `Furniture`.`module` (`id`
-)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION,
-CONSTRAINT `fk_module_has_details_details1`
-FOREIGN KEY (`details_id`
-)
-REFERENCES `Furniture`.`details` (`id`
-)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-)
-  ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `Furniture`.`module_has_facade`

@@ -1,19 +1,29 @@
 package azarenka.entity;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "module")
 public class Module extends BaseEntity {
+    @Column(name = "title")
     private String name;
 
+    @OneToMany(fetch = FetchType.LAZY)
     private List<Detail> detailList;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "module_type")
     private ModuleType moduleType;
 
-    public Module(Long id, String name, List<Detail> detailList) {
+    public Module() {
+    }
+
+    public Module(Long id, String name, List<Detail> detailList, ModuleType moduleType) {
         super(id);
         this.name = name;
         this.detailList = detailList;
+        this.moduleType = moduleType;
     }
 
     public String getName() {
@@ -30,5 +40,13 @@ public class Module extends BaseEntity {
 
     public void setDetailList(List<Detail> detailList) {
         this.detailList = detailList;
+    }
+
+    public ModuleType getModuleType() {
+        return moduleType;
+    }
+
+    public void setModuleType(ModuleType moduleType) {
+        this.moduleType = moduleType;
     }
 }
