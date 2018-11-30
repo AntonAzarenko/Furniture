@@ -6,14 +6,27 @@ import {UiModule} from "./ui/ui.module";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {
-  MatCell, MatCellDef, MatPaginatorModule, MatRow, MatRowDef, MatSortModule,
-  MatTableModule
+  MatAutocompleteModule, MatBadgeModule, MatBottomSheetModule,
+  MatButtonModule, MatButtonToggleModule, MatCardModule,
+  MatCell, MatCellDef, MatCheckboxModule, MatChipsModule, MatDatepickerModule, MatDialogModule, MatDividerModule,
+  MatExpansionModule,
+  MatFormFieldControl,
+  MatFormFieldModule, MatGridListModule, MatIconModule,
+  MatInputModule,
+  MatListModule, MatMenuModule, MatNativeDateModule,
+  MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule, MatRippleModule,
+  MatRow,
+  MatRowDef, MatSelectModule, MatSidenavModule, MatSliderModule, MatSlideToggleModule, MatSnackBarModule,
+  MatSortModule, MatStepperModule,
+  MatTableModule, MatTabsModule, MatToolbarModule, MatTooltipModule, MatTreeModule
 } from "@angular/material";
 import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
+import {FurnitureModule, OpenDialogToDeleteModuleComponent} from "./ui/module/module.component";
+import {Http, HttpModule} from "@angular/http";
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
@@ -27,10 +40,54 @@ import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-b
     MatPaginatorModule,
     MatSortModule,
     BrowserAnimationsModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatSelectModule,
+    MatInputModule,
+    MatDialogModule,
+    MatAutocompleteModule,
+    MatBadgeModule,
+    MatBottomSheetModule,
+    MatButtonModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatChipsModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatDialogModule,
+    MatDividerModule,
+    MatExpansionModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatNativeDateModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatSlideToggleModule,
+    MatSnackBarModule,
+    MatSortModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule,
+    MatTreeModule,
+    HttpModule,
+
+
 
   ],
-  providers: [],
+
+  providers: [Http],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

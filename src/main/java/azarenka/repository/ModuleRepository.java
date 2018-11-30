@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface ModuleRepository extends JpaRepository<Module, Long> {
      Module getById (Long id);
+
+     Module save(Module module);
 }

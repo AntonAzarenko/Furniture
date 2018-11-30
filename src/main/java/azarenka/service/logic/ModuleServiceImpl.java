@@ -16,8 +16,8 @@ public class ModuleServiceImpl implements ModuleService { //TODO class uncovered
     private ModuleRepository repository;
 
     @Override
-    public void save(Module module) {
-
+    public Module save(Module module) {
+       return repository.save(module);
     }
 
     @Override
@@ -33,5 +33,10 @@ public class ModuleServiceImpl implements ModuleService { //TODO class uncovered
     @Override
     public List<Module> getAll() {
         return repository.findAll();
+    }
+
+    @Override
+    public void delete(Long id) {
+        repository.deleteById(id);
     }
 }

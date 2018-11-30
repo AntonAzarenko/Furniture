@@ -21,9 +21,14 @@ public class ModuleController {
         return service.getAll();
     }
 
-    @PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void save(Module module) {
-        service.save(module);
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Module save(@RequestBody Module modul) {
+       return service.save(modul);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public void delete(@PathVariable("id") Long id){
+        service.delete(id);
     }
 
 }

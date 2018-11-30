@@ -1,4 +1,4 @@
-package azarenka.Util;
+package azarenka.util;
 
 import org.apache.commons.codec.digest.DigestUtils;
 

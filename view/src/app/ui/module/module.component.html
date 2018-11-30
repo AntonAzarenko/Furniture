@@ -1,3 +1,19 @@
-<a routerLink="/modules/{{module.id}}/details" *ngFor="let module of modules">
-  {{module.name}}
-</a>
+<div class="row">
+  <div class="col">
+    <button mat-button (click)="openDialogCreate($event)" >Добавить</button>
+
+    <button mat-button (click)="openDialogDelete($event)" >Удалить</button>
+  </div>
+  <div class="col">
+    <div class="listM">
+      <h4>Деталировка модуля</h4>
+      <mat-form-field>
+        <mat-select placeholder="Модуль">
+          <mat-option *ngFor="let module of modules"  [value]="module.id" routerLink="/modules/{{module.id}}/details">
+            {{module.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+</div>

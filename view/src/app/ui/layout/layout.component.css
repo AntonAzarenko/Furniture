@@ -1,11 +1,6 @@
-.header{
-  text-align: center;
-  color: #005cbf;
+.container{
+  height:  85vh;
 }
-.description {
-  text-align: center;
-  color: black;
-}
-.tech {
-  color: #005cbf;
+.jumbotron{
+  height:  85vh;
 }

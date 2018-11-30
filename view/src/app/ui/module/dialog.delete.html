@@ -1,0 +1,8 @@
+<div mat-dialog-content="">
+  <li *ngFor="let module of data.modules">
+    <button mat-button  [mat-dialog-close] = "data.module.id" routerLink="/modules/{{module.id}}">{{module.name}}</button>
+  </li>
+</div>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

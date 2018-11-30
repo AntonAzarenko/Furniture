@@ -1,9 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
-import {DetailsDataSource, DetailsItem} from './details-datasource';
 import {DetailService} from "../../services/detail.service";
-import {HttpClient} from "@angular/common/http";
-import * as http from "http";
 import {ActivatedRoute} from "@angular/router";
 
 
