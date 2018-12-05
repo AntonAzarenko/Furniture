@@ -1,32 +1,29 @@
 package azarenka.entity;
 
-
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name = "orders")
 public class Order extends BaseEntity {
 
+    @Column(name = "name")
     private String name;
 
-    private Author author;
+    @Column(name = "author")
+    private String author;
 
+    @OneToMany(fetch = FetchType.LAZY)
     private List<Module> moduleList;
 
     public Order() {
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Author getAuthor() {
+    public String getAuthor() {
         return author;
     }
 
-    public void setAuthor(Author author) {
+    public void setAuthor(String author) {
         this.author = author;
     }
 
@@ -37,4 +34,13 @@ public class Order extends BaseEntity {
     public void setModuleList(List<Module> moduleList) {
         this.moduleList = moduleList;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
 }

@@ -16,6 +16,8 @@ public interface ModuleService {
 
     void delete(Long id);
 
+    List<Module> getAllByOrderId(Long id);
+
 
 
 

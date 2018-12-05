@@ -2,16 +2,19 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {ModuleService} from "../../services/module.service";
 import {ErrorStateMatcher, MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar} from "@angular/material";
 import {ActivatedRoute} from "@angular/router";
+import {HeaderComponent} from "../header/header.component";
 
 export interface DialogCreateData {
   id: number;
   type: string;
   name: string;
+  order_id: number;
 
 }
 
 export interface DialogDeleteData {
   modules: Object[];
+  module: FurnitureModule;
 }
 
 @Component({
@@ -25,25 +28,24 @@ export class ModuleComponent implements OnInit {
   private id: string;
   private type: string;
   private name: string;
+  private order_id: number;
 
   constructor(private service: ModuleService,
               public dialog: MatDialog,
               public dialogD: MatDialog,
               public snackBar: MatSnackBar,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+             ) {
   }
 
   ngOnInit() {
-    const idP = +this.route.snapshot.paramMap.get('id');
-
-    if(idP != 0) {
-      this.delete(idP)
-    }
     this.getAllModules();
   }
 
   getAllModules() {
-    this.service.getAll().subscribe(
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.order_id = id;
+    this.service.getAll(id).subscribe(
       (data: any[]) => {
         this.modules = (data)
       }
@@ -69,7 +71,7 @@ export class ModuleComponent implements OnInit {
           duration: 2000,
         });
       }
-      this.moduleF = new FurnitureModule(this.id, this.name, this.type);
+      this.moduleF = new FurnitureModule(this.id, this.name, this.type,this.order_id);
       console.log(this.moduleF);
       this.save(this.moduleF);
     });
@@ -79,7 +81,10 @@ export class ModuleComponent implements OnInit {
     const dialogRefD = this.dialogD.open(OpenDialogToDeleteModuleComponent, {
       data: { modules: this.modules}
     });
-    dialogRefD.afterClosed().subscribe()
+    dialogRefD.afterClosed().subscribe(result =>{
+      this.moduleF = result.module;
+      console.log(this.moduleF);
+    })
   }
 
 
@@ -88,11 +93,12 @@ export class ModuleComponent implements OnInit {
     this.service.save(data).subscribe(data => this.modules.push(data));
   }
 
-  delete(id){
+  deleteModule(event){
+    const id = +this.route.snapshot.paramMap.get('id');
     console.log(id);
     this.service.delete(id);
+    window.location.reload();
   }
-
 }
 
 @Component({
@@ -133,14 +139,17 @@ export class FurnitureModule {
   id: string;
   name: string;
   moduleType: string;
+  order_id:number;
   detailList: string;
 
   constructor(id: string,
               name: string,
-              moduleType: string) {
+              moduleType: string,
+              order_id: number) {
     this.id = id;
     this.name = name;
     this.moduleType = moduleType;
+    this.order_id = order_id
   }
 }
 

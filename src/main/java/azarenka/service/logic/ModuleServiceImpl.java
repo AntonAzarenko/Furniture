@@ -39,4 +39,9 @@ public class ModuleServiceImpl implements ModuleService { //TODO class uncovered
     public void delete(Long id) {
         repository.deleteById(id);
     }
+
+    @Override
+    public List<Module> getAllByOrderId(Long id) {
+        return repository.getAllByOrder_Id(id);
+    }
 }

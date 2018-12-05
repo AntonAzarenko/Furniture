@@ -16,27 +16,27 @@ public class OrderController {
     @Autowired
     private OrderService service;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Order> getAll() {
         return service.getAll();
     }
 
-    @PostMapping(value = "/remove/{id}")
-    public void remove(@PathVariable("id")String id){
-        service.delete(id);
+    @DeleteMapping(value = "/{id}")
+    public void remove(@PathVariable("id")Long id){
+        service.deleteById(id);
     }
 
-    @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping( consumes = MediaType.APPLICATION_JSON_VALUE)
     public void add(Order order){
         service.create(order);
     }
 
-    @GetMapping(value = "/get/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Order getById(@PathVariable("id")String id){
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Order getById(@PathVariable("id")Long id){
        return service.getByID(id);
     }
 
-    @GetMapping(value = "/getByName/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/by/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Order> getByName(@PathVariable("name")String name){
         return service.getByName(name);
     }

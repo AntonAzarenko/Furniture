@@ -6,11 +6,9 @@ import java.util.List;
 
 public interface OrderService {
 
-    Order getByID(String id);
+    Order getByID(Long id);
 
     List<Order> getAll();
-
-    List<Order> getByAuthor(String firstName);
 
     List<Order> getByName(String name);
 
@@ -18,5 +16,5 @@ public interface OrderService {
 
     void update(Order order);
 
-    void delete(String id);
+    void deleteById(Long id);
 }

@@ -1,0 +1,8 @@
+<div mat-dialog-content="">
+  <li *ngFor="let module of data.modules" [value]="module.id">
+    <button mat-button   (click)="deleteModule($event)" >  <!--routerLink="/modules/{{module.id}}"--><a routerLink="/modules" hidden></a>{{module.name}}</button>
+  </li>
+</div>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

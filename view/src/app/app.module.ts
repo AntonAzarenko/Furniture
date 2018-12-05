@@ -21,12 +21,13 @@ import {
   MatTableModule, MatTabsModule, MatToolbarModule, MatTooltipModule, MatTreeModule
 } from "@angular/material";
 import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
-import {FurnitureModule, OpenDialogToDeleteModuleComponent} from "./ui/module/module.component";
+import {FurnitureModule, OpenDialogToDeleteModuleComponent} from "./ui/modules/module.component";
 import {Http, HttpModule} from "@angular/http";
+import {HeaderComponent} from "./ui/header/header.component";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
@@ -82,9 +83,6 @@ import {Http, HttpModule} from "@angular/http";
     MatTooltipModule,
     MatTreeModule,
     HttpModule,
-
-
-
   ],
 
   providers: [Http],

@@ -1,6 +1,8 @@
 package azarenka.web;
 
+import azarenka.dto.ModuleDto;
 import azarenka.entity.Module;
+import azarenka.entity.Order;
 import azarenka.service.ModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -21,9 +23,14 @@ public class ModuleController {
         return service.getAll();
     }
 
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Module> getById(@PathVariable("id")Long id){
+        return service.getAllByOrderId(id);
+    }
+
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Module save(@RequestBody Module modul) {
-       return service.save(modul);
+    public Module save(@RequestBody ModuleDto module) {
+       return service.save(module.asModule());
     }
 
     @DeleteMapping(value = "/{id}")

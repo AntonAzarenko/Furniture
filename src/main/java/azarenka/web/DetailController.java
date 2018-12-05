@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
 @RestController
 @CrossOrigin(maxAge = 3600)
 @RequestMapping(value = "detail")
@@ -25,5 +24,10 @@ public class DetailController {
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Detail> getAllByModuleId(@PathVariable("id") Long id){
        return service.getByModuleId(id);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public void delete(@PathVariable("id") Long id){
+        service.delete(id);
     }
 }

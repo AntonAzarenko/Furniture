@@ -1,18 +1,17 @@
 package azarenka.repository;
 
 import azarenka.entity.Order;
-import azarenka.repository.mybatis.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface OrderRepository extends CrudRepository<String, Order> {
+public interface OrderRepository extends JpaRepository<Order, Long> {
     List<Order> getByName(String name);
 
-    List<Order> getByAuthor(String firstName);
 
-    List<Order> getByModuleName(String name);
+    Order getById(Long id);
 
 
 }

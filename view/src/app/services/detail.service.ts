@@ -14,6 +14,12 @@ export class DetailService {
   }
 
   getDetailsByModuleId(id: number){
+    console.log(id);
     return this.http.get('http://localhost:8080/detail/' + id);
+  }
+
+  deleteDetail(id: number){
+   // console.log(id);
+    this.http.delete('http://localhost:8080/detail/' + id);
   }
 }

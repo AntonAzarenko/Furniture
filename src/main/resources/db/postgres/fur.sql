@@ -44,6 +44,19 @@ CREATE TABLE edge_material_has_side (
 );
 
 -- -----------------------------------------------------
+-- Table `Furniture`.`module`
+-- -----------------------------------------------------
+
+CREATE TABLE module (
+  id          BIGSERIAL   NOT NULL,
+  title       VARCHAR(45) NOT NULL,
+  module_type VARCHAR(45) NOT NULL,
+  order_id    INT         NOT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT Fk_ord FOREIGN KEY (order_id) REFERENCES orders (id)
+);
+
+-- -----------------------------------------------------
 -- Table `Furniture`.`details`
 -- -----------------------------------------------------
 CREATE TABLE details (
@@ -55,7 +68,7 @@ CREATE TABLE details (
   color_detail_id INT              NOT NULL,
   material        VARCHAR(45)      NOT NULL,
   thickness       DOUBLE PRECISION NOT NULL,
-  module_id       INT NOT NULL,
+  module_id       INT              NOT NULL,
 
   CONSTRAINT fk_module
   FOREIGN KEY (module_id)
@@ -238,16 +251,6 @@ ON UPDATE NO ACTION
   ON DELETE NO ACTION
   ON UPDATE NO ACTION
 );*/
-
--- -----------------------------------------------------
--- Table `Furniture`.`module`
--- -----------------------------------------------------
-CREATE TABLE module (
-  id          BIGSERIAL   NOT NULL,
-  title       VARCHAR(45) NOT NULL,
-  module_type VARCHAR(45) NOT NULL,
-  PRIMARY KEY (id)
-);
 
 
 -- -----------------------------------------------------

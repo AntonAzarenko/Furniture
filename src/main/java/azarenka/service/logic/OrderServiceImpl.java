@@ -11,22 +11,17 @@ import java.util.List;
 @Service
 public class OrderServiceImpl implements OrderService {
 
-
+    @Autowired
     private OrderRepository repository;
 
     @Override
-    public Order getByID(String id) {
-        return repository.read(id);
+    public Order getByID(Long id) {
+        return repository.getById(id);
     }
 
     @Override
     public List<Order> getAll() {
-        return repository.readAll();
-    }
-
-    @Override
-    public List<Order> getByAuthor(String firstName) {
-        return repository.getByAuthor(firstName);
+        return repository.findAll();
     }
 
     @Override
@@ -41,14 +36,11 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void update(Order order) {
-        repository.update(order);
+        repository.save(order);
     }
 
     @Override
-    public void delete(String id) {
-        repository.delete(id);
+    public void deleteById(Long id) {
+        repository.deleteById(id);
     }
-
-
-
 }

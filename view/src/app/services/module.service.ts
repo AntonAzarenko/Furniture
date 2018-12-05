@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
-import {FurnitureModule} from "../ui/module/module.component";
+import {FurnitureModule} from "../ui/modules/module.component";
 import {Observable, throwError} from "rxjs/index";
 import {catchError} from "rxjs/internal/operators";
 
@@ -21,8 +21,9 @@ export class ModuleService {
   constructor(private http: HttpClient) {
   }
 
-  getAll() {
-    return this.http.get('http://localhost:8080/module')
+  getAll(id: number) {
+    console.log(id);
+    return this.http.get('http://localhost:8080/module/'+ id);
   }
 
   save(moduleF: FurnitureModule) {
