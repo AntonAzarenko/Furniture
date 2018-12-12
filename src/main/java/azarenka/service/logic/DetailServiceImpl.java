@@ -3,13 +3,15 @@ package azarenka.service.logic;
 import azarenka.entity.Detail;
 import azarenka.repository.DetailRepository;
 import azarenka.service.DetailService;
+import org.hibernate.internal.IteratorImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Iterator;
 import java.util.List;
 
 @Service
-public class DetailServiceImpl implements DetailService{
+public class DetailServiceImpl implements DetailService {
 
     @Autowired
     private DetailRepository repository;
@@ -25,8 +27,8 @@ public class DetailServiceImpl implements DetailService{
     }
 
     @Override
-    public void save(Detail detail) {
-        repository.save(detail);
+    public Detail save(Detail detail) {
+       return repository.save(detail);
     }
 
     @Override
@@ -37,5 +39,12 @@ public class DetailServiceImpl implements DetailService{
     @Override
     public List<Detail> getByModuleId(Long id) {
         return repository.getAllByModule_Id(id);
+    }
+
+    @Override
+    public void delete(List<Detail> list) {
+        for(Detail cur: list){
+            repository.delete(cur);
+        }
     }
 }

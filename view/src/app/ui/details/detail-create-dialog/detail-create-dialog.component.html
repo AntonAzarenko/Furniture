@@ -1,0 +1,78 @@
+<div class="jumbotron" style="text-align: center">
+  <div>
+    <h3>Создаем деталь</h3>
+  </div>
+  <div>
+    <br/>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Имя детали" [(ngModel)]="data.name" [errorStateMatcher]="data.matcher">
+        </mat-form-field>
+      </div>
+      <hr>
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Размер по Y(Высоте)" [(ngModel)]="data.x" [errorStateMatcher]="data.matcher">
+        </mat-form-field>
+      </div>
+      <hr>
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Размер по X(Ширина)" [(ngModel)]="data.y" [errorStateMatcher]="data.matcher">
+        </mat-form-field>
+      </div>
+      <hr>
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Количество" [(ngModel)]="data.count" [errorStateMatcher]="data.matcher">
+        </mat-form-field>
+      </div>
+    </div>
+    <hr>
+    <div class="col">
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Толщина" [(ngModel)]="data.thickness" [errorStateMatcher]="data.matcher">
+        </mat-form-field>
+      </div>
+      <hr>
+      <div>
+        <mat-form-field>
+          <mat-select placeholder="Материал" [(ngModel)]="data.material">
+            <mat-option value="DSP">ЛДСП</mat-option>
+            <mat-option value="DVP">ДВП</mat-option>
+            <mat-option value="MDF">МДФ</mat-option>
+            <mat-option value="WOOD">Дерево</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <hr>
+      <div>
+        <mat-form-field>
+          <mat-select placeholder="Цвет" [{ngModel}]="data.colorId">
+            <mat-option *ngFor="let color of data.colors" [value]="color.id">
+              {{color.title}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <hr>
+      <div>
+        <mat-form-field>
+          <mat-select placeholder="Кромка" [{ngModel}]="data.edgeId">
+            <mat-option *ngFor="let edge of data.edges" [value]="edge.id">
+              {{edge.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions style="margin-left: 400px">
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+  </div>
+</div>

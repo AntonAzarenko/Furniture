@@ -1,11 +1,9 @@
 package azarenka.web;
 
-import azarenka.entity.ColorDetail;
-import azarenka.exceptions.NotFoundException;
+import azarenka.entity.DetailsColor;
 import azarenka.service.ColorDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +17,7 @@ public class ColorMaterialController {
     private ColorDetailService service;
 
     @RequestMapping(value = "/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ColorDetail> getAll() {
+    public List<DetailsColor> getAll() {
         return service.getAll();
     }
 
@@ -29,12 +27,12 @@ public class ColorMaterialController {
     }
 
     @PostMapping( consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void add(ColorDetail colorDetail){
-        service.save(colorDetail);
+    public void add(DetailsColor detailsColor){
+        service.save(detailsColor);
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ColorDetail get(@PathVariable("id")Long id){
+    public DetailsColor get(@PathVariable("id")Long id){
         return service.getByID(id);
     }
 

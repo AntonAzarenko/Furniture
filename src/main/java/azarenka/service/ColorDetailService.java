@@ -1,17 +1,16 @@
 package azarenka.service;
 
 
-import azarenka.entity.ColorDetail;
-import azarenka.exceptions.NotFoundException;
+import azarenka.entity.DetailsColor;
 
 import java.util.List;
 
 public interface ColorDetailService {
-    ColorDetail getByID(Long id);
+    DetailsColor getByID(Long id);
 
-    List<ColorDetail> getAll();
+    List<DetailsColor> getAll();
 
-    void save(ColorDetail order);
+    void save(DetailsColor order);
 
     void delete(Long id);
 }

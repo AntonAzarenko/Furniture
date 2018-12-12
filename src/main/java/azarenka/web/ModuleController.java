@@ -37,5 +37,4 @@ public class ModuleController {
     public void delete(@PathVariable("id") Long id){
         service.delete(id);
     }
-
 }

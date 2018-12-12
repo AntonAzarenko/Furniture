@@ -3,7 +3,6 @@ package azarenka.entity;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -37,8 +36,6 @@ public class EdgeMaterial extends BaseEntity {
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<EdgeSide> edgeSide;
 
-
-
     public List<Detail> getDetails() {
         return details;
     }
@@ -46,6 +43,7 @@ public class EdgeMaterial extends BaseEntity {
     public void setDetails(List<Detail> details) {
         this.details = details;
     }
+
     @ManyToMany(fetch = FetchType.LAZY)
     private List<Detail> details;
 

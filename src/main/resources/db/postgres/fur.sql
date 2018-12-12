@@ -27,7 +27,7 @@ CREATE TABLE edge_material (
   id          BIGSERIAL        NOT NULL PRIMARY KEY,
   name        VARCHAR(45)      NOT NULL,
   edge_type   VARCHAR(50)      NOT NULL,
-  colorDetail VARCHAR(45)      NOT NULL,
+  colorId VARCHAR(45)      NOT NULL,
   price       DECIMAL          NOT NULL,
   thickness   DOUBLE PRECISION NOT NULL,
   country     VARCHAR(45)      NOT NULL
@@ -467,7 +467,7 @@ ON UPDATE NO ACTION
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS ` Furniture`.`handle_color` (
   `handle_articul` INT NOT NULL,
-  `colorDetail` VARCHAR (45
+  `colorId` VARCHAR (45
 ) NULL,
 INDEX `fk_handle_color_handle1_idx` (`handle_articul` ASC
 ),

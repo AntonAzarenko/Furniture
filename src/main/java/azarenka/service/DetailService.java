@@ -11,9 +11,11 @@ public interface DetailService {
 
     Detail getById(Long id);
 
-    void save(Detail detail);
+    Detail save(Detail detail);
 
     void delete(Long id);
 
     List<Detail> getByModuleId(Long id);
+
+    void delete(List<Detail> list);
 }

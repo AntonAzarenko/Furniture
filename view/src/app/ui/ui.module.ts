@@ -29,6 +29,8 @@ import {GreetingComponent} from './greeting/greeting.component';
 import {CdkTableModule} from "@angular/cdk/table";
 import {CdkTreeModule} from "@angular/cdk/tree";
 import {OrdersComponent} from './orders/orders.component';
+import { DetailCreateDialogComponent } from './details/detail-create-dialog/detail-create-dialog.component';
+import { EdgeMaterialComponent } from './edge-material/edge-material.component';
 
 
 @NgModule({
@@ -44,7 +46,10 @@ import {OrdersComponent} from './orders/orders.component';
     FurnitureModule,
     OpenDialogToDeleteModuleComponent,
     OrdersComponent,
-    Details
+    Details,
+    DetailCreateDialogComponent,
+    EdgeMaterialComponent,
+
   ],
 
   imports: [
@@ -96,11 +101,14 @@ import {OrdersComponent} from './orders/orders.component';
     MatTreeModule,
 
 
+
   ],
   entryComponents: [
     OpenDilogToCreateModuleComponent,
     OpenDialogToDeleteModuleComponent,
-    Details],
+    Details,
+    DetailCreateDialogComponent
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
 
   exports: [
@@ -114,7 +122,9 @@ import {OrdersComponent} from './orders/orders.component';
     FurnitureModule,
     OpenDialogToDeleteModuleComponent,
     OrdersComponent,
-    Details]
+    Details,
+    DetailCreateDialogComponent
+  ]
 
 })
 export class UiModule {

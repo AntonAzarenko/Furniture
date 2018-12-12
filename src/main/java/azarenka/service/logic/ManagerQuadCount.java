@@ -22,7 +22,7 @@ public class ManagerQuadCount {
         Map<BigDecimal, Double> map = new HashMap<>();
         if (Objects.nonNull(detailList)) {
             for (Detail detail : detailList) {
-                map.merge(detail.getColorDetail().getPrice(), getCountSquareDetail(detail.getX(), detail.getY(), detail.getCount()), (a, b) -> a + b);
+                map.merge(detail.getColorId().getPrice(), getCountSquareDetail(detail.getX(), detail.getY(), detail.getCount()), (a, b) -> a + b);
             }
         }
         return map;

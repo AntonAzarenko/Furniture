@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "color_detail")
-public class ColorDetail extends BaseEntity {
+public class DetailsColor extends BaseEntity {
 
     @Column(name = "title", unique = true, nullable = false)
     private String title;
@@ -21,10 +21,10 @@ public class ColorDetail extends BaseEntity {
     @Column(name = "price")
     private BigDecimal price;
 
-    public ColorDetail() {
+    public DetailsColor() {
     }
 
-    public ColorDetail(Long id, String title, String nameManufacturer, Country countryManufacturer, BigDecimal price) {
+    public DetailsColor(Long id, String title, String nameManufacturer, Country countryManufacturer, BigDecimal price) {
         super(id);
         this.title = title;
         this.nameManufacturer = nameManufacturer;

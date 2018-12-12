@@ -2,7 +2,6 @@ package azarenka.entity;
 
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -36,18 +35,18 @@ public class Detail extends BaseEntity {
 
     @OneToOne
     @JoinColumn(name = "color_detail_id")
-    private ColorDetail colorDetail;
+    private DetailsColor detailsColor;
 
     @ManyToOne()
     @JoinColumn(name = "module_id", nullable = false)
     private Module module;
 
-    public ColorDetail getColorDetail() {
-        return colorDetail;
+    public DetailsColor getDetailsColor() {
+        return detailsColor;
     }
 
-    public void setColorDetail(ColorDetail colorDetail) {
-        this.colorDetail = colorDetail;
+    public void setDetailsColor(DetailsColor detailsColor) {
+        this.detailsColor = detailsColor;
     }
 
     public Detail() {

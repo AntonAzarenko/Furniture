@@ -1,5 +1,6 @@
 package azarenka.web;
 
+import azarenka.dto.DetailDto;
 import azarenka.entity.Detail;
 import azarenka.service.DetailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,15 @@ public class DetailController {
     @DeleteMapping(value = "/{id}")
     public void delete(@PathVariable("id") Long id){
         service.delete(id);
+    }
+
+    @PostMapping (consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Detail save(@RequestBody DetailDto detailDto){
+        return service.save(detailDto.asDetail());
+    }
+
+    @DeleteMapping(value = "/del",consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void deleteAll(@RequestBody List<Detail> list){
+        service.delete(list);
     }
 }
