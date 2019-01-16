@@ -7,11 +7,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ColorMaterialRepository  extends JpaRepository<DetailsColor, Long> {
+public interface ColorMaterialRepository extends JpaRepository<DetailsColor, Long> {
 
     DetailsColor getById(Long id);
 
     @Modifying
     @Query("delete from DetailsColor where id = :id")
-    void delete (Long id);
+    void delete(Long id);
 }

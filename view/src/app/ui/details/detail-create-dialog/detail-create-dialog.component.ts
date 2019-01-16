@@ -8,8 +8,8 @@ interface DialogCreateDetailData{
    count: string;
    thickness: string;
    material: string;
-   edgeId: number;
-   colorId: number;
+   edgesId: string;
+   colorsId: string;
 }
 
 @Component({
@@ -19,20 +19,14 @@ interface DialogCreateDetailData{
 })
 export class DetailCreateDialogComponent implements OnInit {
 
-
-
   constructor(public dialogRef: MatDialogRef<DetailCreateDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: DialogCreateDetailData,
               ) {
   }
 
-
-
   onNoClick(): void {
     this.dialogRef.close();
   }
-
-
 
   ngOnInit() {
   }

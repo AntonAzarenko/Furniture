@@ -1,9 +1,6 @@
 package azarenka.dto;
 
-import azarenka.entity.DetailsColor;
-import azarenka.entity.Detail;
-import azarenka.entity.EdgeMaterial;
-import azarenka.entity.Material;
+import azarenka.entity.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -24,9 +21,21 @@ public class DetailDto {
 
     private Material material;
 
-    private Set<Long> edgeId;
+    private Long colorId;
 
-    private DetailsColor colorId;
+    private EdgeType edgeTypeY;
+
+    private String edgeTypeX;
+
+    private EdgeSide edgeSideX;
+
+    private EdgeSide edgeSideY;
+
+    private Edge colorEdgeX;
+
+    private Edge colorEdgeY;
+
+    private Long moduleId;
 
     public Detail asDetail() {
         Detail detail = new Detail();
@@ -37,15 +46,42 @@ public class DetailDto {
         detail.setCount(this.count);
         detail.setThickness(this.thickness);
         detail.setMaterial(this.material);
-        Set<EdgeMaterial> edgeMaterials = new HashSet<>();
-        for(Long current : edgeId){
-            EdgeMaterial edgeMaterial = new EdgeMaterial();
-            edgeMaterial.setId(current);
-            edgeMaterials.add(edgeMaterial);
+        Set<EdgeMaterial> materialSet = new HashSet<>();
+        if(colorEdgeX != null){
+            materialSet.add(createEdgeMaterialX());
         }
-        detail.setEdgeMaterial(edgeMaterials);
-        detail.setDetailsColor(colorId);
+        if(colorEdgeY != null){
+            materialSet.add(createEdgeMaterialY());
+        }
+        detail.setEdgeMaterial(materialSet);
+        //todo
+        DetailsColor detailsColor = new DetailsColor();
+        detailsColor.setId(colorId);
+        detail.setDetailsColor(detailsColor);
+        detail.setModule(createModule());
         return detail;
+    }
+
+    private Module createModule(){
+        if (moduleId !=null){
+            Module module = new Module();
+            module.setId(moduleId);
+            return module;
+        }
+        return null;
+    }
+
+    private EdgeMaterial createEdgeMaterialX(){
+        EdgeMaterial edgeMaterial = new EdgeMaterial();
+        edgeMaterial.setEdgeSide(edgeSideX);
+        edgeMaterial.setEdge(colorEdgeX);
+        return edgeMaterial;
+    }
+
+    private EdgeMaterial createEdgeMaterialY(){
+        EdgeMaterial edgeMaterial = new EdgeMaterial();
+        edgeMaterial.setEdge(colorEdgeY);
+        return edgeMaterial;
     }
 
     public DetailDto() {
@@ -107,19 +143,67 @@ public class DetailDto {
         this.material = material;
     }
 
-    public Set<Long> getEdgeId() {
-        return edgeId;
-    }
-
-    public void setEdgeId(Set<Long> edgeId) {
-        this.edgeId = edgeId;
-    }
-
-    public DetailsColor getColorId() {
+    public Long getColorId() {
         return colorId;
     }
 
-    public void setColorId(DetailsColor colorId) {
+    public void setColorId(Long colorId) {
         this.colorId = colorId;
+    }
+
+    public EdgeType getEdgeTypeY() {
+        return edgeTypeY;
+    }
+
+    public void setEdgeTypeY(EdgeType edgeTypeY) {
+        this.edgeTypeY = edgeTypeY;
+    }
+
+    public String getEdgeTypeX() {
+        return edgeTypeX;
+    }
+
+    public void setEdgeTypeX(String edgeTypeX) {
+        this.edgeTypeX = edgeTypeX;
+    }
+
+    public EdgeSide getEdgeSideX() {
+        return edgeSideX;
+    }
+
+    public void setEdgeSideX(EdgeSide edgeSideX) {
+        this.edgeSideX = edgeSideX;
+    }
+
+    public EdgeSide getEdgeSideY() {
+        return edgeSideY;
+    }
+
+    public void setEdgeSideY(EdgeSide edgeSideY) {
+        this.edgeSideY = edgeSideY;
+    }
+
+    public Edge getColorEdgeX() {
+        return colorEdgeX;
+    }
+
+    public void setColorEdgeX(Edge colorEdgeX) {
+        this.colorEdgeX = colorEdgeX;
+    }
+
+    public Edge getColorEdgeY() {
+        return colorEdgeY;
+    }
+
+    public void setColorEdgeY(Edge colorEdgeY) {
+        this.colorEdgeY = colorEdgeY;
+    }
+
+    public Long getModuleId() {
+        return moduleId;
+    }
+
+    public void setModuleId(Long moduleId) {
+        this.moduleId = moduleId;
     }
 }

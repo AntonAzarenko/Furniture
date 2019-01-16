@@ -17,29 +17,30 @@ export class DetailService {
   constructor(private http: HttpClient) {
   }
 
-
-
   getAllDetail() {
     return this.http.get('http://localhost:8080/detail');
   }
 
   getDetailsByModuleId(id: number) {
-    console.log(id);
     return this.http.get('http://localhost:8080/detail/' + id);
   }
 
   deleteDetail(id: number) {
-    // console.log(id);
+     console.log(id);
     this.http.delete('http://localhost:8080/detail/' + id).subscribe();
   }
 
   deleteAll(list: Details[]) {
     console.log(list);
-   return this.http.post<Details>('http://localhost:8080/detail/del', list, httpOptions).subscribe();
+
+    list.forEach(function (value, index, array) {
+
+    });
+     this.http.delete<Details>('http://localhost:8080/detail/del/' + list).subscribe();
   }
 
-  save(detail: Details){
+  save(detail: Details) {
     console.log(detail);
-   return this.http.post<Details>('http://localhost:8080/detail', detail, httpOptions)
+    return this.http.post<Details>('http://localhost:8080/detail', detail, httpOptions)
   }
 }

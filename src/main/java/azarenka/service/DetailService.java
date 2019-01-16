@@ -7,6 +7,7 @@ import java.util.List;
 
 
 public interface DetailService {
+
     List<Detail> getAll();
 
     Detail getById(Long id);

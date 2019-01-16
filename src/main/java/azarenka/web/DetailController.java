@@ -34,11 +34,15 @@ public class DetailController {
 
     @PostMapping (consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Detail save(@RequestBody DetailDto detailDto){
+
         return service.save(detailDto.asDetail());
     }
 
-    @DeleteMapping(value = "/del",consumes = MediaType.APPLICATION_JSON_VALUE)
+    @CrossOrigin
+    @DeleteMapping(value = "/del/",consumes = MediaType.APPLICATION_JSON_VALUE)
     public void deleteAll(@RequestBody List<Detail> list){
+        List<Detail> list1 = list;
+
         service.delete(list);
     }
 }

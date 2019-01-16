@@ -1,15 +1,6 @@
 package azarenka.service.logic;
 
-import azarenka.entity.Detail;
-import azarenka.entity.Module;
-import azarenka.entity.Order;
 import org.springframework.stereotype.Component;
-
-import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 @Component
 public class ManagerQuadCount {

@@ -1,15 +1,47 @@
-<div class="container">
-  <div class="jumbotron">
-    <h1 class="header">"МЕБЕЛЬНЫЙ ПОМОЩНИК"</h1>
-    <p class="description">Приветствую вас. Это приложение поможет облегчить жизнь конструкторам, дизайнерам и руководителям небольших
-      мебельных производств!Программа может быть как просто отдельной деталировкой, так состовлять мебель из
-      стандартных модулей пересчитывая детали на нужный вам размер. При этом достаточно указать только габариты
-      модуля. Так же будет добавлена возможность создавать модули в ручную, как кухонные так и шкафов и камодов.
-      Также есть возможность полного просчета заказа с настройками цена на компоненты изделия.
-    </p>
-    <br><br><br><br>
-    <p class="tech">Приложение разрабатывается на основе технологий SpringBoot, Hibernate, SpringData, Angular 7.0,
-      Gradle, SpringSecurity.//будет дополнено
-    </p>
+<div class="substrate">
+  <div class="container d-flex">
+    <div class="row">
+      <div class="col left">
+        <h1 class="header">"МЕБЕЛЬНЫЙ ПОМОЩНИК"</h1>
+        <p class="description"> Приветствую вас. Это приложение поможет облегчить жизнь конструкторам, дизайнерам и
+          руководителям небольших
+          мебельных производств! Программа может быть как просто отдельной деталировкой, так состовлять мебель из
+          стандартных модулей пересчитывая детали на нужный вам размер. При этом достаточно указать только габариты
+          модуля. Так же будет добавлена возможность создавать модули в ручную, как кухонные так и шкафов и комодов.
+          Также есть возможность полного просчета заказа с настройками цена на компоненты изделия.
+        </p>
+        <br><br><br><br>
+        <p class="tech">Приложение разрабатывается на основе технологий SpringBoot, Hibernate, SpringData, Angular 7.0,
+          Gradle, SpringSecurity.//будет дополнено
+        </p>
+      </div>
+      <div class="col right">
+        <div class="authorization">
+          <label>Авторизация</label>
+        </div>
+        <div class="container two center-pill">
+          <div class="row">
+            <div>
+              <input class="dws-input" placeholder="Введите Email" type="text"/>
+            </div>
+          </div>
+          <div>
+            <div class="row">
+              <div>
+                <input class="dws-input" placeholder="Введите Password" type="password"/>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="but">
+            <mat-button-toggle class="warn">Регистрация</mat-button-toggle>
+          </div>
+          <div class="but">
+            <mat-button-toggle routerLink="/orders">Войти</mat-button-toggle>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

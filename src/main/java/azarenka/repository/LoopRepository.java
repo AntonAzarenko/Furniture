@@ -8,9 +8,10 @@ import azarenka.repository.mybatis.CrudRepository;
 import java.util.List;
 
 public interface LoopRepository extends CrudRepository<String, Loops> {
-    List<Loops> getByNameManufature(String name);
 
-    List<Loops> getByManufatureCountry(Country country);
+    List<Loops> getByNameManufacture(String name);
+
+    List<Loops> getByManufactureCountry(Country country);
 
     List<Loops> getByAngle(String angle);
 

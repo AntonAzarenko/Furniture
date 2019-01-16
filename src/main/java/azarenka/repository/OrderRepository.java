@@ -8,8 +8,8 @@ import java.util.List;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
-    List<Order> getByName(String name);
 
+    List<Order> getByName(String name);
 
     Order getById(Long id);
 

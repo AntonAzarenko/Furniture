@@ -8,10 +8,7 @@ import java.util.Set;
 @Table(name = "details")
 public class Detail extends BaseEntity {
 
-    @ManyToMany()
-    @JoinTable(name = "details_has_edge_material",
-            joinColumns = @JoinColumn(name="details_id"),
-            inverseJoinColumns = @JoinColumn(name = "edge_material_id"))
+    @OneToMany(fetch = FetchType.LAZY)
     private Set<EdgeMaterial> edgeMaterial;
 
     @Column(name = "name")
@@ -106,5 +103,13 @@ public class Detail extends BaseEntity {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public Module getModule() {
+        return module;
+    }
+
+    public void setModule(Module module) {
+        this.module = module;
     }
 }

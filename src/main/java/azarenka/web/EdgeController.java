@@ -1,7 +1,7 @@
 package azarenka.web;
 
-import azarenka.entity.EdgeMaterial;
-import azarenka.service.EdgeMaterialService;
+import azarenka.entity.Edge;
+import azarenka.service.EdgeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,13 +14,13 @@ import java.util.List;
 @CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping(value = "edge")
-public class EdgeMaterialController {
+public class EdgeController {
 
     @Autowired
-    private EdgeMaterialService service;
+    private EdgeService service;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<EdgeMaterial> getAll(){
+    public List<Edge> getAll() {
         return service.getAll();
     }
 }

@@ -1,6 +1,7 @@
 package azarenka.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -15,6 +16,21 @@ public class Order extends BaseEntity {
 
     @OneToMany(fetch = FetchType.LAZY)
     private List<Module> moduleList;
+
+    @Column(name = "address")
+    private String address;
+
+    @Column(name = "customer_name")
+    private String customersName;
+
+    @Column(name = "tel_number")
+    private String telNumber;
+
+    @Column(name = "date_of_contract")
+    private Date dateOfContract;
+
+    @Column(name = "date_of_create")
+    private Date dateOfCreate;
 
     public Order() {
     }

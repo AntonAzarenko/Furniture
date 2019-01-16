@@ -1,5 +1,16 @@
-<div>
-  <li *ngFor="let order of orders">
-    <a routerLink="/modules/get/{{order.id}}">{{order.name}}</a>
-  </li>
+<div class="cont">
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="butt">
+        <div class="but">
+          <button mat-icon-button (click)="createOrder()"><mat-icon style="color: #bf0008">library_add</mat-icon></button >
+        </div>
+      </div>
+      <div class="listO">
+        <mat-action-list  *ngFor="let order of orders">
+          <button mat-list-item mat-line (click)="showOrder">{{order.name}}</button>
+        </mat-action-list>
+      </div>
+    </div>
+  </div>
 </div>

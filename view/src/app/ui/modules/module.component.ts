@@ -1,8 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {ModuleService} from "../../services/module.service";
-import {ErrorStateMatcher, MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar} from "@angular/material";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar} from "@angular/material";
 import {ActivatedRoute} from "@angular/router";
-import {HeaderComponent} from "../header/header.component";
 
 export interface DialogCreateData {
   id: number;
@@ -10,11 +9,13 @@ export interface DialogCreateData {
   name: string;
   order_id: number;
 
+
 }
 
 export interface DialogDeleteData {
-  modules: Object[];
+  modules: FurnitureModule[];
   module: FurnitureModule;
+  moduleId: number;
 }
 
 @Component({
@@ -23,19 +24,19 @@ export interface DialogDeleteData {
   styleUrls: ['./module.component.css']
 })
 export class ModuleComponent implements OnInit {
-  private modules: Object[];
+  private modules: FurnitureModule[];
   private moduleF: FurnitureModule;
-  private id: string;
+  private id: number;
   private type: string;
   private name: string;
   private order_id: number;
+  private moduleId: number;
 
   constructor(private service: ModuleService,
               public dialog: MatDialog,
               public dialogD: MatDialog,
               public snackBar: MatSnackBar,
-              private route: ActivatedRoute,
-             ) {
+              private route: ActivatedRoute,) {
   }
 
   ngOnInit() {
@@ -53,15 +54,13 @@ export class ModuleComponent implements OnInit {
   }
 
   openDialogCreate(event) {
-    const dialogRef = this.dialog.open(OpenDilogToCreateModuleComponent, {
+    const dialogRef = this.dialog.open(OpenDialogToCreateModuleComponent, {
       width: '600px',
       data: {}
     });
     dialogRef.afterClosed().subscribe(result => {
       this.type = result.type;
       this.name = result.name;
-      console.log(this.type);
-      console.log(this.name);
       if (this.name == null) {
         this.snackBar.open('Модуль не может быть создан без имени', 'ERROR', {
           duration: 2000,
@@ -71,32 +70,35 @@ export class ModuleComponent implements OnInit {
           duration: 2000,
         });
       }
-      this.moduleF = new FurnitureModule(this.id, this.name, this.type,this.order_id);
-      console.log(this.moduleF);
+      this.moduleF = new FurnitureModule(this.id, this.name, this.type, this.order_id);
       this.save(this.moduleF);
     });
   }
 
-  openDialogDelete(event){
+  openDialogDelete(event) {
     const dialogRefD = this.dialogD.open(OpenDialogToDeleteModuleComponent, {
-      data: { modules: this.modules}
+      data: {modules: this.modules, moduleId: this.moduleId}
     });
-    dialogRefD.afterClosed().subscribe(result =>{
-      this.moduleF = result.module;
-      console.log(this.moduleF);
+    dialogRefD.afterClosed().subscribe(result => {
+      this.moduleId = result.moduleId;
+      this.delete(this.moduleId)
     })
   }
-
 
 
   save(data) {
     this.service.save(data).subscribe(data => this.modules.push(data));
   }
 
-  deleteModule(event){
-    const id = +this.route.snapshot.paramMap.get('id');
-    console.log(id);
+  delete(id: number) {
     this.service.delete(id);
+    let idm = id;
+    this.modules.forEach(function (value, index, array) {
+      if (value.id == id) {
+       idm = index;
+      }
+    });
+    this.modules.splice(idm,1)
   }
 }
 
@@ -104,13 +106,12 @@ export class ModuleComponent implements OnInit {
   selector: 'app-dialog',
   templateUrl: './dialog.html'
 })
-export class OpenDilogToCreateModuleComponent {
-  constructor(public dialogRef: MatDialogRef<OpenDilogToCreateModuleComponent>,
+export class OpenDialogToCreateModuleComponent {
+  constructor(public dialogRef: MatDialogRef<OpenDialogToCreateModuleComponent>,
               @Inject(MAT_DIALOG_DATA) public data: DialogCreateData) {
   }
 
   onNoClick(): void {
-
     this.dialogRef.close();
   }
 }
@@ -120,12 +121,11 @@ export class OpenDilogToCreateModuleComponent {
   templateUrl: './dialog.delete.html'
 })
 export class OpenDialogToDeleteModuleComponent {
-  constructor(public dialogRef: MatDialogRef<OpenDilogToCreateModuleComponent>,
+  constructor(public dialogRef: MatDialogRef<OpenDialogToCreateModuleComponent>,
               @Inject(MAT_DIALOG_DATA) public data: DialogDeleteData) {
   }
 
   onNoClick(): void {
-
     this.dialogRef.close();
   }
 }
@@ -135,13 +135,12 @@ export class OpenDialogToDeleteModuleComponent {
   templateUrl: './dialog.html'
 })
 export class FurnitureModule {
-  id: string;
+  id: number;
   name: string;
   moduleType: string;
-  order_id:number;
-  detailList: string;
+  order_id: number;
 
-  constructor(id: string,
+  constructor(id: number,
               name: string,
               moduleType: string,
               order_id: number) {
@@ -150,5 +149,13 @@ export class FurnitureModule {
     this.moduleType = moduleType;
     this.order_id = order_id
   }
+
+ /* get id(): string {
+    return this._id;
+  }
+
+  set id(value: string) {
+    this._id = value;
+  }*/
 }
 

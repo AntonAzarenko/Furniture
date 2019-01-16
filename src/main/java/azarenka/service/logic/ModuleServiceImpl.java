@@ -4,20 +4,19 @@ import azarenka.entity.Module;
 import azarenka.repository.ModuleRepository;
 import azarenka.service.ModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ModuleServiceImpl implements ModuleService { //TODO class uncovered by the tests
+public class ModuleServiceImpl implements ModuleService {
 
     @Autowired
     private ModuleRepository repository;
 
     @Override
     public Module save(Module module) {
-       return repository.save(module);
+        return repository.save(module);
     }
 
     @Override

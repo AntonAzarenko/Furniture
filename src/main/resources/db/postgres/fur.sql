@@ -21,27 +21,40 @@ CREATE TABLE color_detail (
 );
 
 -- -----------------------------------------------------
--- Table `Furniture`.`edge_material`
+-- Table `Furniture`.`edge`
 -- -----------------------------------------------------
-CREATE TABLE edge_material (
-  id          BIGSERIAL        NOT NULL PRIMARY KEY,
-  name        VARCHAR(45)      NOT NULL,
-  edge_type   VARCHAR(50)      NOT NULL,
-  colorId VARCHAR(45)      NOT NULL,
-  price       DECIMAL          NOT NULL,
-  thickness   DOUBLE PRECISION NOT NULL,
-  country     VARCHAR(45)      NOT NULL
+CREATE TABLE edge (
+  id        BIGSERIAL        NOT NULL PRIMARY KEY,
+  name      VARCHAR(45)      NOT NULL,
+  edge_type VARCHAR(50)      NOT NULL,
+  color     VARCHAR(45)      NOT NULL,
+  price     DECIMAL          NOT NULL,
+  thickness DOUBLE PRECISION NOT NULL,
+  country   VARCHAR(45)      NOT NULL
 );
 
 -- -----------------------------------------------------
--- Table `Furniture`.`edge_material has side`
+-- Table `Furniture`.`edge_material_has_side
+-- -----------------------------------------------------
+CREATE TABLE edge_of_detail_has_side (
+  id BIGSERIAL NOT NULL  PRIMARY KEY ,
+  edge_id INTEGER NOT NULL,
+  detail_id INTEGER NOT NULL ,
+  side             VARCHAR(45),
+  FOREIGN KEY (detail_id) REFERENCES details (id),
+  FOREIGN KEY (edge_id) REFERENCES edge (id)
+
+);
+
+/*-- -----------------------------------------------------
+-- Table `Furniture`.`edge_material
 -- -----------------------------------------------------
 CREATE TABLE edge_material_has_side (
   edge_material_id INTEGER NOT NULL,
   side             VARCHAR(45),
-  FOREIGN KEY (edge_material_id) REFERENCES edge_material (id)
+  FOREIGN KEY (edge_material_id) REFERENCES edge (id)
 
-);
+);*/
 
 -- -----------------------------------------------------
 -- Table `Furniture`.`module`

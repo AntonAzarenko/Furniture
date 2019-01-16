@@ -22,7 +22,7 @@ import {
 import {FormsModule} from "@angular/forms";
 import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
 import {
-  FurnitureModule, ModuleComponent, OpenDilogToCreateModuleComponent,
+  FurnitureModule, ModuleComponent, OpenDialogToCreateModuleComponent,
   OpenDialogToDeleteModuleComponent
 } from './modules/module.component';
 import {GreetingComponent} from './greeting/greeting.component';
@@ -31,7 +31,6 @@ import {CdkTreeModule} from "@angular/cdk/tree";
 import {OrdersComponent} from './orders/orders.component';
 import { DetailCreateDialogComponent } from './details/detail-create-dialog/detail-create-dialog.component';
 import { EdgeMaterialComponent } from './edge-material/edge-material.component';
-
 
 @NgModule({
   declarations: [
@@ -42,14 +41,13 @@ import { EdgeMaterialComponent } from './edge-material/edge-material.component';
     DetailsComponent,
     ModuleComponent,
     GreetingComponent,
-    OpenDilogToCreateModuleComponent,
+    OpenDialogToCreateModuleComponent,
     FurnitureModule,
     OpenDialogToDeleteModuleComponent,
     OrdersComponent,
     Details,
     DetailCreateDialogComponent,
-    EdgeMaterialComponent,
-
+    EdgeMaterialComponent
   ],
 
   imports: [
@@ -104,7 +102,7 @@ import { EdgeMaterialComponent } from './edge-material/edge-material.component';
 
   ],
   entryComponents: [
-    OpenDilogToCreateModuleComponent,
+    OpenDialogToCreateModuleComponent,
     OpenDialogToDeleteModuleComponent,
     Details,
     DetailCreateDialogComponent
@@ -118,7 +116,7 @@ import { EdgeMaterialComponent } from './edge-material/edge-material.component';
     ColordetailComponent,
     DetailsComponent,
     ModuleComponent,
-    OpenDilogToCreateModuleComponent,
+    OpenDialogToCreateModuleComponent,
     FurnitureModule,
     OpenDialogToDeleteModuleComponent,
     OrdersComponent,

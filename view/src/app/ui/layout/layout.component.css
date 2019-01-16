@@ -1,6 +1,9 @@
+.content {
+  min-height: calc(100vh - 14vh);
+}
 .container{
-  height:  85vh;
+  height:  100vh;
 }
 .jumbotron{
-  height:  85vh;
+  height:  100vh;
 }

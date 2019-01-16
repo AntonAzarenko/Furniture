@@ -1,10 +1,29 @@
-<div class="jumbotron" style="text-align: center">
+<div style="text-align: center">
+  <h3>Создаем деталь</h3>
+</div>
+<hr>
+<div>
+  <br/>
+</div>
+<div class="row">
+  <div>
+    <label>Имя  - </label>
+  </div>
+  <br/>
+  <div>
+    <input>
+  </div>
+</div>
+
+<!-- Old page -->
+<!--<div class="jumbotron" style="text-align: center">
   <div>
     <h3>Создаем деталь</h3>
   </div>
   <div>
     <br/>
   </div>
+
   <div class="row">
     <div class="col">
       <div>
@@ -13,26 +32,96 @@
         </mat-form-field>
       </div>
       <hr>
-      <div>
-        <mat-form-field>
-          <input matInput placeholder="Размер по Y(Высоте)" [(ngModel)]="data.x" [errorStateMatcher]="data.matcher">
-        </mat-form-field>
+
+      <div class="row">
+        <div class="col">
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="Размер по Y(Высоте)" [(ngModel)]="data.y" [errorStateMatcher]="data.matcher">
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <mat-select placeholder="Не кромить" [(ngModel)]="data.edgeSideY">
+                <mat-option value="NONE">Не кромить</mat-option>
+                <mat-option value="SIDE_Y">С одной стороны</mat-option>
+                <mat-option value="SIDE_DOUBLE_Y">С двух сторон</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col">
+          <div>
+            <mat-form-field>
+              <mat-select placeholder="Тип кромки" [(ngModel)]="data.edgeTypeY">
+                <mat-option value="NONE">Не кромить</mat-option>
+                <mat-option value="PVH">PVH</mat-option>
+                <mat-option value="MELAMIN">MELAMIN</mat-option>
+                <mat-option value="ABS">ABS</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <mat-select placeholder="Цвет" [(ngModel)]="data.colorEdgeY">
+                <mat-option *ngFor="let color of data.colors" [value]="color.id">
+                  {{color.title}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
       </div>
-      <hr>
-      <div>
-        <mat-form-field>
-          <input matInput placeholder="Размер по X(Ширина)" [(ngModel)]="data.y" [errorStateMatcher]="data.matcher">
-        </mat-form-field>
+
+      <div class="row">
+        <div class="col">
+          <div>
+            <mat-form-field>
+              <input matInput placeholder="Размер по X(Ширина)" [(ngModel)]="data.x"
+                     [errorStateMatcher]="data.matcher">
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <mat-select placeholder="Не кромить" [(ngModel)]="data.edgeSideX">
+                <mat-option value="NONE">Не кромить</mat-option>
+                <mat-option value="SIDE_Y">С одной стороны</mat-option>
+                <mat-option value="SIDE_DOUBLE_Y">С двух сторон</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col">
+          <div>
+            <mat-form-field>
+              <mat-select placeholder="Тип кромки" [(ngModel)]="data.edgeTypeX">
+                <mat-option value="NONE">Не кромить</mat-option>
+                <mat-option value="PVH">PVH</mat-option>
+                <mat-option value="MELAMIN">MELAMIN</mat-option>
+                <mat-option value="ABS">ABS</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <mat-select placeholder="Цвет" [(ngModel)]="data.colorEdgeX">
+                <mat-option *ngFor="let color of data.colors" [value]="color.id">
+                  {{color.title}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
       </div>
-      <hr>
+    </div>
+
+    <div class="col">
       <div>
         <mat-form-field>
           <input matInput placeholder="Количество" [(ngModel)]="data.count" [errorStateMatcher]="data.matcher">
         </mat-form-field>
       </div>
-    </div>
-    <hr>
-    <div class="col">
+      <hr>
       <div>
         <mat-form-field>
           <input matInput placeholder="Толщина" [(ngModel)]="data.thickness" [errorStateMatcher]="data.matcher">
@@ -52,27 +141,20 @@
       <hr>
       <div>
         <mat-form-field>
-          <mat-select placeholder="Цвет" [{ngModel}]="data.colorId">
+          <mat-select placeholder="Цвет" [(ngModel)]="data.colorId">
             <mat-option *ngFor="let color of data.colors" [value]="color.id">
               {{color.title}}
             </mat-option>
           </mat-select>
         </mat-form-field>
       </div>
-      <hr>
-      <div>
-        <mat-form-field>
-          <mat-select placeholder="Кромка" [{ngModel}]="data.edgeId">
-            <mat-option *ngFor="let edge of data.edges" [value]="edge.id">
-              {{edge.name}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
     </div>
+    <hr>
   </div>
+
   <div mat-dialog-actions style="margin-left: 400px">
-    <button mat-button (click)="onNoClick()">No Thanks</button>
-    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+    <button mat-button (click)="onNoClick()">Отмена</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Создать</button>
   </div>
-</div>
+
+</div>-->

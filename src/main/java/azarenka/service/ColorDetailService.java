@@ -6,6 +6,7 @@ import azarenka.entity.DetailsColor;
 import java.util.List;
 
 public interface ColorDetailService {
+
     DetailsColor getByID(Long id);
 
     List<DetailsColor> getAll();

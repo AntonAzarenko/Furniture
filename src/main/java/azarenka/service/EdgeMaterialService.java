@@ -5,6 +5,7 @@ import azarenka.entity.EdgeMaterial;
 import java.util.List;
 
 public interface EdgeMaterialService {
+
     List<EdgeMaterial> getAll();
 
     void delete(Long id);
