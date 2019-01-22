@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class EdgeMaterialServiceImpl implements EdgeMaterialService {
@@ -32,5 +33,10 @@ public class EdgeMaterialServiceImpl implements EdgeMaterialService {
     @Override
     public EdgeMaterial getById(Long id) {
         return repository.getById(id);
+    }
+
+    @Override//todo
+    public Set<EdgeMaterial> getAllByDetailId(Long id) {
+        return null;//repository.getAllByDetail_Id(id);
     }
 }

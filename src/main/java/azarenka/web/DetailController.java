@@ -1,6 +1,6 @@
 package azarenka.web;
 
-import azarenka.dto.DetailDto;
+import azarenka.dto.DetailDTO;
 import azarenka.entity.Detail;
 import azarenka.service.DetailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class DetailController {
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Detail> getAllByModuleId(@PathVariable("id") Long id){
+    public List<DetailDTO> getAllByModuleId(@PathVariable("id") Long id){
        return service.getByModuleId(id);
     }
 
@@ -33,9 +33,9 @@ public class DetailController {
     }
 
     @PostMapping (consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Detail save(@RequestBody DetailDto detailDto){
+    public Detail save(@RequestBody DetailDTO detailDTO){
 
-        return service.save(detailDto.asDetail());
+        return service.save(detailDTO.asDetail());
     }
 
     @CrossOrigin

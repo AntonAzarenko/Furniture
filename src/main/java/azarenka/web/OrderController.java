@@ -1,5 +1,6 @@
 package azarenka.web;
 
+import azarenka.dto.OrderDTO;
 import azarenka.entity.Order;
 import azarenka.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,8 @@ public class OrderController {
     private OrderService service;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Order> getAll() {
-        return service.getAll();
+    public List<OrderDTO> getAll() {
+        return service.getAllByUserID();
     }
 
     @DeleteMapping(value = "/{id}")

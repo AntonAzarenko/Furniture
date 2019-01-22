@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Details} from "../ui/details/details.component";
+import {Details} from "../entity/Details";
 
 const httpOptions = {
   headers: new HttpHeaders({

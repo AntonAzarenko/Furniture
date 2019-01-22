@@ -6,31 +6,60 @@ import {LayoutComponent} from './layout/layout.component';
 import {AppRoutingModule} from "../app-routing.module";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ColordetailComponent} from "./colordetail/colordetail.component";
-import {Details, DetailsComponent} from "./details/details.component";
 import {
-  MatAutocompleteModule, MatBadgeModule, MatBottomSheetModule,
-  MatButtonModule, MatButtonToggleModule, MatCardModule, MatCheckboxModule, MatChipsModule, MatDatepickerModule,
-  MatDialogModule, MatDividerModule, MatExpansionModule,
-  MatFormFieldControl,
-  MatFormFieldModule, MatGridListModule, MatIconModule,
-  MatInputModule, MatListModule, MatMenuModule, MatNativeDateModule,
-  MatPaginatorModule, MatProgressBarModule, MatProgressSpinnerModule, MatRadioModule, MatRippleModule,
-  MatSelectModule, MatSidenavModule, MatSliderModule, MatSlideToggleModule, MatSnackBarModule,
-  MatSortModule, MatStepperModule,
-  MatTableModule, MatTabsModule, MatToolbarModule, MatTooltipModule, MatTreeModule
+  MatAutocompleteModule,
+  MatBadgeModule,
+  MatBottomSheetModule,
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatDividerModule,
+  MatExpansionModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatMenuModule,
+  MatNativeDateModule,
+  MatPaginatorModule,
+  MatProgressBarModule,
+  MatProgressSpinnerModule,
+  MatRadioModule,
+  MatRippleModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatSlideToggleModule,
+  MatSnackBarModule,
+  MatSortModule,
+  MatStepperModule,
+  MatTableModule,
+  MatTabsModule,
+  MatToolbarModule,
+  MatTooltipModule,
+  MatTreeModule
 } from "@angular/material";
 import {FormsModule} from "@angular/forms";
 import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
 import {
-  FurnitureModule, ModuleComponent, OpenDialogToCreateModuleComponent,
+  FurnitureModule,
+  ModuleComponent,
+  OpenDialogToCreateModuleComponent,
   OpenDialogToDeleteModuleComponent
 } from './modules/module.component';
 import {GreetingComponent} from './greeting/greeting.component';
 import {CdkTableModule} from "@angular/cdk/table";
 import {CdkTreeModule} from "@angular/cdk/tree";
-import {OrdersComponent} from './orders/orders.component';
-import { DetailCreateDialogComponent } from './details/detail-create-dialog/detail-create-dialog.component';
-import { EdgeMaterialComponent } from './edge-material/edge-material.component';
+import {DetailCreateDialogComponent} from './details/detail-create-dialog/detail-create-dialog.component';
+import {EdgeMaterialComponent} from './edge-material/edge-material.component';
+import {OrderEx, OrdersComponent} from "./orders/orders.component";
+import {DetailsComponent} from "./details/details.component";
+import { MenuComponent } from './menu/menu.component';
+
 
 @NgModule({
   declarations: [
@@ -45,9 +74,11 @@ import { EdgeMaterialComponent } from './edge-material/edge-material.component';
     FurnitureModule,
     OpenDialogToDeleteModuleComponent,
     OrdersComponent,
-    Details,
     DetailCreateDialogComponent,
-    EdgeMaterialComponent
+
+    EdgeMaterialComponent,
+    OrderEx,
+    MenuComponent
   ],
 
   imports: [
@@ -99,12 +130,10 @@ import { EdgeMaterialComponent } from './edge-material/edge-material.component';
     MatTreeModule,
 
 
-
   ],
   entryComponents: [
     OpenDialogToCreateModuleComponent,
     OpenDialogToDeleteModuleComponent,
-    Details,
     DetailCreateDialogComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
@@ -120,8 +149,10 @@ import { EdgeMaterialComponent } from './edge-material/edge-material.component';
     FurnitureModule,
     OpenDialogToDeleteModuleComponent,
     OrdersComponent,
-    Details,
-    DetailCreateDialogComponent
+
+    DetailCreateDialogComponent,
+    OrderEx,
+
   ]
 
 })

@@ -1,6 +1,9 @@
 package azarenka.entity;
 
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -8,7 +11,10 @@ import java.util.Set;
 @Table(name = "details")
 public class Detail extends BaseEntity {
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "detail_has_edge_material",
+            joinColumns = @JoinColumn(name = "detail_id"),
+            inverseJoinColumns = @JoinColumn(name = "edge_material_id"))
     private Set<EdgeMaterial> edgeMaterial;
 
     @Column(name = "name")
@@ -34,7 +40,7 @@ public class Detail extends BaseEntity {
     @JoinColumn(name = "color_detail_id")
     private DetailsColor detailsColor;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "module_id", nullable = false)
     private Module module;
 

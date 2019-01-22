@@ -1,86 +1,232 @@
-<hr>
-<div class="row">
-  <div class="col">
-    <button mat-button (click)="openDialogCreateDetail($event)" >Добавить</button>
-    <button mat-button (click)="deleteDetails($event)" >Удалить</button>
-  </div>
-  <div class="col">
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+<div class="cont">
+  <div class="container">
+
+    <div class="row">
+      <div class="col">
+        <button mat-button (click)="openDialogCreateDetail($event)">
+          <mat-icon style="color: #bf0008">library_add</mat-icon>
+        </button>
+      </div>
+      <div class="col">
+        <form class="form-inline my-1 my-lg-2">
+          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+    <hr>
+    <div>
+      <mat-form-field>
+        <mat-select placeholder="Цвет ДСП"[{ngModel}]="colorId">
+          <mat-option *ngFor="let color of colors" [value]="color.id">{{color.title}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
+        <ng-container matColumnDef="expandedDetail">
+          <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+            <div class="example-element-detail element-checkboxes"
+                 [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+              <div class="row">
+                <div class="col-sm-8">
+                  <div class=" row">
+                    <div class="check-box">
+                      <mat-checkbox class="example-margin" [(ngModel)]="element.edgeOnY">Кромить по длинне
+                      </mat-checkbox>
+                    </div>
+                    <div>
+                      <div>
+                        <section class="example-section">
+                          <label class="example-margin">Стороны:</label>
+                          <mat-radio-group [(ngModel)]="element.edgeSideY">
+                            <div class="radio">
+                              <mat-radio-button class="example-margin" value="onceSide">По одной</mat-radio-button>
+                            </div>
+                            <div class="radio">
+                              <mat-radio-button class="example-margin" value="bothSide">По двум</mat-radio-button>
+                            </div>
+                          </mat-radio-group>
+                        </section>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <mat-form-field>
+                        <mat-select placeholder="Кромка" [{ngModel}]="element.edgeIdSideY"
+                                    [(value)]="element.edgeIdSideY">
+                          <mat-option *ngFor="let edge of edgeMat" [value]="edge.id">
+                            {{edge.name}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      <div>
+                        <mat-form-field>
+                          <mat-select placeholder="Тип кромки" [{ngModel}]="element.edgeTypeX"
+                                      [(value)]="element.edgeTypeX">
+                            <mat-option [value]="element.edgeTypeX">{{element.edgeTypeX}}</mat-option>
+                            <mat-option value="PVH">ПВХ</mat-option>
+                            <mat-option value="ABC">АБС</mat-option>
+                            <mat-option value="MELAMIN">Меламин</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+
+                  <hr>
+
+                  <div class="row">
+                    <div class="check-boxTwo">
+                      <mat-checkbox class="example-margin" [(ngModel)]="element.edgeOnX">Кромить по ширине
+                      </mat-checkbox>
+                    </div>
+                    <div>
+                      <div>
+                        <div>
+                          <section class="section">
+                            <label class="example-margin">Стороны:</label>
+                            <mat-radio-group [(ngModel)]="element.edgeSideX">
+                              <div class="radio">
+                                <mat-radio-button class="example-margin" value="onceSide">По одной</mat-radio-button>
+                              </div>
+                              <div class="radio">
+                                <mat-radio-button class="example-margin" value="bothSide">По двум</mat-radio-button>
+                              </div>
+                            </mat-radio-group>
+                          </section>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <mat-form-field>
+                        <mat-select placeholder="Кромка" [{ngModel}]="element.edgeIdSideX"
+                                    [(value)]="element.edgeIdSideX">
+                          <mat-option *ngFor="let edge of edgeMat" [value]="edge.id">
+                            {{edge.name}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      <div>
+                        <mat-form-field>
+                          <mat-select placeholder="Тип кромки" [{ngModel}]="element.edgeTypeX"
+                                      [(value)]="element.edgeTypeX">
+                            <mat-option [value]="element.edgeTypeX">
+                              {{element.edgeTypeX}}
+                            </mat-option>
+                            <mat-option value="PVH">ПВХ</mat-option>
+                            <mat-option value="ABC">АБС</mat-option>
+                            <mat-option value="MELAMIN">Меламин</mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="example-element-description">
+                    {{element.description}}
+                    <span class="example-element-description-attribution"></span>
+                  </div>
+                </div>
+                <div class="col threeS">
+                  <div>
+                    <mat-form-field>
+                      <mat-select placeholder="Цвет детали" [{ngModel}]="element.colorTitle"
+                                  [(value)]="element.colorTitle">
+                        <mat-option [value]="element.colorTitle">{{element.colorTitle}}</mat-option>
+                        <mat-option *ngFor="let color of colors" [value]="color.id">{{color.title}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div>
+                    <mat-form-field>
+                      <mat-select placeholder="Тип материала" [{ngModel}]="element.material"
+                                  [(value)]="element.material">
+                        <mat-option [value]="element.material">{{element.material}}</mat-option>
+                        <mat-option value="DSP">ДСП</mat-option>
+                        <mat-option value="DVP">ДВП</mat-option>
+                        <mat-option value="MDF">МДФ</mat-option>
+                        <mat-option value="WOOD">Массив</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="example-element-diagram">
+                    <div class="button-pos row">
+                      <button mat-raised-button  (click)="updateDetail(element.id)">Применить</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let element; columns: displayedColumns;"
+            class="example-element-row"
+            [class.example-expanded-row]="expandedElement === element"
+            (click)="expandedElement = expandedElement === element ? null : element">
+        </tr>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+        <!-- Position Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Имя</th>
+          <td mat-cell *matCellDef="let element"> {{element.name}}</td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="x">
+          <th mat-header-cell *matHeaderCellDef> X</th>
+          <td mat-cell *matCellDef="let element"> {{element.x}}</td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="y">
+          <th mat-header-cell *matHeaderCellDef> Y</th>
+          <td mat-cell *matCellDef="let element"> {{element.y}}</td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="count">
+          <th mat-header-cell *matHeaderCellDef> Кол-во</th>
+          <td mat-cell *matCellDef="let element"> {{element.count}}</td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="thickness">
+          <th mat-header-cell *matHeaderCellDef> Толщина</th>
+          <td mat-cell *matCellDef="let element"> {{element.thickness}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="button">
+          <th mat-header-cell *matHeaderCellDef>Удалить</th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-button (click)="delete(element.id)">Удалить</button>
+          </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="material">
+          <th mat-header-cell *matHeaderCellDef> Материал</th>
+          <td mat-cell *matCellDef="let element"> {{element.material}}</td>
+        </ng-container>
+      </table>
+    </div>
   </div>
 </div>
-<br>
-<hr>
-
-<div class="mat-elevation-z8">
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
 
-  <ng-container matColumnDef="select">
-    <th mat-header-cell *matHeaderCellDef>
-      <mat-checkbox (change)="$event ? masterToggle() : null"
-                    [checked]="selection.hasValue() && isAllSelected()"
-                    [indeterminate]="selection.hasValue() && !isAllSelected()">
-      </mat-checkbox>
-    </th>
-    <td mat-cell *matCellDef="let row">
-      <mat-checkbox (click)="$event.stopPropagation()"
-                    (change)="$event ? selection.toggle(row) : null"
-                    [checked]="selection.isSelected(row)">
-      </mat-checkbox>
-    </td>
-  </ng-container>
-  <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
-
-  <!-- Position Column -->
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Имя </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-  </ng-container>
-
-  <!-- Name Column -->
-  <ng-container matColumnDef="x">
-    <th mat-header-cell *matHeaderCellDef> X </th>
-    <td mat-cell *matCellDef="let element"> {{element.x}} </td>
-  </ng-container>
-
-  <!-- Name Column -->
-  <ng-container matColumnDef="y">
-    <th mat-header-cell *matHeaderCellDef> Y </th>
-    <td mat-cell *matCellDef="let element"> {{element.y}} </td>
-  </ng-container>
-
-  <!-- Name Column -->
-  <ng-container matColumnDef="count">
-    <th mat-header-cell *matHeaderCellDef> Кол-во </th>
-    <td mat-cell *matCellDef="let element"> {{element.count}} </td>
-  </ng-container>
-
-  <!-- Name Column -->
-  <ng-container matColumnDef="thickness">
-    <th mat-header-cell *matHeaderCellDef> Толщина </th>
-    <td mat-cell *matCellDef="let element"> {{element.thickness}} </td>
-  </ng-container>
-
-  <!-- Name Column -->
-  <ng-container matColumnDef="material">
-    <th mat-header-cell *matHeaderCellDef> Материал </th>
-    <td mat-cell *matCellDef="let element"> {{element.material}} </td>
-  </ng-container>
-
-
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-    (click)="selection.toggle(row)">
-  </tr>
-
-
-
-</table>
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-</div>
-
+<!--<ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? masterToggle() : null"
+                          [checked]="selection.hasValue() && isAllSelected()"
+                          [indeterminate]="selection.hasValue() && !isAllSelected()">
+            </mat-checkbox>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()"
+                          (change)="$event ? selection.toggle(row) : null"
+                          [checked]="selection.isSelected(row)">
+            </mat-checkbox>
+          </td>
+        </ng-container>-->

@@ -16,10 +16,6 @@ public class Module extends BaseEntity {
     @Column(name = "module_type")
     private ModuleType moduleType;
 
-   /* @ManyToOne
-    @JoinColumn(name = "order_id",  nullable = false)
-    private Long orderId;*/
-
     @ManyToOne
     @JoinColumn(name = "order_id",  nullable = false)
     private Order order;

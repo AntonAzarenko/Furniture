@@ -1,9 +1,16 @@
 .content {
   min-height: calc(100vh - 14vh);
+
 }
-.container{
-  height:  100vh;
+.container {
+  background: rgba(255,255,255,0.6)
 }
+
 .jumbotron{
   height:  100vh;
+}
+.cont {
+  min-height: calc(100vh - 128px);
+  background: url('../../../img/workArea.jpg');
+
 }

@@ -1,28 +1,79 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {OrderService} from "../../services/order.service";
+import {MatPaginator, MatSort} from "@angular/material";
+import {ActivatedRoute} from "@angular/router";
+import {animate, state, style, transition, trigger} from "@angular/animations";
+import {MenuComponent} from "../menu/menu.component";
+
+
+export interface OrdersDataItem {
+  id: string;
+  name: string;
+}
 
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
-  styleUrls: ['./orders.component.css']
+  styleUrls: ['./orders.component.css'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0', display: 'none'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class OrdersComponent implements OnInit {
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  dataSource: OrderEx[];
 
-  private orders: Object[];
+  displayedColumns: string [] = ['name', 'address', 'telNumber', 'customersName', 'dateOfCreate', 'dateOfContract'];
 
-  constructor(private service: OrderService) { }
+
+  constructor(private service: OrderService, private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
     this.getAllOrders();
   }
 
-  getAllOrders(){
-    this.service.getAll().subscribe((data:any[])=>{
-      this.orders = (data);
+  getAllOrders() {
+    this.service.getAll().subscribe(
+      (data: any[]) => {
+      this.dataSource = (data);
     });
+    console.log(this.dataSource);
   }
 
-  createOrder(){
+  createOrder() {
 
+  }
+}
+
+
+@Component({
+  selector: 'order',
+  template: ''
+})
+export  class  OrderEx{
+  id: number;
+  name: string;
+  address: string;
+  customersName: string;
+  telNumber: string;
+  dateOfContract: string;
+  dateOfCreate: string;
+
+
+  constructor(id: number, name: string, address: string, customersName:
+    string, telNumber: string, dateOfContract: string, dateOfCreate: string) {
+    this.id = id;
+    this.name = name;
+    this.address = address;
+    this.customersName = customersName;
+    this.telNumber = telNumber;
+    this.dateOfContract = dateOfContract;
+    this.dateOfCreate = dateOfCreate;
   }
 }

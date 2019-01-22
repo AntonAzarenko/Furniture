@@ -1,7 +1,7 @@
 package azarenka.service;
 
+import azarenka.dto.DetailDTO;
 import azarenka.entity.Detail;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public interface DetailService {
 
     void delete(Long id);
 
-    List<Detail> getByModuleId(Long id);
+    List<DetailDTO> getByModuleId(Long id);
 
     void delete(List<Detail> list);
 }

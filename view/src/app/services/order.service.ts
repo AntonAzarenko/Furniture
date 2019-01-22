@@ -10,6 +10,10 @@ export class OrderService {
   }
 
   getAll() {
-    return this.http.get('http://localhost:8080/order')
+    return this.http.get('http://localhost:8080/order');
+  }
+
+  get(id: number) {
+    return this.http.get('http://localhost:8080/order/' + id);
   }
 }

@@ -9,7 +9,6 @@ export class EdgeMaterialServiceService {
   constructor(private http: HttpClient) { }
 
   getAllEdge(){
-    console.log(123);
     return this.http.get('http://localhost:8080/edge');
   }
 }

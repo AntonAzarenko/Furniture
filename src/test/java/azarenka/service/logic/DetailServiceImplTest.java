@@ -1,7 +1,10 @@
 package azarenka.service.logic;
 
+import azarenka.dto.DetailDTO;
 import azarenka.entity.Detail;
+import azarenka.entity.EdgeMaterial;
 import azarenka.service.DetailService;
+import azarenka.service.EdgeMaterialService;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,6 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import sun.security.util.DerEncoder;
 
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -24,9 +28,11 @@ public class DetailServiceImplTest {
 
     private final static Logger log = LoggerFactory.getLogger(DetailServiceImplTest.class);
 
-
     @Autowired
     private DetailService service;
+
+    @Autowired
+    private EdgeMaterialService edgeMaterialService;
 
     @Before
     public void setUp() throws Exception {
@@ -54,7 +60,5 @@ public class DetailServiceImplTest {
 
     @Test
     public void getByModuleId() {
-       List<Detail> list = service.getByModuleId(1L);
-       list.forEach(d -> log.info(d.toString()));
     }
 }

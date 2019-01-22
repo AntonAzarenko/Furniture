@@ -2,14 +2,14 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {ModuleService} from "../../services/module.service";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar} from "@angular/material";
 import {ActivatedRoute} from "@angular/router";
+import {animate, state, style, transition, trigger} from "@angular/animations";
+import {MenuComponent} from "../menu/menu.component";
 
 export interface DialogCreateData {
   id: number;
   type: string;
   name: string;
   order_id: number;
-
-
 }
 
 export interface DialogDeleteData {
@@ -21,7 +21,14 @@ export interface DialogDeleteData {
 @Component({
   selector: 'app-module',
   templateUrl: './module.component.html',
-  styleUrls: ['./module.component.css']
+  styleUrls: ['./module.component.css'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0', display: 'none'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class ModuleComponent implements OnInit {
   private modules: FurnitureModule[];
@@ -31,6 +38,11 @@ export class ModuleComponent implements OnInit {
   private name: string;
   private order_id: number;
   private moduleId: number;
+  dataSource: Object[];
+
+
+  displayedColumns: string [] = ['name', 'moduleType'];
+
 
   constructor(private service: ModuleService,
               public dialog: MatDialog,
@@ -40,6 +52,7 @@ export class ModuleComponent implements OnInit {
   }
 
   ngOnInit() {
+    const id = +this.route.snapshot.paramMap.get('id');
     this.getAllModules();
   }
 
@@ -48,7 +61,8 @@ export class ModuleComponent implements OnInit {
     this.order_id = id;
     this.service.getAll(id).subscribe(
       (data: any[]) => {
-        this.modules = (data)
+        this.modules = (data);
+        this.dataSource = (data)
       }
     )
   }
@@ -85,20 +99,21 @@ export class ModuleComponent implements OnInit {
     })
   }
 
-
   save(data) {
     this.service.save(data).subscribe(data => this.modules.push(data));
+    window.location.reload();
   }
 
   delete(id: number) {
     this.service.delete(id);
-    let idm = id;
+    let moduleId = id;
     this.modules.forEach(function (value, index, array) {
       if (value.id == id) {
-       idm = index;
+        moduleId = index;
       }
     });
-    this.modules.splice(idm,1)
+    this.modules.splice(moduleId, 1);
+    window.location.reload();
   }
 }
 
@@ -149,13 +164,5 @@ export class FurnitureModule {
     this.moduleType = moduleType;
     this.order_id = order_id
   }
-
- /* get id(): string {
-    return this._id;
-  }
-
-  set id(value: string) {
-    this._id = value;
-  }*/
 }
 

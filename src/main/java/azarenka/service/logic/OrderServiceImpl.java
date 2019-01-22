@@ -1,12 +1,16 @@
 package azarenka.service.logic;
 
+import azarenka.dto.OrderDTO;
 import azarenka.entity.Order;
 import azarenka.repository.OrderRepository;
 import azarenka.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static azarenka.dto.OrderDTO.asOrderDTO;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -22,6 +26,14 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> getAll() {
         return repository.findAll();
+    }
+
+    @Override
+    public List<OrderDTO> getAllByUserID() {
+        List<Order> orders = repository.findAll();
+        List<OrderDTO> orderDTOS = new ArrayList<>();
+        orders.forEach(o -> orderDTOS.add(asOrderDTO(o)));
+        return orderDTOS;
     }
 
     @Override

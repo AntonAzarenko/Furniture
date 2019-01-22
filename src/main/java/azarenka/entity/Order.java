@@ -1,6 +1,9 @@
 package azarenka.entity;
 
+import azarenka.util.DateTimeUtil;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -27,10 +30,10 @@ public class Order extends BaseEntity {
     private String telNumber;
 
     @Column(name = "date_of_contract")
-    private Date dateOfContract;
+    private LocalDateTime dateOfContract;
 
     @Column(name = "date_of_create")
-    private Date dateOfCreate;
+    private LocalDateTime dateOfCreate;
 
     public Order() {
     }
@@ -59,4 +62,43 @@ public class Order extends BaseEntity {
         this.name = name;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCustomersName() {
+        return customersName;
+    }
+
+    public void setCustomersName(String customersName) {
+        this.customersName = customersName;
+    }
+
+    public String getTelNumber() {
+        return telNumber;
+    }
+
+    public void setTelNumber(String telNumber) {
+        this.telNumber = telNumber;
+    }
+
+    public LocalDateTime getDateOfContract() {
+        return dateOfContract;
+    }
+
+    public void setDateOfContract(LocalDateTime dateOfContract) {
+        this.dateOfContract = LocalDateTime.parse(DateTimeUtil.toString(dateOfContract));
+    }
+
+    public LocalDateTime getDateOfCreate() {
+        return dateOfCreate;
+    }
+
+    public void setDateOfCreate(LocalDateTime dateOfCreate) {
+        this.dateOfCreate = dateOfCreate;
+    }
 }

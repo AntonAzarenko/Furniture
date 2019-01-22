@@ -1,50 +1,38 @@
 import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
-import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {MatDialog, MatPaginator, MatSort} from '@angular/material';
 import {DetailService} from "../../services/detail.service";
 import {ActivatedRoute} from "@angular/router";
-import {SelectionModel} from "@angular/cdk/collections";
-import {DetailCreateDialogComponent} from "./detail-create-dialog/detail-create-dialog.component";
 import {ColorserviceService} from "../../services/colorservice.service";
 import {EdgeMaterialServiceService} from "../../services/edge-material-service.service";
-import {FormControl} from '@angular/forms';
-
-export interface DetailData {
-  id: number;
-  name: string;
-  x: string;
-  y: string;
-  count: string;
-  thickness: string;
-  material: string;
-  edgeTypeY: string;
-  edgeTypeX: string;
-  edgeSideX: string;
-  edgeSideY: string;
-  colorEdgeX: string;
-  colorEdgeY: string;
-  moduleId: number;
-}
-
+import {animate, state, style, transition, trigger} from "@angular/animations";
+import {DetailCreateDialogComponent} from "./detail-create-dialog/detail-create-dialog.component";
+import {Details} from "../../entity/Details";
 
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0', display: 'none'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class DetailsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  formControl = new FormControl();
 
   dataSource: Details[];
-  selectedRows: Details[];
-  creDetail: Details;
+  labelPositionY: string;
+  labelPositionX: string;
 
-  detId: number[];
   id: number;
   colors: Object[];
   edgeMat: Object[];
 
+  private creDetail: Details;
   private name: string;
   private x: string;
   private y: string;
@@ -52,26 +40,25 @@ export class DetailsComponent implements OnInit {
   private thickness: string;
   private material: string;
   private colorId: number;
+  private edgeOnX: boolean;
+  private edgeOnY: boolean;
   private edgeTypeY: string;
   private edgeTypeX: string;
   private edgeSideX: string;
   private edgeSideY: string;
-  private colorEdgeX: string;
-  private colorEdgeY: string;
+  private edgeIdSideX: number;
+  private edgeIdSideY: number;
   private moduleId: number;
-
-  selection = new SelectionModel<Details>(true, []);
-
+  private colorTitle: string;
 
   constructor(private service: DetailService,
               private colorService: ColorserviceService,
               private edgeService: EdgeMaterialServiceService,
               private route: ActivatedRoute,
-              private  changeDetectorRefs: ChangeDetectorRef,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,) {
   }
 
-  displayedColumns: string[] = ['select', 'name', 'x', 'y', 'count', 'thickness', 'material'];
+  displayedColumns: string[] = ['name', 'y', 'x', 'count', 'thickness', 'material', 'button'];
 
   ngOnInit() {
     this.getDetByModID();
@@ -85,32 +72,21 @@ export class DetailsComponent implements OnInit {
     )
   }
 
-  getAllDetails() {
-    this.service.getAllDetail().subscribe(
-      (data: any[]) => {
-        this.dataSource = (data);
-      }
-    )
-  }
-
-  deleteDetails(event) {
-    let id: number;
-    for(let el of this.selectedRows){
-      this.service.deleteDetail(el.id);
-      this.dataSource.splice(el.id,1);
-      this.changeDetectorRefs.detectChanges();
-    }
-  }
-
-  getDetByModID() {
+  getDetByModID(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.moduleId = id;
-    console.log(id);
     this.service.getDetailsByModuleId(id).subscribe(
       (data: any[]) => {
         this.dataSource = (data);
+        console.log(this.dataSource);
       }
     );
+    console.log(this.dataSource);
+  }
+
+  delete(id: number) {
+    this.service.deleteDetail(id);
+    window.location.reload();
   }
 
   openDialogCreateDetail(event) {
@@ -124,97 +100,62 @@ export class DetailsComponent implements OnInit {
       this.x = result.x;
       this.y = result.y;
       this.count = result.count;
-      this.thickness = result.thickness;
-      this.material = result.material;
-      this.colorId = result.colorId;
-      this.edgeTypeY = result.edgeTypeY;
-      this.edgeTypeX = result.edgeTypeX;
-      this.edgeSideX = result.edgeSideX;
-      this.edgeSideY = result.edgeSideY;
-      this.colorEdgeX = result.colorEdgeX;
-      this.colorEdgeY = result.colorEdgeY;
+      this.setThickness(result.thickness);
+      this.setMaterial(result.material);
+      this.setColor(result.colorId);
       this.moduleId = +this.route.snapshot.paramMap.get('id');
-      this.creDetail = new Details(null,
-        this.name,
-        this.x,
-        this.y,
-        this.count,
-        this.thickness,
-        this.material,
-        this.colorId,
-        this.edgeTypeY,
-        this.edgeTypeX,
-        this.edgeSideX,
-        this.edgeSideY,
-        this.colorEdgeX,
-        this.colorEdgeY,
-        this.moduleId);
-      this.save(this.creDetail);
+      this.save(this.createDetail());
     });
+  }
+
+  createDetail(): Details {
+    this.creDetail = new Details(null, this.name, this.x, this.y, this.count, this.thickness, this.material,
+      this.colorId, this.edgeOnX, this.edgeOnY, this.edgeTypeY, this.edgeTypeX, this.edgeSideX, this.edgeSideY,
+      this.edgeIdSideX, this.edgeIdSideY,
+      this.moduleId);
+    return this.creDetail;
+  }
+
+  setThickness(item: string) {
+    if (item == null) {
+      this.thickness = "18";
+    } else {
+      this.thickness = item;
+    }
+  }
+
+  setMaterial(item: string): void {
+    if (item == null) {
+      this.material = "DSP";
+    } else {
+      this.material = item;
+    }
+  }
+
+  setColor(item: number): void {
+    if (item == null) {
+      this.colorId = 1;
+    }
   }
 
   save(data) {
     this.service.save(data).subscribe((data: any) => {
       this.dataSource.push(data);
     });
-    this.paginator._changePageSize(this.paginator.pageSize);
+    //window.location.reload();
   }
 
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.length;
-    this.selectedRows = this.selection.selected;
-    return numSelected === numRows;
+  updateDetail(id: number) {
+   let detail: Details;
+   let indexOfDetail: number = 0;
+      this.dataSource.forEach(function (value, index, array) {
+        if(value.id == id){
+          indexOfDetail = index;
+        }
+      });
+      detail = this.dataSource[indexOfDetail];
+      this.save(detail);
   }
 
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
-  masterToggle() {
-    this.isAllSelected() ?
-      this.selection.clear() :
-      this.dataSource.forEach(row => this.selection.select(<Details>row));
-  }
-}
-
-@Component({
-  selector: 'detail',
-  template: ''
-})
-export class Details {
-   id: number;
-  private name: string;
-  private x: string;
-  private y: string;
-  private count: string;
-  private thickness: string;
-  private material: string;
-  private colorId: number;
-  private edgeTypeY: string;
-  private edgeTypeX: string;
-  private edgeSideX: string;
-  private edgeSideY: string;
-  private colorEdgeX: string;
-  private colorEdgeY: string;
-  private moduleId: number;
-
-
-  constructor(id: number, name: string, x: string, y: string, count: string, thickness: string, material: string,
-              colorId: number, edgeTypeY: string, edgeTypeX: string, edgeSideX: string, edgeSideY: string,
-              colorEdgeX: string, colorEdgeY: string, moduleId: number) {
-    this.id = id;
-    this.name = name;
-    this.x = x;
-    this.y = y;
-    this.count = count;
-    this.thickness = thickness;
-    this.material = material;
-    this.colorId = colorId;
-    this.edgeTypeY = edgeTypeY;
-    this.edgeTypeX = edgeTypeX;
-    this.edgeSideX = edgeSideX;
-    this.edgeSideY = edgeSideY;
-    this.colorEdgeX = colorEdgeX;
-    this.colorEdgeY = colorEdgeY;
-    this.moduleId = moduleId;
-  }
 }
 

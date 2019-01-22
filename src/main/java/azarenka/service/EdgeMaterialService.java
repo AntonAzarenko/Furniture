@@ -3,6 +3,7 @@ package azarenka.service;
 import azarenka.entity.EdgeMaterial;
 
 import java.util.List;
+import java.util.Set;
 
 public interface EdgeMaterialService {
 
@@ -13,4 +14,6 @@ public interface EdgeMaterialService {
     void save(EdgeMaterial edgeMaterial);
 
     EdgeMaterial getById(Long id);
+
+    Set<EdgeMaterial> getAllByDetailId(Long id);
 }

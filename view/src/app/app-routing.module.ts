@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {ColordetailComponent} from "./ui/colordetail/colordetail.component";
 import {DetailsComponent} from "./ui/details/details.component";
 import {ModuleComponent} from "./ui/modules/module.component";
@@ -15,6 +15,7 @@ const routes: Routes = [
   {path: 'modules/:id/details', component: DetailsComponent},
   {path: 'modules/:id', component : ModuleComponent},
   {path: 'orders', component: OrdersComponent}
+
 ];
 
 @NgModule({
