@@ -1,30 +1,16 @@
 package azarenka.entity.furnitures;
 
-import azarenka.entity.stillunused.Furniture;
+import azarenka.entity.stillunused.Fitting;
 
-public class Handle extends Furniture<Handle> {
+public class Handle extends Fitting<Handle> {
 
-    private int articul;
+    private int article;
 
     private HandleColor color;
 
     private int centerDistance;
 
     public Handle() {
-    }
-
-    public Handle(int articul, HandleColor color, int centerDistance) {
-        this.articul = articul;
-        this.color = color;
-        this.centerDistance = centerDistance;
-    }
-
-    public int getArticul() {
-        return articul;
-    }
-
-    public void setArticul(int articul) {
-        this.articul = articul;
     }
 
     public HandleColor getColor() {
@@ -41,15 +27,5 @@ public class Handle extends Furniture<Handle> {
 
     public void setCenterDistance(int centerDistance) {
         this.centerDistance = centerDistance;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Handle{" +
-                "articul='" + articul + '\'' +
-                ", color=" + color +
-                ", centerDistance=" + centerDistance +
-                '}';
     }
 }

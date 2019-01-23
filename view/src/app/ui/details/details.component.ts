@@ -68,8 +68,10 @@ export class DetailsComponent implements OnInit {
     this.edgeService.getAllEdge().subscribe(
       (data: any[]) => {
         this.edgeMat = (data);
+        console.log(this.edgeMat)
       }
-    )
+    );
+
   }
 
   getDetByModID(): void {
@@ -135,6 +137,8 @@ export class DetailsComponent implements OnInit {
   setColor(item: number): void {
     if (item == null) {
       this.colorId = 1;
+    }else {
+     // this.colorId = item;
     }
   }
 
@@ -142,7 +146,7 @@ export class DetailsComponent implements OnInit {
     this.service.save(data).subscribe((data: any) => {
       this.dataSource.push(data);
     });
-    //window.location.reload();
+    window.location.reload();
   }
 
   updateDetail(id: number) {

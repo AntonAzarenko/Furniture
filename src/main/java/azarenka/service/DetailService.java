@@ -16,7 +16,9 @@ public interface DetailService {
 
     void delete(Long id);
 
-    List<DetailDTO> getByModuleId(Long id);
+    List<DetailDTO> getDTOByModuleId(Long id);
+
+    List<Detail> getByModuleId(Long id);
 
     void delete(List<Detail> list);
 }

@@ -1,8 +1,8 @@
 package azarenka.entity.furnitures;
 
-import azarenka.entity.stillunused.Furniture;
+import azarenka.entity.stillunused.Fitting;
 
-public class Other extends Furniture<Other> {
+public class Other extends Fitting<Other> {
     private String name;
 
 
@@ -21,11 +21,4 @@ public class Other extends Furniture<Other> {
         this.name = name;
     }
 
-
-    @Override
-    public String toString() {
-        return "Other{" +
-                "name='" + name + '\'' +
-                '}';
-    }
 }

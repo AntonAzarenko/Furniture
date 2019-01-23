@@ -1,11 +1,11 @@
 package azarenka.entity.furnitures;
 
 import azarenka.entity.Country;
-import azarenka.entity.stillunused.Furniture;
+import azarenka.entity.stillunused.Fitting;
 
-public class Lifts extends Furniture<Lifts> {
+public class Lifts extends Fitting<Lifts> {
 
-    private int articul;
+    private int article;
 
     private String nameManufacture;
 
@@ -16,12 +16,12 @@ public class Lifts extends Furniture<Lifts> {
     public Lifts() {
     }
 
-    public int getArticul() {
-        return articul;
+    public int getArticle() {
+        return article;
     }
 
-    public void setArticul(int articul) {
-        this.articul = articul;
+    public void setArticle(int article) {
+        this.article = article;
     }
 
     public String getNameManufacture() {
@@ -46,15 +46,5 @@ public class Lifts extends Furniture<Lifts> {
 
     public void setLift(TypeLift lift) {
         this.lift = lift;
-    }
-
-    @Override
-    public String toString() {
-        return "Lifts{" +
-                "articul=" + articul +
-                ", nameManufacture='" + nameManufacture + '\'' +
-                ", country=" + country +
-                ", lift=" + lift +
-                '}';
     }
 }

@@ -16,7 +16,7 @@ import static java.math.BigInteger.ZERO;
 @Service
 public class Booker {
 
-   /* @Autowired
+    @Autowired
     private ManagerQuadCount managerQuadCount;
 
     @Autowired
@@ -28,10 +28,10 @@ public class Booker {
             List<Detail> list = module.getDetailList();
 
             Map<BigDecimal, Double> priceDetail = getPriceDetail(list);
-            Map<BigDecimal, Double> priceEdge = getPriceEdge(list);
+           // Map<BigDecimal, Double> priceEdge = getPriceEdge(list);
 
             price = price.add(getPriceForDetailMap(priceDetail));
-            price = price.add(getPriceForEdgeMap(priceEdge));
+           // price = price.add(getPriceForEdgeMap(priceEdge));
 
             //TODO for furniture and facadeList
         }
@@ -45,11 +45,6 @@ public class Booker {
                 for (Module module : order.getModuleList()) {
                     price = price.add(getPriceModule(module));
                 }
-            }
-            if(Objects.nonNull(order.getDetailList())) { //TODO this block is not covered by the tests
-                price = price.add(getPriceForDetailMap(getPriceDetail(order.getDetailList())));
-                Map<BigDecimal, Double> priceEdge = getPriceEdge(order.getDetailList());
-                price = price.add(getPriceForEdgeMap(priceEdge));
             }
         }
         return price;
@@ -83,7 +78,7 @@ public class Booker {
         return managerQuadCount.getCountSquareDetailsList(list);
     }
 
-    private Map<BigDecimal, Double> getPriceEdge(List<Detail> object) {
+   /* private Map<BigDecimal, Double> getPriceEdge(List<Detail> object) {
         return managerEdgeCount.getLengthEdgeMaterialForDetailList(object);
     }*/
 }

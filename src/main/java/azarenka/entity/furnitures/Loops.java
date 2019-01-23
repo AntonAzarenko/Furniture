@@ -1,12 +1,12 @@
 package azarenka.entity.furnitures;
 
-import azarenka.entity.stillunused.Angle;
 import azarenka.entity.Country;
-import azarenka.entity.stillunused.Furniture;
+import azarenka.entity.stillunused.Angle;
+import azarenka.entity.stillunused.Fitting;
 
-public class Loops extends Furniture<Loops>  {
+public class Loops extends Fitting<Loops> {
 
-    private int articul;
+    private int article;
 
     private String nameManufacture;
 
@@ -16,18 +16,25 @@ public class Loops extends Furniture<Loops>  {
 
     private TypeLoop type;
 
-    private boolean microlift = false;
+    private boolean microLift = false;
 
     public Loops() {
     }
 
-    public Loops(int articul, String nameManufacture, Country manufactureCountry, Angle angle, TypeLoop type, boolean microlift) {
-        this.articul = articul;
-        this.nameManufacture = nameManufacture;
-        this.manufactureCountry = manufactureCountry;
-        this.angle = angle;
-        this.type = type;
-        this.microlift = microlift;
+    public int getArticle() {
+        return article;
+    }
+
+    public void setArticle(int article) {
+        this.article = article;
+    }
+
+    public boolean isMicroLift() {
+        return microLift;
+    }
+
+    public void setMicroLift(boolean microLift) {
+        this.microLift = microLift;
     }
 
     public String getNameManufacture() {
@@ -62,17 +69,4 @@ public class Loops extends Furniture<Loops>  {
         this.type = type;
     }
 
-
-
-    @Override
-    public String toString() {
-        return "Loops{" +
-                "articul=" + articul +
-                ", nameManufacture='" + nameManufacture + '\'' +
-                ", manufactureCountry=" + manufactureCountry +
-                ", angle=" + angle +
-                ", type=" + type +
-                ", microlift=" + microlift +
-                '}';
-    }
 }

@@ -1,8 +1,6 @@
 package azarenka.dto;
 
 import azarenka.entity.*;
-import azarenka.service.EdgeMaterialService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -217,8 +215,8 @@ public class DetailDTO {
             edgeMaterial.setEdgeSide(EdgeSide.SIDE_DOUBLE_X);
         }
         edgeMaterial.setEdge(createEdgeX());
-        if(edgeMaterialIdX != null){
-            edgeMaterial.setId(edgeMaterialIdX);
+        if (edgeMaterialIdX != null) {
+            edgeMaterial.setId(edgeIdSideX);
         }
         return edgeMaterial;
     }
@@ -231,8 +229,8 @@ public class DetailDTO {
             edgeMaterial.setEdgeSide(EdgeSide.SIDE_DOUBLE_Y);
         }
         edgeMaterial.setEdge(createEdgeY());
-        if(edgeMaterialIdY != null){
-            edgeMaterial.setId(edgeMaterialIdY);
+        if (edgeMaterialIdY != null) {
+            edgeMaterial.setId(edgeIdSideY);
         }
         return edgeMaterial;
     }
@@ -251,16 +249,25 @@ public class DetailDTO {
 
     private EdgeMaterial createEdgeMaterialXAndY() {
         EdgeMaterial edgeMaterial = new EdgeMaterial();
-        if (this.edgeSideY.equals("onceSide") && this.edgeSideX.equals("bothSide")) {
-            edgeMaterial.setEdgeSide(EdgeSide.SIDE_DOUBLE_X_AND_Y);
-        } else if (this.edgeSideX.equals("bothSide") && this.edgeSideY.equals("onceSide")) {
-            edgeMaterial.setEdgeSide(EdgeSide.SIDE_DOUBLE_Y_AND_X);
+        if (edgeIdSideY.equals(edgeIdSideX)) {
+            if (this.edgeSideY.equals("onceSide") && this.edgeSideX.equals("bothSide")) {
+                edgeMaterial.setEdgeSide(EdgeSide.SIDE_DOUBLE_X_AND_Y);
+                edgeMaterial.setEdge(createEdgeY());
+            } else if (this.edgeSideX.equals("onceSide") && this.edgeSideY.equals("bothSide")) {
+                edgeMaterial.setEdgeSide(EdgeSide.SIDE_DOUBLE_Y_AND_X);
+                edgeMaterial.setEdge(createEdgeY());
+            } else if (this.edgeSideX.equals("onceSide") && this.edgeSideY.equals("onceSide")) {
+                edgeMaterial.setEdgeSide(EdgeSide.SIDE_X_AND_Y);
+                edgeMaterial.setEdge(createEdgeY());
+                return edgeMaterial;
+            } else {
+                edgeMaterial.setEdgeSide(EdgeSide.SIDE_AROUND);
+                edgeMaterial.setEdge(createEdgeY());
+            }
         } else {
-            edgeMaterial.setEdgeSide(EdgeSide.SIDE_AROUND);
-        }
-        edgeMaterial.setEdge(createEdgeY());
-        if(edgeMaterialIdY != null){
-            edgeMaterial.setId(edgeMaterialIdY);
+            this.edgeOnX = false;
+            edgeMaterial = createEdgeMaterialX();
+            return edgeMaterial;
         }
         return edgeMaterial;
     }

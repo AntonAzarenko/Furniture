@@ -3,7 +3,6 @@ import {ModuleService} from "../../services/module.service";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar} from "@angular/material";
 import {ActivatedRoute} from "@angular/router";
 import {animate, state, style, transition, trigger} from "@angular/animations";
-import {MenuComponent} from "../menu/menu.component";
 
 export interface DialogCreateData {
   id: number;

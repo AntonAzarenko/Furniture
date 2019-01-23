@@ -1,10 +1,10 @@
 package azarenka.entity.furnitures;
 
-import azarenka.entity.stillunused.Furniture;
+import azarenka.entity.stillunused.Fitting;
 
-public class Guiedes extends Furniture<Guiedes> {
+public class Guides extends Fitting<Guides> {
 
-    private int articul;
+    private int article;
 
     private String nameManufacture;
 
@@ -12,18 +12,11 @@ public class Guiedes extends Furniture<Guiedes> {
 
     private int length;
 
-    private boolean microlift = false;
+    private boolean microLift = false;
 
-    public Guiedes() {
+    public Guides() {
     }
 
-    public int getArticul() {
-        return articul;
-    }
-
-    public void setArticul(int articul) {
-        this.articul = articul;
-    }
 
     public String getNameManufacture() {
         return nameManufacture;
@@ -49,14 +42,19 @@ public class Guiedes extends Furniture<Guiedes> {
         this.length = length;
     }
 
-    public boolean isMicrolift() {
-
-        return microlift;
+    public int getArticle() {
+        return article;
     }
 
-    public void setMicrolift(boolean microlift) {
-        this.microlift = microlift;
+    public void setArticle(int article) {
+        this.article = article;
     }
 
+    public boolean isMicroLift() {
+        return microLift;
+    }
 
+    public void setMicroLift(boolean microLift) {
+        this.microLift = microLift;
+    }
 }

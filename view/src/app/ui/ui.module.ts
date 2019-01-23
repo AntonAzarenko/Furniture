@@ -58,7 +58,8 @@ import {DetailCreateDialogComponent} from './details/detail-create-dialog/detail
 import {EdgeMaterialComponent} from './edge-material/edge-material.component';
 import {OrderEx, OrdersComponent} from "./orders/orders.component";
 import {DetailsComponent} from "./details/details.component";
-import { MenuComponent } from './menu/menu.component';
+import {MenuComponent} from './menu/menu.component';
+import {OrderCalculationComponent} from './order-calculation/order-calculation.component';
 
 
 @NgModule({
@@ -75,10 +76,10 @@ import { MenuComponent } from './menu/menu.component';
     OpenDialogToDeleteModuleComponent,
     OrdersComponent,
     DetailCreateDialogComponent,
-
     EdgeMaterialComponent,
     OrderEx,
-    MenuComponent
+    MenuComponent,
+    OrderCalculationComponent
   ],
 
   imports: [
@@ -128,8 +129,6 @@ import { MenuComponent } from './menu/menu.component';
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
-
-
   ],
   entryComponents: [
     OpenDialogToCreateModuleComponent,
@@ -152,9 +151,7 @@ import { MenuComponent } from './menu/menu.component';
 
     DetailCreateDialogComponent,
     OrderEx,
-
   ]
-
 })
 export class UiModule {
 }

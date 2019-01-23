@@ -17,10 +17,11 @@
     <hr>
     <div>
       <mat-form-field>
-        <mat-select placeholder="Цвет ДСП"[{ngModel}]="colorId">
+        <mat-select placeholder="Цвет ДСП"[{ngModel}]="colorId" [(value)]="colorId">
           <mat-option *ngFor="let color of colors" [value]="color.id">{{color.title}}</mat-option>
         </mat-select>
       </mat-form-field>
+
     </div>
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
@@ -61,9 +62,9 @@
                       </mat-form-field>
                       <div>
                         <mat-form-field>
-                          <mat-select placeholder="Тип кромки" [{ngModel}]="element.edgeTypeX"
-                                      [(value)]="element.edgeTypeX">
-                            <mat-option [value]="element.edgeTypeX">{{element.edgeTypeX}}</mat-option>
+                          <mat-select placeholder="Тип кромки" [{ngModel}]="element.edgeTypeY"
+                                      [(value)]="element.edgeTypeY">
+                            <mat-option [value]="element.edgeTypeY">{{element.edgeTypeY}}</mat-option>
                             <mat-option value="PVH">ПВХ</mat-option>
                             <mat-option value="ABC">АБС</mat-option>
                             <mat-option value="MELAMIN">Меламин</mat-option>
@@ -131,9 +132,9 @@
                 <div class="col threeS">
                   <div>
                     <mat-form-field>
-                      <mat-select placeholder="Цвет детали" [{ngModel}]="element.colorTitle"
-                                  [(value)]="element.colorTitle">
-                        <mat-option [value]="element.colorTitle">{{element.colorTitle}}</mat-option>
+                      <mat-select placeholder="Цвет детали" [{ngModel}]="element.colorId"
+                                  [(value)]="element.colorId">
+                        <mat-option [value]="element.colorId">{{element.colorTitle}}</mat-option>
                         <mat-option *ngFor="let color of colors" [value]="color.id">{{color.title}}</mat-option>
                       </mat-select>
                     </mat-form-field>
@@ -150,6 +151,7 @@
                       </mat-select>
                     </mat-form-field>
                   </div>
+
                   <div class="example-element-diagram">
                     <div class="button-pos row">
                       <button mat-raised-button  (click)="updateDetail(element.id)">Применить</button>

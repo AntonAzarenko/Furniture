@@ -35,8 +35,4 @@ public class EdgeMaterialServiceImpl implements EdgeMaterialService {
         return repository.getById(id);
     }
 
-    @Override//todo
-    public Set<EdgeMaterial> getAllByDetailId(Long id) {
-        return null;//repository.getAllByDetail_Id(id);
-    }
 }

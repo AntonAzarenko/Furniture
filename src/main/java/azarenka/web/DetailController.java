@@ -24,7 +24,7 @@ public class DetailController {
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<DetailDTO> getAllByModuleId(@PathVariable("id") Long id){
-       return service.getByModuleId(id);
+       return service.getDTOByModuleId(id);
     }
 
     @DeleteMapping(value = "/{id}")
