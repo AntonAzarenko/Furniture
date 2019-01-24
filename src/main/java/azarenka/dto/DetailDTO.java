@@ -80,7 +80,7 @@ public class DetailDTO {
         }
         detail.setEdgeMaterial(materialSet);
         detail.setDetailsColor(createDetailColor());
-        detail.setModule(createModule());
+        //detail.setModule(createModule());
         return detail;
     }
 
@@ -95,7 +95,7 @@ public class DetailDTO {
         DetailDTO detailDTO = new DetailDTO();
         detailDTO.setId(detail.getId());
         detailDTO.setName(detail.getName());
-        detailDTO.moduleId = detail.getModule().getId();
+        //detailDTO.moduleId = detail.getModule().getId();
         detailDTO.setX(detail.getX());
         detailDTO.setY(detail.getY());
         detailDTO.setCount(detail.getCount());

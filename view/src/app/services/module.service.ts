@@ -23,6 +23,7 @@ export class ModuleService {
   }
 
   save(moduleF: FurnitureModule) {
+    console.log(moduleF);
     return this.http.post<FurnitureModule>('http://localhost:8080/module', moduleF, httpOptions);
   }
 

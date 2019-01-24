@@ -60,6 +60,7 @@ import {OrderEx, OrdersComponent} from "./orders/orders.component";
 import {DetailsComponent} from "./details/details.component";
 import {MenuComponent} from './menu/menu.component';
 import {OrderCalculationComponent} from './order-calculation/order-calculation.component';
+import { OpenDialogCreateOrderComponentComponent } from './orders/open-dialog-create-order-component/open-dialog-create-order-component.component';
 
 
 @NgModule({
@@ -79,7 +80,8 @@ import {OrderCalculationComponent} from './order-calculation/order-calculation.c
     EdgeMaterialComponent,
     OrderEx,
     MenuComponent,
-    OrderCalculationComponent
+    OrderCalculationComponent,
+    OpenDialogCreateOrderComponentComponent
   ],
 
   imports: [
@@ -133,7 +135,8 @@ import {OrderCalculationComponent} from './order-calculation/order-calculation.c
   entryComponents: [
     OpenDialogToCreateModuleComponent,
     OpenDialogToDeleteModuleComponent,
-    DetailCreateDialogComponent
+    DetailCreateDialogComponent,
+    OpenDialogCreateOrderComponentComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
 
@@ -148,7 +151,7 @@ import {OrderCalculationComponent} from './order-calculation/order-calculation.c
     FurnitureModule,
     OpenDialogToDeleteModuleComponent,
     OrdersComponent,
-
+    OpenDialogCreateOrderComponentComponent,
     DetailCreateDialogComponent,
     OrderEx,
   ]

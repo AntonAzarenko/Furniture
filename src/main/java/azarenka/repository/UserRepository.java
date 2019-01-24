@@ -1,14 +1,21 @@
 package azarenka.repository;
 
-import azarenka.entity.stillunused.User;
-import azarenka.repository.mybatis.CrudRepository;
+import azarenka.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface UserRepository extends CrudRepository<String, User> {
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
+
     User getByEmail(String email);
 
     int getIdByEmail(String login);
 
     List<User> getAll();
+
+    boolean existsByName(String name);
+
+    User getById(Long id);
 }

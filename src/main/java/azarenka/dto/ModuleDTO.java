@@ -6,7 +6,7 @@ import azarenka.entity.Order;
 import org.springframework.transaction.annotation.Transactional;
 
 
-public class ModuleDto {
+public class ModuleDTO {
 
     private Long id;
 
@@ -16,17 +16,17 @@ public class ModuleDto {
 
     private Long order_id;
 
-    public ModuleDto() {
+    public ModuleDTO() {
     }
 
     public Module asModule(){
         Order order = new Order();
         order.setId(order_id);
         Module module = new Module();
+        module.setOrder(order);
         module.setId(id);
         module.setName(name);
         module.setModuleType(moduleType);
-        module.setOrder(order);
         return module;
     }
 

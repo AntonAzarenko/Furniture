@@ -1,9 +1,6 @@
 package azarenka.entity;
 
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
 import javax.persistence.*;
 import java.util.Set;
 
@@ -53,6 +50,14 @@ public class Detail extends BaseEntity {
     }
 
     public Detail() {
+    }
+
+    public Module getModule() {
+        return module;
+    }
+
+    public void setModule(Module module) {
+        this.module = module;
     }
 
     public Material getMaterial() {
@@ -109,13 +114,5 @@ public class Detail extends BaseEntity {
 
     public void setCount(int count) {
         this.count = count;
-    }
-
-    public Module getModule() {
-        return module;
-    }
-
-    public void setModule(Module module) {
-        this.module = module;
     }
 }

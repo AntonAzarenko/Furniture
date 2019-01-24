@@ -1,0 +1,7 @@
+<div class="create" style="text-align: center">
+  <h1 mat-dialog-title class="title">Новый заказ.</h1>
+  <div mat-dialog-actions style="margin-left: 200px">
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+  </div>
+</div>

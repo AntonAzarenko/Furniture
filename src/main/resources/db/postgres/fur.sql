@@ -59,8 +59,8 @@ CREATE TABLE details (
   CONSTRAINT fk_module
   FOREIGN KEY (module_id)
   REFERENCES module (id)
-  ON DELETE NO ACTION
-  ON UPDATE NO ACTION,
+  ON DELETE CASCADE
+  ON UPDATE CASCADE,
 
   CONSTRAINT fk_details_color_detail1
   FOREIGN KEY (color_detail_id)
@@ -73,58 +73,50 @@ CREATE TABLE details (
 -- Table `Furniture`.`edge_material_has_side
 -- -----------------------------------------------------
 CREATE TABLE edge_material (
-  id        BIGSERIAL NOT NULL PRIMARY KEY ,
-  edge_id   INTEGER   NOT NULL,
-  side      VARCHAR(45),
+  id      BIGSERIAL NOT NULL PRIMARY KEY,
+  edge_id INTEGER   NOT NULL,
+  side    VARCHAR(45),
   FOREIGN KEY (edge_id) REFERENCES edge (id)
   ON DELETE CASCADE
 
 );
+
+-- -----------------------------------------------------
+-- Table `Furniture`. detail_has_edge_material
+-- -----------------------------------------------------
+
 CREATE TABLE detail_has_edge_material (
-  detail_id INTEGER NOT NULL ,
+  detail_id        INTEGER NOT NULL,
   edge_material_id INTEGER NOT NULL,
-  FOREIGN KEY (detail_id) REFERENCES details(id),
-  FOREIGN KEY (edge_material_id) REFERENCES  edge_material(id)
-)
-
--- -----------------------------------------------------
-
-
-
--- -----------------------------------------------------
--- Table details_has_edge_material
--- -----------------------------------------------------
-/*CREATE TABLE details_has_edge_Material (
-  edge_material_id INT NOT NULL,
-  details_id       INT NOT NULL,
-  PRIMARY KEY (edge_material_id, details_id),
-  CONSTRAINT fk_order_has_details_order1
-  FOREIGN KEY (edge_material_id)
-  REFERENCES edge_material (id)
-  ON DELETE NO ACTION
-  ON UPDATE NO ACTION,
-  CONSTRAINT fk_order_has_details_details1
-  FOREIGN KEY (details_id) REFERENCES details (id)
-  ON DELETE CASCADE
-  ON UPDATE CASCADE
-);*/
+  FOREIGN KEY (detail_id) REFERENCES details (id),
+  FOREIGN KEY (edge_material_id) REFERENCES edge_material (id)
+);
 
 -- -----------------------------------------------------
 -- Table `Furniture`.`users`
 -- -----------------------------------------------------
-/*CREATE TABLE IF NOT EXISTS ` Furniture`.`users` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  ` name ` VARCHAR (45
-) NOT NULL,
-  `email` VARCHAR (45
-) NOT NULL,
-  ` password ` VARCHAR (45
-) NOT NULL,
-  ` enabled ` TINYINT NOT NULL,
-PRIMARY KEY (`id`
-)
-)
-  ENGINE = InnoDB;*/
+CREATE TABLE users (
+  id         BIGSERIAL   NOT NULL,
+  name       VARCHAR(45) NOT NULL,
+  email      VARCHAR(45) NOT NULL,
+  password   VARCHAR(45) NOT NULL,
+  enabled    BOOLEAN     NOT NULL,
+  registered TIMESTAMP DEFAULT (now()),
+  PRIMARY KEY (id)
+);
+
+-- -----------------------------------------------------
+-- Table `Furniture`.`roles`
+-- -----------------------------------------------------
+CREATE TABLE roles (
+  users_id INT         NOT NULL,
+  role     VARCHAR(45) NOT NULL,
+  CONSTRAINT fk_roles_users1
+  FOREIGN KEY (users_id)
+  REFERENCES users (id)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE
+);
 
 -- -----------------------------------------------------
 -- Table `Furniture`.`facade`
@@ -247,18 +239,6 @@ ON UPDATE NO ACTION
 )
   ENGINE = InnoDB;*/
 
--- -----------------------------------------------------
--- Table `Furniture`.`roles`
--- -----------------------------------------------------
-/*CREATE TABLE roles (
-  users_id INT         NOT NULL,
-  roles    VARCHAR(45) NOT NULL,
-  CONSTRAINT fk_roles_users1
-  FOREIGN KEY (users_id)
-  REFERENCES users (id)
-  ON DELETE NO ACTION
-  ON UPDATE NO ACTION
-);*/
 
 
 -- -----------------------------------------------------

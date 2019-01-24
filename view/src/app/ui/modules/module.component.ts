@@ -47,7 +47,7 @@ export class ModuleComponent implements OnInit {
               public dialog: MatDialog,
               public dialogD: MatDialog,
               public snackBar: MatSnackBar,
-              private route: ActivatedRoute,) {
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -100,7 +100,7 @@ export class ModuleComponent implements OnInit {
 
   save(data) {
     this.service.save(data).subscribe(data => this.modules.push(data));
-    window.location.reload();
+    //window.location.reload();
   }
 
   delete(id: number) {
@@ -134,8 +134,9 @@ export class OpenDialogToCreateModuleComponent {
   selector: 'app-dialog-delete',
   templateUrl: './dialog.delete.html'
 })
+
 export class OpenDialogToDeleteModuleComponent {
-  constructor(public dialogRef: MatDialogRef<OpenDialogToCreateModuleComponent>,
+  constructor(public dialogRef: MatDialogRef<OpenDialogToDeleteModuleComponent>,
               @Inject(MAT_DIALOG_DATA) public data: DialogDeleteData) {
   }
 

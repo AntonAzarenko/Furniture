@@ -1,7 +1,4 @@
-.cont {
-  min-height: calc(100vh - 128px);
-  background: url('../../../img/workArea.jpg');
-}
+
 .container {
   min-height: 87vh;
   background: rgba(255,255,255,0.6)
@@ -22,11 +19,6 @@ tr.example-detail-row {
 }
 .example-element-row td {
   border-bottom-width: 0;
-}
-
-.butt {
-  padding-left: 50px;
-  padding-top: 30px;
 }
 
 table {

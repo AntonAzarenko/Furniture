@@ -1,9 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {OrderService} from "../../services/order.service";
-import {MatPaginator, MatSort} from "@angular/material";
+import {MatDialog, MatPaginator, MatSort} from "@angular/material";
 import {ActivatedRoute} from "@angular/router";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {MenuComponent} from "../menu/menu.component";
+import {FurnitureModule, OpenDialogToCreateModuleComponent} from "../modules/module.component";
+import {OpenDialogCreateOrderComponentComponent} from "./open-dialog-create-order-component/open-dialog-create-order-component.component";
 
 
 export interface OrdersDataItem {
@@ -31,7 +33,8 @@ export class OrdersComponent implements OnInit {
   displayedColumns: string [] = ['name', 'address', 'telNumber', 'customersName', 'dateOfCreate', 'dateOfContract'];
 
 
-  constructor(private service: OrderService, private route: ActivatedRoute) {
+  constructor(private service: OrderService, private route: ActivatedRoute,
+              public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -41,13 +44,24 @@ export class OrdersComponent implements OnInit {
   getAllOrders() {
     this.service.getAll().subscribe(
       (data: any[]) => {
-      this.dataSource = (data);
-    });
+        this.dataSource = (data);
+      });
     console.log(this.dataSource);
+    MenuComponent.disable("disabled")
   }
 
-  createOrder() {
+  openDialogCreateOrder(event) {
+    const dialogRef = this.dialog.open(OpenDialogCreateOrderComponentComponent, {
+      width: '600px',
+      data: {}
+    });
+    dialogRef.afterClosed().subscribe(result => {
 
+    });
+  }
+
+  save() {
+    // this.service.save(data).subscribe(data => this.dataSource.push(data));
   }
 }
 
@@ -56,7 +70,7 @@ export class OrdersComponent implements OnInit {
   selector: 'order',
   template: ''
 })
-export  class  OrderEx{
+export class OrderEx {
   id: number;
   name: string;
   address: string;
@@ -66,8 +80,7 @@ export  class  OrderEx{
   dateOfCreate: string;
 
 
-  constructor(id: number, name: string, address: string, customersName:
-    string, telNumber: string, dateOfContract: string, dateOfCreate: string) {
+  constructor(id: number, name: string, address: string, customersName: string, telNumber: string, dateOfContract: string, dateOfCreate: string) {
     this.id = id;
     this.name = name;
     this.address = address;

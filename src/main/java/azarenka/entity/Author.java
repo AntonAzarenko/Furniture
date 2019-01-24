@@ -1,7 +1,5 @@
 package azarenka.entity;
 
-import azarenka.entity.stillunused.User;
-
 import java.util.Date;
 
 public class Author extends User {

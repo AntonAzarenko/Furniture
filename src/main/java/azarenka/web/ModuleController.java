@@ -1,8 +1,7 @@
 package azarenka.web;
 
-import azarenka.dto.ModuleDto;
+import azarenka.dto.ModuleDTO;
 import azarenka.entity.Module;
-import azarenka.entity.Order;
 import azarenka.service.ModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -29,7 +28,7 @@ public class ModuleController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Module save(@RequestBody ModuleDto module) {
+    public Module save(@RequestBody ModuleDTO module) {
        return service.save(module.asModule());
     }
 

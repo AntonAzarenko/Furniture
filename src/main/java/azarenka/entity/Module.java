@@ -17,16 +17,8 @@ public class Module extends BaseEntity {
     private ModuleType moduleType;
 
     @ManyToOne
-    @JoinColumn(name = "order_id",  nullable = false)
+    @JoinColumn(name = "order_id",nullable = false)
     private Order order;
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
 
     public Module() {
     }
@@ -48,6 +40,14 @@ public class Module extends BaseEntity {
 
     public List<Detail> getDetailList() {
         return detailList;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public void setDetailList(List<Detail> detailList) {

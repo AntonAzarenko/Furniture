@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-menu',
@@ -6,11 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+  static disabled: string;
 
-  static dis(){
+  static disable(status: string) {
+    this.disabled = status
+  }
 
-}
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
