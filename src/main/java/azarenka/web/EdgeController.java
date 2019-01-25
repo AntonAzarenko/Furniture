@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@CrossOrigin(maxAge = 3600)
+import static azarenka.web.DetailController.URL;
+
+@CrossOrigin(origins = "*",maxAge = 3600)
 @RestController
-@RequestMapping(value = "edge")
+@RequestMapping(value = URL +"/edge")
 public class EdgeController {
 
     @Autowired

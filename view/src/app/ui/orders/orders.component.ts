@@ -3,8 +3,6 @@ import {OrderService} from "../../services/order.service";
 import {MatDialog, MatPaginator, MatSort} from "@angular/material";
 import {ActivatedRoute} from "@angular/router";
 import {animate, state, style, transition, trigger} from "@angular/animations";
-import {MenuComponent} from "../menu/menu.component";
-import {FurnitureModule, OpenDialogToCreateModuleComponent} from "../modules/module.component";
 import {OpenDialogCreateOrderComponentComponent} from "./open-dialog-create-order-component/open-dialog-create-order-component.component";
 
 
@@ -47,7 +45,6 @@ export class OrdersComponent implements OnInit {
         this.dataSource = (data);
       });
     console.log(this.dataSource);
-    MenuComponent.disable("disabled")
   }
 
   openDialogCreateOrder(event) {

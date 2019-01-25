@@ -9,6 +9,6 @@ export class ColorserviceService {
   constructor(private http: HttpClient) { }
 
   getAllColorMaterail(){
-    return this.http.get('http://localhost:8080/color/all');
+    return this.http.get('http://localhost:8080/furniture/color/all');
   }
 }

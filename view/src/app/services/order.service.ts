@@ -13,14 +13,14 @@ export class OrderService {
   }
 
   getAll() {
-    return this.http.get('http://localhost:8080/order');
+    return this.http.get('http://localhost:8080/furniture/order');
   }
 
   get(id: number) {
-    return this.http.get('http://localhost:8080/order/' + id);
+    return this.http.get('http://localhost:8080/furniture/order/' + id);
   }
 
   save(order: OrderEx){
-    return this.http.post<OrderEx>('http://localhost:8080/order',  order);
+    return this.http.post<OrderEx>('http://localhost:8080/furniture/order',  order);
   }
 }

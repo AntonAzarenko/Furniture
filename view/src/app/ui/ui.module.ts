@@ -61,6 +61,8 @@ import {DetailsComponent} from "./details/details.component";
 import {MenuComponent} from './menu/menu.component';
 import {OrderCalculationComponent} from './order-calculation/order-calculation.component';
 import { OpenDialogCreateOrderComponentComponent } from './orders/open-dialog-create-order-component/open-dialog-create-order-component.component';
+import {JwtResponse} from "../auth/jwt.response";
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -81,7 +83,8 @@ import { OpenDialogCreateOrderComponentComponent } from './orders/open-dialog-cr
     OrderEx,
     MenuComponent,
     OrderCalculationComponent,
-    OpenDialogCreateOrderComponentComponent
+    OpenDialogCreateOrderComponentComponent,
+    RegisterComponent
   ],
 
   imports: [
@@ -131,6 +134,7 @@ import { OpenDialogCreateOrderComponentComponent } from './orders/open-dialog-cr
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
+
   ],
   entryComponents: [
     OpenDialogToCreateModuleComponent,
@@ -154,6 +158,7 @@ import { OpenDialogCreateOrderComponentComponent } from './orders/open-dialog-cr
     OpenDialogCreateOrderComponentComponent,
     DetailCreateDialogComponent,
     OrderEx,
+
   ]
 })
 export class UiModule {

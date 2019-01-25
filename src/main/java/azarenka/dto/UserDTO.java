@@ -8,7 +8,7 @@ import java.util.Objects;
 @Component
 public class UserDTO {
 
-    private String id;
+    private Long id;
 
     private String username;
 
@@ -17,14 +17,17 @@ public class UserDTO {
     }
 
     public UserDTO asUserDTO(User user){
-        return null;
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId(user.getId());
+        userDTO.setUsername(user.getEmail());
+        return userDTO;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -41,12 +44,21 @@ public class UserDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserDTO userDTO = (UserDTO) o;
-        return id.equals(userDTO.id) &&
-                username.equals(userDTO.username);
+        return Objects.equals(id, userDTO.id) &&
+                Objects.equals(username, userDTO.username);
     }
 
     @Override
     public int hashCode() {
+
         return Objects.hash(id, username);
+    }
+
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                '}';
     }
 }

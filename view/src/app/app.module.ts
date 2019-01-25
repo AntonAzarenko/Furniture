@@ -44,10 +44,13 @@ import {
 } from "@angular/material";
 import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
 import {Http, HttpModule} from "@angular/http";
+import {httpInterceptorProviders} from "./auth/auth-interceptor";
+
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
+
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
@@ -105,7 +108,7 @@ import {Http, HttpModule} from "@angular/http";
     HttpModule,
   ],
 
-  providers: [Http],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

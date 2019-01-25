@@ -9,10 +9,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static azarenka.web.DetailController.URL;
+
 @RestController
-@CrossOrigin(maxAge = 3600)
-@RequestMapping(value = "detail")
+@CrossOrigin(origins = "*",maxAge = 3600)
+@RequestMapping(value = URL +"/detail")
 public class DetailController {
+
+    public static final String URL = "/furniture";
 
     @Autowired
     private DetailService service;

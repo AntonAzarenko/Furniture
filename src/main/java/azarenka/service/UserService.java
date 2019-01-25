@@ -2,9 +2,7 @@ package azarenka.service;
 
 import azarenka.dto.UserDTO;
 import azarenka.entity.User;
-import org.springframework.stereotype.Service;
 
-@Service
 public interface UserService {
 
     void save(User user);

@@ -1,12 +1,14 @@
 import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {MatDialog, MatPaginator, MatSort} from '@angular/material';
 import {DetailService} from "../../services/detail.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Route, Router} from "@angular/router";
 import {ColorserviceService} from "../../services/colorservice.service";
 import {EdgeMaterialServiceService} from "../../services/edge-material-service.service";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {DetailCreateDialogComponent} from "./detail-create-dialog/detail-create-dialog.component";
 import {Details} from "../../entity/Details";
+
+const id = "0";
 
 @Component({
   selector: 'app-details',
@@ -55,8 +57,10 @@ export class DetailsComponent implements OnInit {
               private colorService: ColorserviceService,
               private edgeService: EdgeMaterialServiceService,
               private route: ActivatedRoute,
-              public dialog: MatDialog,) {
+              public dialog: MatDialog,
+              private router: Router) {
   }
+
 
   displayedColumns: string[] = ['name', 'y', 'x', 'count', 'thickness', 'material', 'button'];
 
@@ -75,7 +79,7 @@ export class DetailsComponent implements OnInit {
   }
 
   getDetByModID(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
+    const  id = +this.route.snapshot.paramMap.get('id');
     this.moduleId = id;
     this.service.getDetailsByModuleId(id).subscribe(
       (data: any[]) => {
@@ -146,7 +150,8 @@ export class DetailsComponent implements OnInit {
     this.service.save(data).subscribe((data: any) => {
       this.dataSource.push(data);
     });
-    window.location.reload();
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.router.navigate(['/modules/'+ id + '/details'])
   }
 
   updateDetail(id: number) {

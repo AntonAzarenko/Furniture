@@ -5,7 +5,9 @@ import azarenka.entity.User;
 import azarenka.repository.UserRepository;
 import azarenka.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -30,18 +32,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void resetPassword(String email) {
-        User user = repository.getByEmail(email);
+        User user = repository.getByEmail(email).get();
         user.setPassword("password");
         save(user);
     }
 
     @Override
     public UserDTO get(Long id) {
-        return null;
+        User user = repository.getById(id);
+        UserDTO userDTO = new UserDTO();
+        return userDTO.asUserDTO(user);
     }
 
     @Override
     public void delete(Long id) {
-
+        repository.deleteById(id);
     }
 }

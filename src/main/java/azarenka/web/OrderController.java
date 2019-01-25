@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(maxAge = 3600)
+import static azarenka.web.DetailController.URL;
+
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping(value = "order")
+@RequestMapping(value = URL + "/order")
 public class OrderController {
 
     @Autowired
@@ -23,22 +25,22 @@ public class OrderController {
     }
 
     @DeleteMapping(value = "/{id}")
-    public void remove(@PathVariable("id")Long id){
+    public void remove(@PathVariable("id") Long id) {
         service.deleteById(id);
     }
 
-    @PostMapping( consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void add(Order order){
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void add(Order order) {
         service.create(order);
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Order getById(@PathVariable("id")Long id){
-       return service.getByID(id);
+    public Order getById(@PathVariable("id") Long id) {
+        return service.getByID(id);
     }
 
     @GetMapping(value = "/by/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Order> getByName(@PathVariable("name")String name){
+    public List<Order> getByName(@PathVariable("name") String name) {
         return service.getByName(name);
     }
 }

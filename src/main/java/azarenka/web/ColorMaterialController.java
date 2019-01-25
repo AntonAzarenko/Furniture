@@ -8,9 +8,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static azarenka.web.DetailController.URL;
+
 @RestController
 @CrossOrigin(maxAge = 3600)
-@RequestMapping(value = "color")
+@RequestMapping(value = URL + "/color")
 public class ColorMaterialController {
 
     @Autowired
