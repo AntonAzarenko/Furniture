@@ -6,6 +6,12 @@ pipeline {
     }
 
     stages {
+
+        stage('Compile') {
+            steps {
+                gradlew('clean', 'classes')
+            }
+        }
         stage('build') {
             steps {
                 gradlew('build')
