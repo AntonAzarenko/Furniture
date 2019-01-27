@@ -40,8 +40,8 @@ public class UserServiceImplTest {
 
     @Test
     public void testGet() {
-        UserDTO user = service.get(1L);
-        log.info(user.toString());
+      //  UserDTO user = service.get(1L);
+        //log.info(user.toString());
     }
 
     @Test
