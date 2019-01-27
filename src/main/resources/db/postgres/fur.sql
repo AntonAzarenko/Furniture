@@ -1,12 +1,41 @@
 DROP TABLE IF EXISTS furniture;
 
 -- -----------------------------------------------------
+-- Table `Furniture`.`users`
+-- -----------------------------------------------------
+CREATE TABLE users (
+  id         BIGSERIAL   NOT NULL,
+  name       VARCHAR(45) NOT NULL,
+  email      VARCHAR(45) NOT NULL UNIQUE ,
+  password   VARCHAR(45) NOT NULL,
+  enabled    BOOLEAN     NOT NULL,
+  registered TIMESTAMP DEFAULT (now()),
+  PRIMARY KEY (id)
+);
+
+-- -----------------------------------------------------
+-- Table `Furniture`.`roles`
+-- -----------------------------------------------------
+CREATE TABLE roles (
+  users_id INT         NOT NULL,
+  role     VARCHAR(45) NOT NULL,
+  CONSTRAINT fk_roles_users1
+  FOREIGN KEY (users_id)
+  REFERENCES users (id)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE
+);
+
+
+-- -----------------------------------------------------
 -- Table `Furniture`.`order`
 -- -----------------------------------------------------
 CREATE TABLE orders (
   id     BIGSERIAL   NOT NULL PRIMARY KEY,
   name   VARCHAR(45) NOT NULL,
-  author VARCHAR(45) NOT NULL
+  author VARCHAR(45) NOT NULL,
+  user_name VARCHAR(100) NOT NULL,
+  CONSTRAINT U_N FOREIGN KEY (user_name) REFERENCES users(email)
 );
 
 CREATE TABLE module (
@@ -92,31 +121,6 @@ CREATE TABLE detail_has_edge_material (
   FOREIGN KEY (edge_material_id) REFERENCES edge_material (id)
 );
 
--- -----------------------------------------------------
--- Table `Furniture`.`users`
--- -----------------------------------------------------
-CREATE TABLE users (
-  id         BIGSERIAL   NOT NULL,
-  name       VARCHAR(45) NOT NULL,
-  email      VARCHAR(45) NOT NULL,
-  password   VARCHAR(45) NOT NULL,
-  enabled    BOOLEAN     NOT NULL,
-  registered TIMESTAMP DEFAULT (now()),
-  PRIMARY KEY (id)
-);
-
--- -----------------------------------------------------
--- Table `Furniture`.`roles`
--- -----------------------------------------------------
-CREATE TABLE roles (
-  users_id INT         NOT NULL,
-  role     VARCHAR(45) NOT NULL,
-  CONSTRAINT fk_roles_users1
-  FOREIGN KEY (users_id)
-  REFERENCES users (id)
-  ON DELETE CASCADE
-  ON UPDATE CASCADE
-);
 
 -- -----------------------------------------------------
 -- Table `Furniture`.`facade`

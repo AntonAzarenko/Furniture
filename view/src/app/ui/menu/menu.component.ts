@@ -9,10 +9,18 @@ import {TokenStorageService} from "../../auth/token-storage.service";
 export class MenuComponent implements OnInit {
   private roles: string[];
   private authority: string;
+  public modules: string;
 
-  constructor(private tokenStorage: TokenStorageService) { }
+  setModules(value: string) {
+    this.modules = value;
+    console.log(this.modules);
+  }
+
+  constructor(private tokenStorage: TokenStorageService) {
+  }
 
   ngOnInit() {
+    this.modules = 'user';
     if (this.tokenStorage.getToken()) {
       this.roles = this.tokenStorage.getAuthorities();
       this.roles.every(role => {
@@ -24,6 +32,7 @@ export class MenuComponent implements OnInit {
           return false;
         }
         this.authority = 'user';
+        console.log(this.modules);
         return true;
       });
     }

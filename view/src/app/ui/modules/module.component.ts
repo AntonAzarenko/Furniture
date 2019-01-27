@@ -3,6 +3,7 @@ import {ModuleService} from "../../services/module.service";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar} from "@angular/material";
 import {ActivatedRoute} from "@angular/router";
 import {animate, state, style, transition, trigger} from "@angular/animations";
+import {MenuComponent} from "../menu/menu.component";
 
 export interface DialogCreateData {
   id: number;
@@ -47,11 +48,12 @@ export class ModuleComponent implements OnInit {
               public dialog: MatDialog,
               public dialogD: MatDialog,
               public snackBar: MatSnackBar,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private menu: MenuComponent) {
   }
 
   ngOnInit() {
-    const id = +this.route.snapshot.paramMap.get('id');
+    this.menu.ngOnInit();
     this.getAllModules();
   }
 

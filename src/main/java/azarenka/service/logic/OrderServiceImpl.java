@@ -24,23 +24,13 @@ public class OrderServiceImpl implements OrderService {
         return repository.getById(id);
     }
 
-    @Override //TODO Do i need this method?
-    public List<Order> getAll() {
-        return repository.findAll();
-    }
-
     @Override
     @Transactional //TODO cache
-    public List<OrderDTO> getAllByUserID() {
-        List<Order> orders = repository.findAll();
+    public List<OrderDTO> getAllByUserName(String name) {
+        List<Order> orders = repository.getAllByUserName(name);
         List<OrderDTO> orderDTOS = new ArrayList<>();
         orders.forEach(o -> orderDTOS.add(asOrderDTO(o)));
         return orderDTOS;
-    }
-
-    @Override//TODO Do i need this method?
-    public List<Order> getByName(String name) {
-        return repository.getByName(name);
     }
 
     @Override

@@ -1,15 +1,21 @@
 package azarenka.service.logic;
 
+import azarenka.entity.Detail;
+import azarenka.entity.EdgeMaterial;
+import azarenka.entity.Module;
+import azarenka.entity.Order;
 import org.springframework.stereotype.Component;
+
+import java.math.BigDecimal;
+import java.util.*;
 
 @Component
 public class ManagerEdgeCount {
-/*
-    private Map<BigDecimal, Double> map = new HashMap<>();
 
     public Map<BigDecimal, Double> getLengthEdgeMaterialForOrder(Order order) {
-       *//* List<Module> moduleList = order.getModuleList();
-        List<Detail> detailList = order.getDetailList();
+        Map<BigDecimal, Double> map = new HashMap<>();
+        List<Module> moduleList = order.getModuleList();
+        List<Detail> detailList = new ArrayList<>();
         if (Objects.nonNull(moduleList)) {
             for (Module module : moduleList) {
                 map = getLengthEdgeMaterialForModule(module);
@@ -17,15 +23,14 @@ public class ManagerEdgeCount {
         }
 
         Map<BigDecimal, Double> map2 = new HashMap<>();
-        if (Objects.nonNull(detailList)) { //TODO this block is not covered by the tests
-            for (Detail detail : detailList) {
-                map2 = (getLengthEdgeMaterialForDetail(detail));
-            }
+        //TODO this block is not covered by the tests
+        for (Detail detail : detailList) {
+            map2 = (getLengthEdgeMaterialForDetail(detail));
         }
 
         Map<BigDecimal, Double> mapFull = new HashMap<>(map);
         map2.forEach((k, v) -> mapFull.merge(k, v, (a, b) -> a + b));
-        return mapFull;*//*
+        return mapFull;
     }
 
     public Map<BigDecimal, Double> getLengthEdgeMaterialForModule(Module module) {
@@ -33,46 +38,49 @@ public class ManagerEdgeCount {
     }
 
     public Map<BigDecimal, Double> getLengthEdgeMaterialForDetailList(List<Detail> detailList) {
+        Map<BigDecimal, Double> mapFull = new HashMap<>();
         if (Objects.nonNull(detailList)) {
             for (Detail detail : detailList) {
-                map = getLengthEdgeMaterialForDetail(detail);
+                Map<BigDecimal, Double> map =  getLengthEdgeMaterialForDetail(detail);
+               map.forEach((k,v) ->mapFull.merge(k, v, (a, b) -> a + b));
             }
         }
-        return map;
+        return mapFull;
     }
 
     public Map<BigDecimal, Double> getLengthEdgeMaterialForDetail(Detail detail) {
         return getButtClose(detail.getX(), detail.getY(), detail.getEdgeMaterial(), detail.getCount());
     }
 
-    private Map<BigDecimal, Double> getButtClose(int x, int y, List<EdgeMaterial> edgeMaterials, int count) {
+    private Map<BigDecimal, Double> getButtClose(int x, int y, Set<EdgeMaterial> edgeMaterials, int count) {
+        Map<BigDecimal, Double> map = new HashMap<>();
         if (Objects.nonNull(edgeMaterials)) {
             for (EdgeMaterial material : edgeMaterials) {
-                map.merge(material.getPrice(), getlength(x, y, material, count), (oldValue, newValue) -> oldValue + newValue);
+                map.merge(material.getEdge().getPrice(), getLength(x, y, material, count), (oldValue, newValue) -> oldValue + newValue);
             }
         }
         return map;
     }
 
-    private double getlength(int x, int y, EdgeMaterial material, int count) {
-        switch (material.getButtCloses()) { // TODO not all cases covered by the tests
-            case BUTT_X:
+    private double getLength(int x, int y, EdgeMaterial material, int count) {
+        switch (material.getEdgeSide()) {
+            case SIDE_X:
                 return (double) x * count;
-            case BUTT_Y:
+            case SIDE_Y:
                 return (double) y * count;
-            case BUTT_DOUBLE_X:
+            case SIDE_DOUBLE_X:
                 return (double) x * 2 * count;
-            case BUTT_DOUBLE_Y:
+            case SIDE_DOUBLE_Y:
                 return (double) y * 2 * count;
-            case BUTT_X_AND_Y:
+            case SIDE_X_AND_Y:
                 return (double) x + y * count;
-            case BUTT_ARROUND:
-                return (double) x * 2 + y * 2 * count;
-            case BUTT_DOUBLE_X_AND_Y:
+            case SIDE_AROUND:
+                return (double) ((x * 2) + (y * 2)) * count;
+            case SIDE_DOUBLE_X_AND_Y:
                 return (double) x * 2 + y * count;
-            case BUTT_DOUBLE_Y_AND_X:
+            case SIDE_DOUBLE_Y_AND_X:
                 return (double) y * 2 + x * count;
         }
         return 0d;
-    }*/
+    }
 }

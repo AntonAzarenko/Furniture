@@ -27,7 +27,7 @@ import java.util.Set;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/furniture/auth")
+@RequestMapping("furniture/auth")
 public class AuthController {
 
     @Autowired

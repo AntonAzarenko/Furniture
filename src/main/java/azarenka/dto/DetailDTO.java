@@ -80,13 +80,17 @@ public class DetailDTO {
         }
         detail.setEdgeMaterial(materialSet);
         detail.setDetailsColor(createDetailColor());
-        //detail.setModule(createModule());
+        detail.setModule(createModule());
         return detail;
     }
 
     private DetailsColor createDetailColor() {
         DetailsColor detailsColor = new DetailsColor();
-        detailsColor.setId(colorId);
+        if (material.equals(Material.DVP)) {
+                detailsColor.setId(4L);
+        } else {
+            detailsColor.setId(colorId);
+        }
         return detailsColor;
     }
 
@@ -95,7 +99,7 @@ public class DetailDTO {
         DetailDTO detailDTO = new DetailDTO();
         detailDTO.setId(detail.getId());
         detailDTO.setName(detail.getName());
-        //detailDTO.moduleId = detail.getModule().getId();
+        detailDTO.setModuleId(detail.getModule().getId());
         detailDTO.setX(detail.getX());
         detailDTO.setY(detail.getY());
         detailDTO.setCount(detail.getCount());

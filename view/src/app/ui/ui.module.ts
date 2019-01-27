@@ -63,6 +63,7 @@ import {OrderCalculationComponent} from './order-calculation/order-calculation.c
 import { OpenDialogCreateOrderComponentComponent } from './orders/open-dialog-create-order-component/open-dialog-create-order-component.component';
 import {JwtResponse} from "../auth/jwt.response";
 import { RegisterComponent } from './register/register.component';
+import { LogoutComponent } from './logout/logout.component';
 
 
 @NgModule({
@@ -84,7 +85,8 @@ import { RegisterComponent } from './register/register.component';
     MenuComponent,
     OrderCalculationComponent,
     OpenDialogCreateOrderComponentComponent,
-    RegisterComponent
+    RegisterComponent,
+    LogoutComponent
   ],
 
   imports: [

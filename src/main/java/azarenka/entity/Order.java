@@ -34,6 +34,9 @@ public class Order extends BaseEntity {
     @Column(name = "date_of_create")
     private LocalDateTime dateOfCreate;
 
+    @Column(name="user_name")
+    private String userName;
+
     public Order() {
     }
 
@@ -91,6 +94,14 @@ public class Order extends BaseEntity {
 
     public void setDateOfContract(LocalDateTime dateOfContract) {
         this.dateOfContract = LocalDateTime.parse(DateTimeUtil.toString(dateOfContract));
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public LocalDateTime getDateOfCreate() {

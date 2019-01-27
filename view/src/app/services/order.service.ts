@@ -12,8 +12,8 @@ export class OrderService {
   constructor(private http: HttpClient) {
   }
 
-  getAll() {
-    return this.http.get('http://localhost:8080/furniture/order');
+  getAllByUserName(name: string) {
+    return this.http.get('http://localhost:8080/furniture/order/'+ name);
   }
 
   get(id: number) {
@@ -21,6 +21,7 @@ export class OrderService {
   }
 
   save(order: OrderEx){
+    console.log(order);
     return this.http.post<OrderEx>('http://localhost:8080/furniture/order',  order);
   }
 }

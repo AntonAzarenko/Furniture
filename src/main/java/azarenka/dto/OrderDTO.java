@@ -1,14 +1,10 @@
 package azarenka.dto;
 
-import azarenka.entity.Module;
 import azarenka.entity.Order;
+import azarenka.security.service.UserPrinciple;
 import azarenka.util.DateTimeUtil;
-
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import java.time.LocalDateTime;
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 public class OrderDTO {
 
@@ -26,15 +22,25 @@ public class OrderDTO {
 
     private String dateOfCreate;
 
+    private String userName;
+
     public OrderDTO() {
     }
 
-    public Order asOrder(){
+    public Order asOrder() {
         Order order = new Order();
+        order.setId(this.id);
+        order.setName(this.name);
+        order.setCustomersName(this.customersName);
+        order.setAddress(this.address);
+        order.setAuthor("somebody");//todo
+        order.setTelNumber(this.telNumber);
+        order.setDateOfCreate(null);
+        order.setUserName(this.userName);
         return order;
     }
 
-    public  static OrderDTO asOrderDTO(Order order){
+    public static OrderDTO asOrderDTO(Order order) {
         OrderDTO orderDTO = new OrderDTO();
         orderDTO.setId(order.getId());
         orderDTO.setName(order.getName());
@@ -44,6 +50,14 @@ public class OrderDTO {
         orderDTO.setDateOfCreate(DateTimeUtil.toString(order.getDateOfCreate()));
         orderDTO.setDateOfContract(DateTimeUtil.toString(order.getDateOfContract()));
         return orderDTO;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getName() {

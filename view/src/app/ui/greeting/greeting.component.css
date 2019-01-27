@@ -5,8 +5,9 @@
 }
 .but {
   font-weight: 100;
-  padding-left: 40px;
+  padding-left: 50px;
   padding-right: 10px;
+  margin-right: 50px;
 }
 
 .authorization {
@@ -52,6 +53,10 @@
 
 .tech {
   color: #bf0008;
+}
+.button_signin {
+
+  margin-right: 50px;
 }
 /*input[type="text"], input[type="password"] {
   width: 300px;

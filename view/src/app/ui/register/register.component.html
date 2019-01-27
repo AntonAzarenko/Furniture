@@ -1,0 +1,46 @@
+<div class="two col-sm-4">
+  <mat-card *ngIf="isSignedUp; else signupForm">
+    Вы успешно зарегистрированы! Авторизуйтесь.
+    <br>
+    <span><a color="primary" mat-raised-button routerLink="/orders">Ok</a></span>
+  </mat-card>
+  <div class="two">
+    <ng-template #signupForm>
+      <mat-card>
+        <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+          <mat-card-content>
+            <div>
+              <mat-form-field class="form-group">
+                <input matInput type="text" name="username" [(ngModel)]="form.username" #username="ngModel"
+                       placeholder="Введите email"
+                       required/>
+                <mat-hint *ngIf="f.submitted && username.invalid">
+                  <mat-hint *ngIf="username.errors.required">Необходимо ввести email</mat-hint>
+                </mat-hint>
+              </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field class="form-group">
+
+                <input matInput type="password" class="form-control" name="password" [(ngModel)]="form.password"
+                       #password="ngModel" placeholder="Введите пароль"
+                       required minlength="6"/>
+                <mat-hint *ngIf="f.submitted && password.invalid">
+                  <mat-hint *ngIf="password.errors.required">Нобходимо ввести пароль</mat-hint>
+                  <mat-hint *ngIf="password.errors.minlength">Пароль должен быть не менее 6 символов</mat-hint>
+                </mat-hint>
+
+              </mat-form-field>
+            </div>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary">Зарегистрироваться</button>
+            <mat-hint *ngIf="f.submitted && isSignUpFailed" class="alert alert-warning">
+              Регистрация не прошла<br/>{{errorMessage}}
+            </mat-hint>
+          </mat-card-actions>
+        </form>
+      </mat-card>
+    </ng-template>
+  </div>
+</div>

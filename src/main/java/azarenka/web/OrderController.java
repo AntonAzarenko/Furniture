@@ -19,9 +19,9 @@ public class OrderController {
     @Autowired
     private OrderService service;
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<OrderDTO> getAll() {
-        return service.getAllByUserID();
+    @GetMapping(value = "/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<OrderDTO> getAllByUser(@PathVariable("name") String name) {
+        return service.getAllByUserName(name);
     }
 
     @DeleteMapping(value = "/{id}")
@@ -30,17 +30,13 @@ public class OrderController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void add(Order order) {
-        service.create(order);
+    public void save(@RequestBody OrderDTO order) {
+        service.create(order.asOrder());
     }
 
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+   /* @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Order getById(@PathVariable("id") Long id) {
         return service.getByID(id);
-    }
+    }*/
 
-    @GetMapping(value = "/by/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Order> getByName(@PathVariable("name") String name) {
-        return service.getByName(name);
-    }
 }

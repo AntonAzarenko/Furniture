@@ -25,6 +25,13 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: "com.heroku.sdk.heroku-gradle"
 
+heroku {
+    appName="protected-bayou-76067"
+    processTypes(
+            web: "java \$JAVA_OPTS -jar -Dspring.profiles.active=production $buildDir.name/libs/$jar.archiveName --server.port=\$PORT".toString()
+    )
+}
+
 
 
 repositories {
@@ -41,6 +48,7 @@ dependencies {
     implementation 'org.mockito:mockito-core:2.22.0'
     runtimeOnly 'org.springframework.boot:spring-boot-devtools'
     //implementation 'org.liquibase:liquibase-core:3.6.2'
+    runtimeOnly 'org.springframework.boot:spring-boot-devtools'
     implementation 'org.postgresql:postgresql'
     implementation 'org.hibernate:hibernate:3.6.0.Beta2'
     //implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.2'

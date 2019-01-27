@@ -7,6 +7,7 @@ import {GreetingComponent} from "./ui/greeting/greeting.component";
 import {OrdersComponent} from "./ui/orders/orders.component";
 import {OrderCalculationComponent} from "./ui/order-calculation/order-calculation.component";
 import {RegisterComponent} from "./ui/register/register.component";
+import {LogoutComponent} from "./ui/logout/logout.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/greeting', pathMatch: 'full'},
@@ -17,8 +18,10 @@ const routes: Routes = [
   {path: 'modules/:id/details', component: DetailsComponent},
   {path: 'modules/:id', component : ModuleComponent},
   {path: 'orders', component: OrdersComponent},
-  {path: 'order-calculation', component:  OrderCalculationComponent},
-  { path: 'signup', component: RegisterComponent },
+  {path: 'order-calculation/:id', component:  OrderCalculationComponent},
+  {path: 'signup', component: RegisterComponent },
+  {path: 'login', component: GreetingComponent},
+  {path: 'logout', component: LogoutComponent}
 
 ];
 

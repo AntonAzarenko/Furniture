@@ -1,8 +1,5 @@
 package azarenka.service.logic;
 
-import azarenka.dto.DetailDTO;
-import azarenka.entity.Detail;
-import azarenka.entity.EdgeMaterial;
 import azarenka.service.DetailService;
 import azarenka.service.EdgeMaterialService;
 import org.junit.After;
@@ -14,12 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import sun.security.util.DerEncoder;
-
-import java.util.List;
-import java.util.Set;
-
-import static org.junit.Assert.*;
 
 
 @SpringBootTest

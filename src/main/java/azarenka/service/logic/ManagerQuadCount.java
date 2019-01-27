@@ -7,10 +7,7 @@ import azarenka.entity.Order;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 @Component
 public class ManagerQuadCount {
@@ -23,13 +20,21 @@ public class ManagerQuadCount {
         Map<BigDecimal, Double> map = new HashMap<>();
         if (Objects.nonNull(detailList)) {
             for (Detail detail : detailList) {
-                if(detail.getMaterial().equals(Material.DSP)) {
-                    map.merge(detail.getDetailsColor().getPrice(), getCountSquareDetail(detail.getX(), detail.getY(), detail.getCount()), (a, b) -> a + b);
-                }
+                map.merge(detail.getDetailsColor().getPrice(), getCountSquareDetail(detail.getX(), detail.getY(), detail.getCount()), (a, b) -> a + b);
             }
         }
         return map;
     }
+
+    protected Map<Material, Map<BigDecimal, Double>> getSquareDetails(List<Detail> details) {
+        Map<Material, Map<BigDecimal, Double>> map = new HashMap<>();
+        Map<Material, List<Detail>> materialListMap = sortDetailOnMaterialType(details);
+        for (Map.Entry<Material, List<Detail>> pair : materialListMap.entrySet()) {
+            map.put(pair.getKey(), getCountSquareDetailsList(pair.getValue()));
+        }
+        return map;
+    }
+
 
     public Map<BigDecimal, Double> getCountSquareDetailsForModule(Module module) {
         Map<BigDecimal, Double> map = new HashMap<>();
@@ -61,6 +66,30 @@ public class ManagerQuadCount {
                 map = getCountSquareDetailsForModule(module);
             }
         }
+        return map;
+    }
+
+    private Map<Material, List<Detail>> sortDetailOnMaterialType(List<Detail> details) {
+        Map<Material, List<Detail>> map = new HashMap<>();
+        List<Detail> listDsp = new ArrayList<>();
+        List<Detail> listDvp = new ArrayList<>();
+        List<Detail> listMDF = new ArrayList<>();
+        List<Detail> listWOOD = new ArrayList<>();
+        for (Detail current : details) {
+            if (current.getMaterial().equals(Material.DSP)) {
+                listDsp.add(current);
+            } else if (current.getMaterial().equals(Material.DVP)) {
+                listDvp.add(current);
+            } else if (current.getMaterial().equals(Material.MDF) || current.getMaterial().equals("WOOD")) {
+                listMDF.add(current);
+            } else if (current.getMaterial().equals(Material.WOOD)) {
+                listDsp.add(current);
+            }
+        }
+        map.put(Material.DSP, listDsp);
+        map.put(Material.DVP, listDvp);
+        map.put(Material.MDF, listMDF);
+        map.put(Material.WOOD, listWOOD);
         return map;
     }
 }

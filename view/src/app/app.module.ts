@@ -45,6 +45,7 @@ import {
 import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
 import {Http, HttpModule} from "@angular/http";
 import {httpInterceptorProviders} from "./auth/auth-interceptor";
+import {MenuComponent} from "./ui/menu/menu.component";
 
 
 @NgModule({
@@ -108,7 +109,7 @@ import {httpInterceptorProviders} from "./auth/auth-interceptor";
     HttpModule,
   ],
 
-  providers: [httpInterceptorProviders],
+  providers: [httpInterceptorProviders, MenuComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
