@@ -26,7 +26,6 @@ public class BookerServiceImplTest {
 
     @Test
     public void getCalculationOfOrder() {
-        List<BookerDTO> list = service.getCalculationOfOrder(1L);
-        list.forEach(l -> log.info(list.toString()));
+
     }
 }
