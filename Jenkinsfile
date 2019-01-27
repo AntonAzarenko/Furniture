@@ -4,12 +4,8 @@ pipeline {
     triggers {
         pollSCM('H/5 * * * *')
     }
-    enviromet{
-    PATH = "C:\\Program Files\\Git\\usr\\bin;C:\\Program Files\\Git\\bin;${env.PATH}"
+
     stages {
-
-
-
         stage('build') {
             steps {
                 gradlew('build')
@@ -33,7 +29,7 @@ pipeline {
             }
         }
     }
-    }
+
 }
 
 def gradlew(String... args) {
