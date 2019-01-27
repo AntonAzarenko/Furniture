@@ -4,8 +4,12 @@ pipeline {
     triggers {
         pollSCM('H/5 * * * *')
     }
-
+    PATH = "C:\\Program Files\\Git\\usr\\bin;C:\\Program Files\\Git\\bin;${env.PATH}"
     stages {
+        stage('Sanity check') {
+            steps {
+                sh 'script/code_scan.sh'
+            }
 
 
         stage('build') {
