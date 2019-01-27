@@ -4,6 +4,7 @@ pipeline {
     triggers {
         pollSCM('H/5 * * * *')
     }
+    enviromet{
     PATH = "C:\\Program Files\\Git\\usr\\bin;C:\\Program Files\\Git\\bin;${env.PATH}"
     stages {
         stage('Sanity check') {
@@ -34,6 +35,7 @@ pipeline {
                 gradlew('deployHeroku')
             }
         }
+    }
     }
 }
 
