@@ -32,6 +32,16 @@ heroku {
     )
 }
 
+deployHeroku {
+    dependsOn build
+
+    doFirst {
+        if (!System.getenv('HEROKU_API_KEY')) {
+            throw new GradleException('Deployment to Heroku requires setting the environment variable HEROKU_API_KEY')
+        }
+    }
+}
+
 
 
 repositories {
