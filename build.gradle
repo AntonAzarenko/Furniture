@@ -27,7 +27,7 @@ apply plugin: 'io.spring.dependency-management'
 apply plugin: "com.heroku.sdk.heroku-gradle"
 
 heroku {
-    appName="beck-end-furniture"
+    appName="back-end-furniture"
     processTypes(
             web: "java \$JAVA_OPTS -jar -Dspring.profiles.active=production $buildDir.name/libs/$jar.archiveName --server.port=\$PORT".toString()
     )
