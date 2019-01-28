@@ -18,7 +18,7 @@ buildscript {
 
 group = 'com.azarenka'
 version 'alpha 0.7'
-sourceCompatibility = 1.8
+
 
 
 apply plugin: 'java'
