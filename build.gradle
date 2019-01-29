@@ -17,7 +17,7 @@ buildscript {
 }
 
 group = 'com.azarenka'
-version 'alpha 0.7'
+version 'alpha_0.7'
 
 
 
