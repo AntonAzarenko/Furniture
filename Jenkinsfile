@@ -14,7 +14,7 @@ pipeline {
         }
         stage('build') {
             steps {
-                gradlew('build --warning-mode=all')
+                gradlew('build')
                 stash includes: '**/build/libs/*.jar', name: 'app'
             }
         }
