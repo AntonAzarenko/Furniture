@@ -2,7 +2,7 @@ import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {MatDialog, MatPaginator, MatSort} from '@angular/material';
 import {DetailService} from "../../services/detail.service";
 import {ActivatedRoute, Route, Router} from "@angular/router";
-import {ColorserviceService} from "../../services/colorservice.service";
+import {ColorService} from "../../services/colorservice.service";
 import {EdgeMaterialServiceService} from "../../services/edge-material-service.service";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {DetailCreateDialogComponent} from "./detail-create-dialog/detail-create-dialog.component";
@@ -53,7 +53,7 @@ export class DetailsComponent implements OnInit {
   private colorTitle: string;
 
   constructor(private service: DetailService,
-              private colorService: ColorserviceService,
+              private colorService: ColorService,
               private edgeService: EdgeMaterialServiceService,
               private route: ActivatedRoute,
               public dialog: MatDialog,

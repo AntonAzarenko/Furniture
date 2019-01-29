@@ -19,16 +19,16 @@ export class ModuleService {
 
   getAll(id: number) {
     console.log(id);
-    return this.http.get('http://localhost:8080/furniture/module/' + id);
+    return this.http.get('https://back-end-furniture.herokuapp.com/furniture/module/' + id);
   }
 
   save(moduleF: FurnitureModule) {
     console.log(moduleF);
-    return this.http.post<FurnitureModule>('http://localhost:8080/furniture/module', moduleF, httpOptions);
+    return this.http.post<FurnitureModule>('https://back-end-furniture.herokuapp.com/furniture/module', moduleF, httpOptions);
   }
 
   delete(id: number) {
     console.log(id);
-    this.http.delete('http://localhost:8080/furniture/module/' + id).subscribe();
+    this.http.delete('https://back-end-furniture.herokuapp.com/furniture/module/' + id).subscribe();
   }
 }

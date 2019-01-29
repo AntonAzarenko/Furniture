@@ -18,16 +18,16 @@ export class DetailService {
   }
 
   getAllDetail() {
-    return this.http.get('http://localhost:8080/furniture/detail');
+    return this.http.get('https://back-end-furniture.herokuapp.com/furniture/detail');
   }
 
   getDetailsByModuleId(id: number) {
-    return this.http.get('http://localhost:8080/furniture/detail/' + id);
+    return this.http.get('https://back-end-furniture.herokuapp.com/furniture/detail/' + id);
   }
 
   deleteDetail(id: number) {
      console.log(id);
-    this.http.delete('http://localhost:8080/furniture/detail/' + id).subscribe();
+    this.http.delete('https://back-end-furniture.herokuapp.com/furniture/detail/' + id).subscribe();
   }
 
   deleteAll(list: Details[]) {
@@ -36,11 +36,11 @@ export class DetailService {
     list.forEach(function (value, index, array) {
 
     });
-     this.http.delete<Details>('http://localhost:8080/furniture/detail/del/' + list).subscribe();
+     this.http.delete<Details>('https://back-end-furniture.herokuapp.com/furniture/detail/del/' + list).subscribe();
   }
 
   save(detail: Details) {
     console.log(detail);
-    return this.http.post<Details>('http://localhost:8080/furniture/detail', detail, httpOptions)
+    return this.http.post<Details>('https://back-end-furniture.herokuapp.com/furniture/detail', detail, httpOptions)
   }
 }

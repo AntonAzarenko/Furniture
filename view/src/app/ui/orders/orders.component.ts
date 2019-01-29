@@ -7,6 +7,12 @@ import {OpenDialogCreateOrderComponentComponent} from "./open-dialog-create-orde
 import {TokenStorageService} from "../../auth/token-storage.service";
 import {OrderEx} from "../../entity/OrderEx";
 
+export interface DialogCreateData {
+  name:string;
+  customersName:string;
+  telNumber:string;
+  address:string;
+}
 
 @Component({
   selector: 'app-orders',
@@ -57,7 +63,7 @@ export class OrdersComponent implements OnInit {
     console.log(this.dataSource);
   }
 
-  openDialogCreateOrder(event) {
+  openDialogCreateOrder() {
     const dialogRef = this.dialog.open(OpenDialogCreateOrderComponentComponent, {
       width: '600px',
       data: {}

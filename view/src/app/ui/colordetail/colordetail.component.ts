@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ColorserviceService} from "../../services/colorservice.service";
+import {ColorService} from "../../services/colorservice.service";
 import {FormsModule} from "@angular/forms";
 
 @Component({
@@ -9,10 +9,10 @@ import {FormsModule} from "@angular/forms";
 })
 export class ColorDetailComponent implements OnInit {
 
-  private colors: Object;
+  public colors: Object;
   public idColor: number ;
 
-  constructor(private service: ColorserviceService) { }
+  constructor(private service: ColorService) { }
 
   ngOnInit() {
     this.getAll();
@@ -20,7 +20,7 @@ export class ColorDetailComponent implements OnInit {
 
 
   getAll(){
-    this.service.getAllColorMaterail().subscribe(
+    this.service.getAllColorMaterial().subscribe(
       (data:any[])=>{
       this.colors =  (data)
     });

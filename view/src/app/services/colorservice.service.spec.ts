@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ColorserviceService } from './colorservice.service';
+import { ColorService } from './colorservice.service';
 
-describe('ColorserviceService', () => {
+describe('ColorService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: ColorserviceService = TestBed.get(ColorserviceService);
+    const service: ColorService = TestBed.get(ColorService);
     expect(service).toBeTruthy();
   });
 });

@@ -9,6 +9,6 @@ export class EdgeMaterialServiceService {
   constructor(private http: HttpClient) { }
 
   getAllEdge(){
-    return this.http.get('http://localhost:8080/furniture/edge');
+    return this.http.get('https://back-end-furniture.herokuapp.com/furniture/edge');
   }
 }

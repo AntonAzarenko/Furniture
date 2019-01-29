@@ -4,11 +4,11 @@ import {HttpClient} from "@angular/common/http";
 @Injectable({
   providedIn: 'root'
 })
-export class ColorserviceService {
+export class ColorService {
 
   constructor(private http: HttpClient) { }
 
-  getAllColorMaterail(){
-    return this.http.get('http://localhost:8080/furniture/color/all');
+  getAllColorMaterial(){
+    return this.http.get('https://back-end-furniture.herokuapp.com/furniture/color/all');
   }
 }

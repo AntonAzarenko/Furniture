@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {DialogDeleteData, OpenDialogToDeleteModuleComponent} from "../../modules/module.component";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
+import {DialogCreateData} from "../orders.component";
 
 @Component({
   selector: 'app-open-dialog-create-order-component',
@@ -15,7 +15,7 @@ export class OpenDialogCreateOrderComponentComponent implements OnInit {
   address:string;
 
   constructor(public dialogRef: MatDialogRef<OpenDialogCreateOrderComponentComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: DialogDeleteData) {
+              @Inject(MAT_DIALOG_DATA) public data: DialogCreateData) {
   }
 
   ngOnInit() {
