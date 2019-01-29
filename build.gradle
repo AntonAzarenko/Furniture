@@ -29,7 +29,7 @@ apply plugin: "com.heroku.sdk.heroku-gradle"
 heroku {
     appName="back-end-furniture"
     processTypes(
-            web: "java $JAVA_OPTS -jar -Dspring.profiles.active=production build/libs/furniture-alpha 0.7.jar --server.port=$PORT".toString()
+            web: "java \$JAVA_OPTS -jar -Dspring.profiles.active=production $buildDir.name/libs/$jar.archiveName --server.port=\$PORT".toString()
     )
 }
 
