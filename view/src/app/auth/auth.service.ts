@@ -17,8 +17,8 @@ const httpOptions = {
 })
 export class AuthService {
 
-  private loginUrl = 'http://localhost:8080/furniture/auth/signin';
-  private signupUrl = 'http://localhost:8080/furniture/auth/signup';
+  private loginUrl = 'https://back-end-furniture.herokuapp.com/furniture/auth/signin';
+  private signupUrl = 'https://back-end-furniture.herokuapp.com/furniture/auth/signup';
 
   constructor(private http: HttpClient) {
   }

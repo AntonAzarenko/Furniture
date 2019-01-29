@@ -46,7 +46,6 @@ import {
 import {FormsModule} from "@angular/forms";
 import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
 import {
-  FurnitureModule,
   ModuleComponent,
   OpenDialogToCreateModuleComponent,
   OpenDialogToDeleteModuleComponent
@@ -56,14 +55,13 @@ import {CdkTableModule} from "@angular/cdk/table";
 import {CdkTreeModule} from "@angular/cdk/tree";
 import {DetailCreateDialogComponent} from './details/detail-create-dialog/detail-create-dialog.component';
 import {EdgeMaterialComponent} from './edge-material/edge-material.component';
-import {OrderEx, OrdersComponent} from "./orders/orders.component";
+import {OrdersComponent} from "./orders/orders.component";
 import {DetailsComponent} from "./details/details.component";
 import {MenuComponent} from './menu/menu.component';
 import {OrderCalculationComponent} from './order-calculation/order-calculation.component';
-import { OpenDialogCreateOrderComponentComponent } from './orders/open-dialog-create-order-component/open-dialog-create-order-component.component';
-import {JwtResponse} from "../auth/jwt.response";
-import { RegisterComponent } from './register/register.component';
-import { LogoutComponent } from './logout/logout.component';
+import {OpenDialogCreateOrderComponentComponent} from './orders/open-dialog-create-order-component/open-dialog-create-order-component.component';
+import {RegisterComponent} from './register/register.component';
+import {LogoutComponent} from './logout/logout.component';
 
 
 @NgModule({
@@ -76,12 +74,10 @@ import { LogoutComponent } from './logout/logout.component';
     ModuleComponent,
     GreetingComponent,
     OpenDialogToCreateModuleComponent,
-    FurnitureModule,
     OpenDialogToDeleteModuleComponent,
     OrdersComponent,
     DetailCreateDialogComponent,
     EdgeMaterialComponent,
-    OrderEx,
     MenuComponent,
     OrderCalculationComponent,
     OpenDialogCreateOrderComponentComponent,
@@ -142,7 +138,8 @@ import { LogoutComponent } from './logout/logout.component';
     OpenDialogToCreateModuleComponent,
     OpenDialogToDeleteModuleComponent,
     DetailCreateDialogComponent,
-    OpenDialogCreateOrderComponentComponent
+    OpenDialogCreateOrderComponentComponent,
+
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
 
@@ -154,13 +151,10 @@ import { LogoutComponent } from './logout/logout.component';
     DetailsComponent,
     ModuleComponent,
     OpenDialogToCreateModuleComponent,
-    FurnitureModule,
     OpenDialogToDeleteModuleComponent,
     OrdersComponent,
     OpenDialogCreateOrderComponentComponent,
     DetailCreateDialogComponent,
-    OrderEx,
-
   ]
 })
 export class UiModule {

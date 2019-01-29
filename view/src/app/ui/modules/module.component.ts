@@ -4,6 +4,7 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar} from "@angular/ma
 import {ActivatedRoute} from "@angular/router";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {MenuComponent} from "../menu/menu.component";
+import {FurnitureModule} from "./FurnitureModule";
 
 export interface DialogCreateData {
   id: number;
@@ -31,8 +32,8 @@ export interface DialogDeleteData {
   ],
 })
 export class ModuleComponent implements OnInit {
-  private modules: FurnitureModule[];
-  private moduleF: FurnitureModule;
+  public modules: FurnitureModule[];
+  public moduleF: FurnitureModule;
   private id: number;
   private type: string;
   private name: string;
@@ -44,12 +45,12 @@ export class ModuleComponent implements OnInit {
   displayedColumns: string [] = ['name', 'moduleType'];
 
 
-  constructor(private service: ModuleService,
+  constructor(public service: ModuleService,
               public dialog: MatDialog,
               public dialogD: MatDialog,
               public snackBar: MatSnackBar,
-              private route: ActivatedRoute,
-              private menu: MenuComponent) {
+              public route: ActivatedRoute,
+              public menu: MenuComponent) {
   }
 
   ngOnInit() {
@@ -147,24 +148,5 @@ export class OpenDialogToDeleteModuleComponent {
   }
 }
 
-@Component({
-  selector: 'app-furnitureModule',
-  templateUrl: './dialog.html'
-})
-export class FurnitureModule {
-  id: number;
-  name: string;
-  moduleType: string;
-  order_id: number;
 
-  constructor(id: number,
-              name: string,
-              moduleType: string,
-              order_id: number) {
-    this.id = id;
-    this.name = name;
-    this.moduleType = moduleType;
-    this.order_id = order_id
-  }
-}
 

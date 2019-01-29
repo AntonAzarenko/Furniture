@@ -5,6 +5,7 @@ import {ActivatedRoute} from "@angular/router";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {OpenDialogCreateOrderComponentComponent} from "./open-dialog-create-order-component/open-dialog-create-order-component.component";
 import {TokenStorageService} from "../../auth/token-storage.service";
+import {OrderEx} from "../../entity/OrderEx";
 
 
 @Component({
@@ -31,6 +32,9 @@ export class OrdersComponent implements OnInit {
   private customersName: string;
   private telNumber: string;
   private address: string;
+  dateOfContract: string;
+  dateOfCreate: string;
+
 
   displayedColumns: string [] = ['name', 'address', 'telNumber', 'customersName', 'dateOfCreate', 'dateOfContract'];
 
@@ -80,30 +84,3 @@ export class OrdersComponent implements OnInit {
 }
 
 
-@Component({
-  selector: 'order',
-  template: ''
-})
-export class OrderEx {
-  id: number;
-  name: string;
-  address: string;
-  customersName: string;
-  telNumber: string;
-  dateOfContract: string;
-  dateOfCreate: string;
-  userName: string;
-
-
-  constructor(id: number, name: string, address: string, customersName: string, telNumber: string,
-                dateOfContract: string, dateOfCreate: string, userName: string) {
-    this.id = id;
-    this.name = name;
-    this.address = address;
-    this.customersName = customersName;
-    this.telNumber = telNumber;
-    this.dateOfContract = dateOfContract;
-    this.dateOfCreate = dateOfCreate;
-    this.userName = userName;
-  }
-}
