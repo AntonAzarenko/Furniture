@@ -58,7 +58,7 @@ dependencies {
     implementation 'net.sf.dozer:dozer:' + rev_dozer_mapper
     implementation 'org.mockito:mockito-core:2.22.0'
     runtimeOnly 'org.springframework.boot:spring-boot-devtools'
-    implementation 'org.postgresql:postgresql'
+    implementation 'org.postgresql:postgresql:9.4.1212'
     implementation 'org.hibernate:hibernate:3.6.0.Beta2'
 
     implementation 'commons-codec:commons-codec:1.11'
