@@ -8,7 +8,6 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 import {DetailCreateDialogComponent} from "./detail-create-dialog/detail-create-dialog.component";
 import {Details} from "../../entity/Details";
 
-const id = "0";
 
 @Component({
   selector: 'app-details',
@@ -41,7 +40,7 @@ export class DetailsComponent implements OnInit {
   private count: string;
   private thickness: string;
   private material: string;
-  private colorId: number;
+  public colorId: number;
   private edgeOnX: boolean;
   private edgeOnY: boolean;
   private edgeTypeY: string;

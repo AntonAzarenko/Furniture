@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {FurnitureModule} from "../ui/modules/FurnitureModule";
+import {FurnitureModule} from "../entity/FurnitureModule";
 
 const httpOptions = {
   headers: new HttpHeaders({

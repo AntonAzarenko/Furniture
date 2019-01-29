@@ -3,14 +3,14 @@ import {ColorserviceService} from "../../services/colorservice.service";
 import {FormsModule} from "@angular/forms";
 
 @Component({
-  selector: 'app-colordetail',
-  templateUrl: './colordetail.component.html',
-  styleUrls: ['./colordetail.component.css']
+  selector: 'app-colorDetail',
+  templateUrl: './colorDetail.component.html',
+  styleUrls: ['./colorDetail.component.css']
 })
-export class ColordetailComponent implements OnInit {
+export class ColorDetailComponent implements OnInit {
 
   private colors: Object;
-  private idcolor: number ;
+  public idColor: number ;
 
   constructor(private service: ColorserviceService) { }
 

@@ -4,7 +4,7 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar} from "@angular/ma
 import {ActivatedRoute} from "@angular/router";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {MenuComponent} from "../menu/menu.component";
-import {FurnitureModule} from "./FurnitureModule";
+import {FurnitureModule} from "../../entity/FurnitureModule";
 
 export interface DialogCreateData {
   id: number;
@@ -137,7 +137,6 @@ export class OpenDialogToCreateModuleComponent {
   selector: 'app-dialog-delete',
   templateUrl: './dialog.delete.html'
 })
-
 export class OpenDialogToDeleteModuleComponent {
   constructor(public dialogRef: MatDialogRef<OpenDialogToDeleteModuleComponent>,
               @Inject(MAT_DIALOG_DATA) public data: DialogDeleteData) {

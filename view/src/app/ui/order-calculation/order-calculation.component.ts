@@ -17,6 +17,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class OrderCalculationComponent implements OnInit {
 
+  orderName:string;
   dataSource: Object[];
   displayedColumns: string [] = ['moduleName', 'moduleType', "dspM2", "dvpM2", "edgeM", "fittings", "facades", "total"];
 

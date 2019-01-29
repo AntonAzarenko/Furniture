@@ -5,7 +5,7 @@ import {FooterComponent} from './footer/footer.component';
 import {LayoutComponent} from './layout/layout.component';
 import {AppRoutingModule} from "../app-routing.module";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {ColordetailComponent} from "./colordetail/colordetail.component";
+import {ColorDetailComponent} from "./colordetail/colordetail.component";
 import {
   MatAutocompleteModule,
   MatBadgeModule,
@@ -69,7 +69,7 @@ import {LogoutComponent} from './logout/logout.component';
     HeaderComponent,
     FooterComponent,
     LayoutComponent,
-    ColordetailComponent,
+    ColorDetailComponent,
     DetailsComponent,
     ModuleComponent,
     GreetingComponent,
@@ -82,7 +82,8 @@ import {LogoutComponent} from './logout/logout.component';
     OrderCalculationComponent,
     OpenDialogCreateOrderComponentComponent,
     RegisterComponent,
-    LogoutComponent
+    LogoutComponent,
+
   ],
 
   imports: [
@@ -131,7 +132,7 @@ import {LogoutComponent} from './logout/logout.component';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatTreeModule,
+    MatTreeModule
 
   ],
   entryComponents: [
@@ -147,7 +148,7 @@ import {LogoutComponent} from './logout/logout.component';
     HeaderComponent,
     FooterComponent,
     LayoutComponent,
-    ColordetailComponent,
+    ColorDetailComponent,
     DetailsComponent,
     ModuleComponent,
     OpenDialogToCreateModuleComponent,
@@ -155,6 +156,7 @@ import {LogoutComponent} from './logout/logout.component';
     OrdersComponent,
     OpenDialogCreateOrderComponentComponent,
     DetailCreateDialogComponent,
+
   ]
 })
 export class UiModule {

@@ -7,8 +7,8 @@ import {TokenStorageService} from "../../auth/token-storage.service";
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  private roles: string[];
-  private authority: string;
+  public roles: string[];
+  public authority: string;
   public modules: string;
 
   setModules(value: string) {

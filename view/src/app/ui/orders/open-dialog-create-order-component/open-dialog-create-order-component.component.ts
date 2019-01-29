@@ -9,6 +9,11 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 })
 export class OpenDialogCreateOrderComponentComponent implements OnInit {
 
+  name:string;
+  customersName:string;
+  telNumber:string;
+  address:string;
+
   constructor(public dialogRef: MatDialogRef<OpenDialogCreateOrderComponentComponent>,
               @Inject(MAT_DIALOG_DATA) public data: DialogDeleteData) {
   }
