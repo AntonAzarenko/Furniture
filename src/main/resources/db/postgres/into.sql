@@ -1,7 +1,18 @@
 insert into color_detail (id, title, title_manufacturer, country_manufacturer, price) VALUES
   (1,'Кантри','SWISSPAN','UKRAINE',9),
   (2,'Пепел','SWISSPAN','UKRAINE',9),
-  (3,'Крем','SWISSPAN','UKRAINE',9);
+  (3,'Крем','SWISSPAN','UKRAINE',9),
+  (4, 'Бук светлый','SWISSPAN', 'UKRAINE',7.5),
+  (5, 'Дуб молочный', 'SWISSPAN','UKRAINE',8),
+  (6, 'Дуб Венге', 'SWISSPAN','UKRAINE',7.5),
+  (7, 'Яблоня локарно темная','SWISSPAN', 'UKRAINE',7.5),
+  (8, 'Махонь','SWISSPAN', 'UKRAINE',7.5),
+  (9, 'Ольха темная','SWISSPAN', 'UKRAINE',7.5),
+  (10, 'Орех экко','SWISSPAN', 'UKRAINE',7.5),
+  (11, 'Орех лесной', 'SWISSPAN','UKRAINE',7.5),
+  (12, 'Орех темный', 'SWISSPAN','UKRAINE',7.5),
+  (13, 'Терра голубая', 'SWISSPAN','UKRAINE',7.5),
+  (14, 'Апельсин', 'SWISSPAN', 'UKRAINE',7.5);
 
 
 INSERT INTO edge (id, name, edge_type, color, price, thickness, country) VALUES

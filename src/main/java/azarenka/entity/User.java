@@ -26,7 +26,7 @@ public class User extends BaseEntity {
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
-    @Column(name = "registration", columnDefinition = "timestamp default now()")
+    @Column(name = "registered", columnDefinition = "timestamp default now()")
     private LocalDateTime registered;
 
     public User() {

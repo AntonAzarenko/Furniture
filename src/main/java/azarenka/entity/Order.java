@@ -31,7 +31,7 @@ public class Order extends BaseEntity {
     @Column(name = "date_of_contract")
     private LocalDateTime dateOfContract;
 
-    @Column(name = "date_of_create")
+    @Column(name = "date_of_create", columnDefinition = "timestamp default now()")
     private LocalDateTime dateOfCreate;
 
     @Column(name="user_name")
