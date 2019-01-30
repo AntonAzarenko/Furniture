@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS furniture;
 -- -----------------------------------------------------
 CREATE TABLE users (
   id         BIGSERIAL   NOT NULL,
-  name       VARCHAR(45) NOT NULL,
+  name       VARCHAR(45) ,
   email      VARCHAR(45) NOT NULL UNIQUE ,
   password   VARCHAR(45) NOT NULL,
   enabled    BOOLEAN     NOT NULL,
@@ -33,7 +33,7 @@ CREATE TABLE roles (
 CREATE TABLE orders (
   id     BIGSERIAL   NOT NULL PRIMARY KEY,
   name   VARCHAR(45) NOT NULL,
-  author VARCHAR(45) NOT NULL,
+  author VARCHAR(45) ,
   user_name VARCHAR(100) NOT NULL,
   CONSTRAINT U_N FOREIGN KEY (user_name) REFERENCES users(email)
 );

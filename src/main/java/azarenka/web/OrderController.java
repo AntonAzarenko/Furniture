@@ -1,7 +1,6 @@
 package azarenka.web;
 
 import azarenka.dto.OrderDTO;
-import azarenka.entity.Order;
 import azarenka.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -11,8 +10,8 @@ import java.util.List;
 
 import static azarenka.web.DetailController.URL;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping(value = URL + "/order")
 public class OrderController {
 
@@ -33,10 +32,5 @@ public class OrderController {
     public void save(@RequestBody OrderDTO order) {
         service.create(order.asOrder());
     }
-
-   /* @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Order getById(@PathVariable("id") Long id) {
-        return service.getByID(id);
-    }*/
 
 }
