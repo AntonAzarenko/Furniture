@@ -34,6 +34,8 @@ public class BookerDTO {
 
     private BigDecimal total;
 
+    private BigDecimal totalOrder;
+
     public BookerDTO() {
     }
 
@@ -45,7 +47,12 @@ public class BookerDTO {
         bookerDTO.setPriceForSquareDVP(getCostSquareDVP(module));
         bookerDTO.setPriceForEdge(getCostLengthEdge(module));
         bookerDTO.setTotal(getPriceTotalOFModule(module));
+        bookerDTO.setTotalOrder(getPriceTotalOfOrder(module));
         return bookerDTO;
+    }
+
+    private BigDecimal getPriceTotalOfOrder(Module module) {
+        return booker.getPriceOrder(module.getOrder());
     }
 
     private BigDecimal getCostLengthEdge(Module module) {
@@ -134,6 +141,14 @@ public class BookerDTO {
 
     public void setTotal(BigDecimal total) {
         this.total = total;
+    }
+
+    public BigDecimal getTotalOrder() {
+        return totalOrder;
+    }
+
+    public void setTotalOrder(BigDecimal totalOrder) {
+        this.totalOrder = totalOrder;
     }
 
     @Override
