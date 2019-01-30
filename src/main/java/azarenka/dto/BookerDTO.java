@@ -45,31 +45,31 @@ public class BookerDTO {
         bookerDTO.setPriceForSquareDVP(getCostSquareDVP(module));
         bookerDTO.setPriceForEdge(getCostLengthEdge(module));
         bookerDTO.setTotal(getPriceTotalOFModule(module));
-        return  bookerDTO;
+        return bookerDTO;
     }
 
-    private BigDecimal getCostLengthEdge(Module module){
+    private BigDecimal getCostLengthEdge(Module module) {
         return booker.getPriceEdgeByModule(module);
     }
 
-    private BigDecimal getCostSquareDSP(Module module){
-        return  booker.getPriceDetailByType(module, Material.DSP);
+    private BigDecimal getCostSquareDSP(Module module) {
+        return booker.getPriceDetailByType(module, Material.DSP);
     }
 
-    private BigDecimal getCostSquareDVP(Module module){
-        return  booker.getPriceDetailByType(module, Material.DVP);
+    private BigDecimal getCostSquareDVP(Module module) {
+        return booker.getPriceDetailByType(module, Material.DVP);
     }
 
-    private BigDecimal getCostSquareWOOD(Module module){
-        return  booker.getPriceDetailByType(module, Material.WOOD);
+    private BigDecimal getCostSquareWOOD(Module module) {
+        return booker.getPriceDetailByType(module, Material.WOOD);
     }
 
-    private BigDecimal getCostSquareMDF(Module module){
-        return  booker.getPriceDetailByType(module, Material.MDF);
+    private BigDecimal getCostSquareMDF(Module module) {
+        return booker.getPriceDetailByType(module, Material.MDF);
     }
 
-    private BigDecimal getPriceTotalOFModule(Module module){
-        return  booker.getPriceModule(module);
+    private BigDecimal getPriceTotalOFModule(Module module) {
+        return booker.getPriceModule(module);
     }
 
     public String getModuleName() {
