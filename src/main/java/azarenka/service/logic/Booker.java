@@ -32,7 +32,8 @@ public class Booker {
              Map<BigDecimal, Double> priceEdge = getPriceEdge(list);
 
             price = price.add(getPriceForDetailMap(priceDetail));
-            // price = price.add(getPriceForEdgeMap(priceEdge));
+
+             price = price.add(getPriceForEdgeMap(priceEdge));
 
             //TODO for furniture and facadeList
         }
@@ -55,7 +56,7 @@ public class Booker {
     }
 
     public BigDecimal getPriceEdgeByModule(Module module){
-        BigDecimal price = new BigDecimal(ZERO);
+        BigDecimal price;
         List<Detail> details = module.getDetailList();
         Map<BigDecimal, Double> priceEdge = getPriceEdge(details);
         price = getPriceForEdgeMap(priceEdge);

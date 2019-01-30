@@ -19,7 +19,7 @@ public class OrderController {
     private OrderService service;
 
     @GetMapping(value = "/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<OrderDTO> getAllByUser(@PathVariable("name") String name) {
+    public List<OrderDTO> getAllByUser(@RequestParam("name") String name) {
         return service.getAllByUserName(name);
     }
 

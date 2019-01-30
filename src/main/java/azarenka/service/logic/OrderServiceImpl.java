@@ -25,7 +25,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    @Transactional //TODO cache
+    //TODO cache
     public List<OrderDTO> getAllByUserName(String name) {
         List<Order> orders = repository.getAllByUserName(name);
         List<OrderDTO> orderDTOS = new ArrayList<>();
