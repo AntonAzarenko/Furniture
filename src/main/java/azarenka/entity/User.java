@@ -1,7 +1,7 @@
 package azarenka.entity;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -27,16 +27,16 @@ public class User extends BaseEntity {
     private Set<Role> roles;
 
     @Column(name = "registered", columnDefinition = "timestamp default now()")
-    private LocalDateTime registered;
+    private Date registered = new Date();
 
     public User() {
     }
 
-    public LocalDateTime getRegistered() {
+    public Date getRegistered() {
         return registered;
     }
 
-    public void setRegistered(LocalDateTime registered) {
+    public void setRegistered(Date registered) {
         this.registered = registered;
     }
 

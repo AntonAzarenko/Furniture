@@ -4,6 +4,7 @@ import azarenka.util.DateTimeUtil;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -32,7 +33,7 @@ public class Order extends BaseEntity {
     private LocalDateTime dateOfContract;
 
     @Column(name = "date_of_create", columnDefinition = "timestamp default now()")
-    private LocalDateTime dateOfCreate;
+    private Date dateOfCreate = new Date();
 
     @Column(name="user_name")
     private String userName;
@@ -92,10 +93,6 @@ public class Order extends BaseEntity {
         return dateOfContract;
     }
 
-    public void setDateOfContract(LocalDateTime dateOfContract) {
-        this.dateOfContract = LocalDateTime.parse(DateTimeUtil.toString(dateOfContract));
-    }
-
     public String getUserName() {
         return userName;
     }
@@ -104,11 +101,15 @@ public class Order extends BaseEntity {
         this.userName = userName;
     }
 
-    public LocalDateTime getDateOfCreate() {
-        return dateOfCreate;
+    public void setDateOfContract(LocalDateTime dateOfContract) {
+        this.dateOfContract = dateOfContract;
     }
 
-    public void setDateOfCreate(LocalDateTime dateOfCreate) {
+    public void setDateOfCreate(Date dateOfCreate) {
         this.dateOfCreate = dateOfCreate;
+    }
+
+    public Date getDateOfCreate() {
+        return dateOfCreate;
     }
 }

@@ -53,6 +53,8 @@ public class DetailDTO {
 
     private Long edgeMaterialIdY;
 
+    private Module module;
+
     public DetailDTO() {
     }
 
@@ -87,7 +89,7 @@ public class DetailDTO {
     private DetailsColor createDetailColor() {
         DetailsColor detailsColor = new DetailsColor();
         if (material.equals(Material.DVP)) {
-                detailsColor.setId(4L);
+            detailsColor.setId(4L);
         } else {
             detailsColor.setId(colorId);
         }
@@ -207,7 +209,11 @@ public class DetailDTO {
 
     private Module createModule() {
         Module module = new Module();
-        module.setId(moduleId);
+        if (moduleId == null && this.module != null) {
+            module.setId(this.module.getId());
+        } else {
+            module.setId(moduleId);
+        }
         return module;
     }
 
@@ -307,6 +313,14 @@ public class DetailDTO {
     public void setX(int x) {
         this.x = x;
 
+    }
+
+    public Module getModule() {
+        return module;
+    }
+
+    public void setModule(Module module) {
+        this.module = module;
     }
 
     public int getY() {

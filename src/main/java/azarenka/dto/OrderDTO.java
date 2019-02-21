@@ -3,6 +3,11 @@ package azarenka.dto;
 import azarenka.entity.Order;
 import azarenka.util.DateTimeUtil;
 
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
+
 public class OrderDTO {
 
     private Long id;
@@ -32,7 +37,7 @@ public class OrderDTO {
         order.setAddress(this.address);
         order.setAuthor("somebody");//todo
         order.setTelNumber(this.telNumber);
-        order.setDateOfCreate(null);
+        order.setDateOfCreate(new Date());
         order.setUserName(this.userName);
         return order;
     }

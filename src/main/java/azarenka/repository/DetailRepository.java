@@ -13,4 +13,5 @@ public interface DetailRepository extends JpaRepository<Detail, Long> {
     List<Detail> getAllByModule_Id(Long id);
 
     Detail save(Detail detail);
+
 }

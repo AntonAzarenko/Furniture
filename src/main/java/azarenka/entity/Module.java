@@ -6,6 +6,7 @@ import java.util.List;
 @Entity
 @Table(name = "module")
 public class Module extends BaseEntity {
+
     @Column(name = "title")
     private String name;
 

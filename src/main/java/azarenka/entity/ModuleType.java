@@ -1,10 +1,12 @@
 package azarenka.entity;
 
 public enum ModuleType {
-     CUTTING,
+    CUTTING,
     KITCHEN,
     CUPBOARD,
-    CHEST_OF_DRAWERS;
+    CHEST_OF_DRAWERS,
+    FITTING,
+    FACADE;
 
 
 }

@@ -21,7 +21,7 @@ public class ModuleServiceImpl implements ModuleService {
 
     @Override
     public Module getById(Long id) {
-        return null;
+        return repository.getById(id);
     }
 
     @Override

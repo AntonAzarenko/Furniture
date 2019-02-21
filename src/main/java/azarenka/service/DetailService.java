@@ -2,6 +2,7 @@ package azarenka.service;
 
 import azarenka.dto.DetailDTO;
 import azarenka.entity.Detail;
+import azarenka.entity.Module;
 
 import java.util.List;
 
@@ -21,4 +22,6 @@ public interface DetailService {
     List<Detail> getByModuleId(Long id);
 
     void delete(List<Detail> list);
+
+    Module getNameById(Long id);
 }

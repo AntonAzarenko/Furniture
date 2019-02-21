@@ -5,9 +5,9 @@ DROP TABLE IF EXISTS furniture;
 -- -----------------------------------------------------
 CREATE TABLE users (
   id         BIGSERIAL   NOT NULL,
-  name       VARCHAR(45) ,
-  email      VARCHAR(45) NOT NULL UNIQUE ,
-  password   VARCHAR(45) NOT NULL,
+  name       VARCHAR(100),
+  email      VARCHAR(45) NOT NULL UNIQUE,
+  password   VARCHAR(255) NOT NULL,
   enabled    BOOLEAN     NOT NULL,
   registered TIMESTAMP DEFAULT (now()),
   PRIMARY KEY (id)
@@ -26,16 +26,20 @@ CREATE TABLE roles (
   ON UPDATE CASCADE
 );
 
-
 -- -----------------------------------------------------
 -- Table `Furniture`.`order`
 -- -----------------------------------------------------
 CREATE TABLE orders (
-  id     BIGSERIAL   NOT NULL PRIMARY KEY,
-  name   VARCHAR(45) NOT NULL,
-  author VARCHAR(45) ,
-  user_name VARCHAR(100) NOT NULL,
-  CONSTRAINT U_N FOREIGN KEY (user_name) REFERENCES users(email)
+  id               BIGSERIAL    NOT NULL PRIMARY KEY,
+  name             VARCHAR(45),
+  author           VARCHAR(45),
+  user_name        VARCHAR(100) NOT NULL,
+  address          VARCHAR(255),
+  customer_name    VARCHAR(255),
+  tel_number       VARCHAR(255),
+  date_of_create   TIMESTAMP DEFAULT (now()),
+  date_of_contract TIMESTAMP,
+  CONSTRAINT U_N FOREIGN KEY (user_name) REFERENCES users (email)
 );
 
 CREATE TABLE module (
@@ -120,7 +124,6 @@ CREATE TABLE detail_has_edge_material (
   FOREIGN KEY (detail_id) REFERENCES details (id),
   FOREIGN KEY (edge_material_id) REFERENCES edge_material (id)
 );
-
 
 -- -----------------------------------------------------
 -- Table `Furniture`.`facade`

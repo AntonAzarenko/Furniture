@@ -2,10 +2,10 @@ package azarenka.service.logic;
 
 import azarenka.dto.DetailDTO;
 import azarenka.entity.Detail;
-import azarenka.repository.ColorMaterialRepository;
+import azarenka.entity.Module;
 import azarenka.repository.DetailRepository;
 import azarenka.service.DetailService;
-import azarenka.service.EdgeMaterialService;
+import azarenka.service.ModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +17,9 @@ public class DetailServiceImpl implements DetailService {
 
     @Autowired
     private DetailRepository repository;
+
+    @Autowired
+    private ModuleService moduleService;
 
     @Autowired
     private DetailDTO detailDTO;
@@ -60,5 +63,11 @@ public class DetailServiceImpl implements DetailService {
         for (Detail cur : list) {
             repository.delete(cur);
         }
+    }
+
+    @Override
+    public Module getNameById(Long id) {
+        Module module = moduleService.getById(id);
+        return module;
     }
 }

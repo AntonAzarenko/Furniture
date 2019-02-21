@@ -2,6 +2,7 @@ package azarenka.web;
 
 import azarenka.dto.DetailDTO;
 import azarenka.entity.Detail;
+import azarenka.entity.Module;
 import azarenka.service.DetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -38,7 +39,6 @@ public class DetailController {
 
     @PostMapping (consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Detail save(@RequestBody DetailDTO detailDTO){
-
         return service.save(detailDTO.asDetail());
     }
 
@@ -46,7 +46,11 @@ public class DetailController {
     @DeleteMapping(value = "/del/",consumes = MediaType.APPLICATION_JSON_VALUE)
     public void deleteAll(@RequestBody List<Detail> list){
         List<Detail> list1 = list;
-
         service.delete(list);
+    }
+
+    @GetMapping(value = "/name/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public Module getNameById(@PathVariable("id") Long id){
+        return service.getNameById(id);
     }
 }

@@ -1,7 +1,7 @@
 insert into color_detail (id, title, title_manufacturer, country_manufacturer, price) VALUES
-  /*(1,'Кантри','SWISSPAN','UKRAINE',9),
+  (1,'Кантри','SWISSPAN','UKRAINE',9),
   (2,'Пепел','SWISSPAN','UKRAINE',9),
-  (3,'Крем','SWISSPAN','UKRAINE',9),*/
+  (3,'Крем','SWISSPAN','UKRAINE',9),
   (4, 'Бук светлый','SWISSPAN', 'UKRAINE',7.5),
   (5, 'Дуб молочный', 'SWISSPAN','UKRAINE',8),
   (6, 'Дуб Венге', 'SWISSPAN','UKRAINE',7.5),
