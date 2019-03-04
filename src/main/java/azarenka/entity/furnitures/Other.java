@@ -7,6 +7,7 @@ public class Other extends Fitting<Other> {
 
 
     public Other() {
+        super();
     }
 
     public Other(String name) {

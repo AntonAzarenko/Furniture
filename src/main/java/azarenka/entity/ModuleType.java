@@ -7,6 +7,4 @@ public enum ModuleType {
     CHEST_OF_DRAWERS,
     FITTING,
     FACADE;
-
-
 }
