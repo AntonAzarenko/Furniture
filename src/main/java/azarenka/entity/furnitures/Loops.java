@@ -1,10 +1,11 @@
 package azarenka.entity.furnitures;
 
+import azarenka.entity.BaseEntity;
 import azarenka.entity.Country;
+import azarenka.entity.Fitting;
 import azarenka.entity.stillunused.Angle;
-import azarenka.entity.stillunused.Fitting;
 
-public class Loops extends Fitting<Loops> {
+public class Loops extends BaseEntity {
 
     private int article;
 
@@ -68,5 +69,4 @@ public class Loops extends Fitting<Loops> {
     public void setType(TypeLoop type) {
         this.type = type;
     }
-
 }

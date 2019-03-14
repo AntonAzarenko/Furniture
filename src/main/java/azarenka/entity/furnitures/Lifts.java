@@ -1,9 +1,10 @@
 package azarenka.entity.furnitures;
 
+import azarenka.entity.BaseEntity;
 import azarenka.entity.Country;
-import azarenka.entity.stillunused.Fitting;
+import azarenka.entity.Fitting;
 
-public class Lifts extends Fitting<Lifts> {
+public class Lifts extends BaseEntity {
 
     private int article;
 

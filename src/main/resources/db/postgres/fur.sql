@@ -1,116 +1,116 @@
-DROP TABLE IF EXISTS furniture;
+
 
 -- -----------------------------------------------------
 -- Table `Furniture`.`users`
 -- -----------------------------------------------------
-CREATE TABLE users (
-  id         BIGSERIAL   NOT NULL,
+create table users (
+  id         bigserial   not null,
   name       VARCHAR(100),
-  email      VARCHAR(45) NOT NULL UNIQUE,
-  password   VARCHAR(255) NOT NULL,
-  enabled    BOOLEAN     NOT NULL,
-  registered TIMESTAMP DEFAULT (now()),
-  PRIMARY KEY (id)
+  email      varchar(45) not null unique,
+  password   varchar(255) not null,
+  enabled    boolean     not null,
+  registered timestamp default (now()),
+  primary key (id)
 );
 
 -- -----------------------------------------------------
 -- Table `Furniture`.`roles`
 -- -----------------------------------------------------
-CREATE TABLE roles (
-  users_id INT         NOT NULL,
-  role     VARCHAR(45) NOT NULL,
-  CONSTRAINT fk_roles_users1
-  FOREIGN KEY (users_id)
-  REFERENCES users (id)
-  ON DELETE CASCADE
-  ON UPDATE CASCADE
+create table roles (
+  users_id int         not null,
+  role     varchar(45) not null,
+  constraint fk_roles_users1
+  foreign key (users_id)
+  references users (id)
+  on delete cascade
+  on update cascade
 );
 
 -- -----------------------------------------------------
 -- Table `Furniture`.`order`
 -- -----------------------------------------------------
-CREATE TABLE orders (
-  id               BIGSERIAL    NOT NULL PRIMARY KEY,
+create table orders (
+  id               bigserial    not null primary key,
   name             VARCHAR(45),
-  author           VARCHAR(45),
-  user_name        VARCHAR(100) NOT NULL,
-  address          VARCHAR(255),
-  customer_name    VARCHAR(255),
-  tel_number       VARCHAR(255),
-  date_of_create   TIMESTAMP DEFAULT (now()),
-  date_of_contract TIMESTAMP,
-  CONSTRAINT U_N FOREIGN KEY (user_name) REFERENCES users (email)
+  author           varchar(45),
+  user_name        varchar(100) not null,
+  address          varchar(255),
+  customer_name    varchar(255),
+  tel_number       varchar(255),
+  date_of_create   timestamp default (now()),
+  date_of_contract timestamp,
+  constraint U_N foreign key (user_name) references users (email)
 );
 
-CREATE TABLE module (
-  id          BIGSERIAL   NOT NULL,
-  title       VARCHAR(45) NOT NULL,
-  module_type VARCHAR(45) NOT NULL,
-  order_id    INT         NOT NULL,
-  PRIMARY KEY (id),
-  CONSTRAINT Fk_ord FOREIGN KEY (order_id) REFERENCES orders (id)
-  ON DELETE CASCADE
+create table module (
+  id          bigserial   not null,
+  title       varchar(45) not null,
+  module_type varchar(45) not null,
+  order_id    int         not null,
+  primary key (id),
+  constraint Fk_ord foreign key (order_id) references orders (id)
+  on delete cascade
 );
 -- -----------------------------------------------------
 -- Table `Furniture`.`color_detail`
 -- -----------------------------------------------------
-CREATE TABLE color_detail (
-  id                   BIGSERIAL   NOT NULL PRIMARY KEY,
-  title                VARCHAR(45) NOT NULL,
-  title_manufacturer   VARCHAR(45) NOT NULL,
-  country_manufacturer VARCHAR(45) NOT NULL,
-  price                DECIMAL     NOT NULL
+create table color_detail (
+  id                   bigserial   not null primary key,
+  title                varchar(45) not null,
+  title_manufacturer   varchar(45) not null,
+  country_manufacturer varchar(45) not null,
+  price                decimal     not null
 );
 
 -- -----------------------------------------------------
 -- Table `Furniture`.`edge`
 -- -----------------------------------------------------
-CREATE TABLE edge (
-  id        BIGSERIAL        NOT NULL PRIMARY KEY,
+create table edge (
+  id        bigserial        not null primary key,
   name      VARCHAR(45)      NOT NULL,
-  edge_type VARCHAR(50)      NOT NULL,
-  color     VARCHAR(45)      NOT NULL,
-  price     DECIMAL          NOT NULL,
-  thickness DOUBLE PRECISION NOT NULL,
-  country   VARCHAR(45)      NOT NULL
+  edge_type varchar(50)      not null,
+  color     varchar(45)      not null,
+  price     decimal          not null,
+  thickness DOUBLE PRECISION not null,
+  country   varchar(45)      not null
 );
 
 -- -----------------------------------------------------
 -- Table `Furniture`.`details`
 -- -----------------------------------------------------
-CREATE TABLE details (
-  id              BIGSERIAL        NOT NULL PRIMARY KEY,
+create table details (
+  id              bigserial        not null primary key,
   name            VARCHAR(45)      NOT NULL,
-  x               INT              NOT NULL,
-  y               INT              NOT NULL,
-  count           INT              NOT NULL,
-  color_detail_id INT              NOT NULL,
-  material        VARCHAR(45)      NOT NULL,
-  thickness       DOUBLE PRECISION NOT NULL,
-  module_id       INT              NOT NULL,
+  x               int              not null,
+  y               int              not null,
+  count           int              not null,
+  color_detail_id int              not null,
+  material        varchar(45)      not null,
+  thickness       DOUBLE PRECISION not null,
+  module_id       int              not null,
 
-  CONSTRAINT fk_module
-  FOREIGN KEY (module_id)
-  REFERENCES module (id)
-  ON DELETE CASCADE
-  ON UPDATE CASCADE,
+  constraint fk_module
+  foreign key (module_id)
+  references module (id)
+  on delete cascade
+  on update cascade,
 
-  CONSTRAINT fk_details_color_detail1
-  FOREIGN KEY (color_detail_id)
-  REFERENCES color_detail (id)
-  ON DELETE CASCADE
-  ON UPDATE CASCADE
+  constraint fk_details_color_detail1
+  foreign key (color_detail_id)
+  references color_detail (id)
+  on delete cascade
+  on update cascade
 
 );
 -- -----------------------------------------------------
 -- Table `Furniture`.`edge_material_has_side
 -- -----------------------------------------------------
-CREATE TABLE edge_material (
-  id      BIGSERIAL NOT NULL PRIMARY KEY,
-  edge_id INTEGER   NOT NULL,
-  side    VARCHAR(45),
-  FOREIGN KEY (edge_id) REFERENCES edge (id)
-  ON DELETE CASCADE
+create table edge_material (
+  id      bigserial not null primary key,
+  edge_id integer   not null,
+  side    varchar(45),
+  foreign key (edge_id) references edge (id)
+  on delete cascade
 
 );
 
@@ -118,406 +118,67 @@ CREATE TABLE edge_material (
 -- Table `Furniture`. detail_has_edge_material
 -- -----------------------------------------------------
 
-CREATE TABLE detail_has_edge_material (
-  detail_id        INTEGER NOT NULL,
-  edge_material_id INTEGER NOT NULL,
-  FOREIGN KEY (detail_id) REFERENCES details (id),
-  FOREIGN KEY (edge_material_id) REFERENCES edge_material (id)
+create table detail_has_edge_material (
+  detail_id        integer not null,
+  edge_material_id integer not null,
+  foreign key (detail_id) references details (id),
+  foreign key (edge_material_id) references edge_material (id)
 );
 
 -- -----------------------------------------------------
--- Table `Furniture`.`facade`
+-- Table `Furniture`.`handle_catalog`
 -- -----------------------------------------------------
-/*CREATE TABLE IF NOT EXISTS ` Furniture`.`facade` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `facade_type` VARCHAR (45
-) NOT NULL,
-  `details_id` INT NOT NULL,
-PRIMARY KEY (`id`
-),
-INDEX `fk_facade_details_idx` (`details_id` ASC
-),
-CONSTRAINT `fk_facade_details`
-FOREIGN KEY (`details_id`
-)
-REFERENCES `Furniture`.`details` (`id`
-)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-)
-  ENGINE = InnoDB;*/
+create table  handle_catalog (
+id bigserial not null primary key,
+article varchar(25) not null unique,
+file_name varchar(255)
+);
 
 -- -----------------------------------------------------
--- Table `Furniture`.`furniture`
+-- Table `Furniture`.`handle_params`
 -- -----------------------------------------------------
-/*CREATE TABLE IF NOT EXISTS ` Furniture`.`furniture` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  ` count ` INT NOT NULL,
-  `price` DECIMAL NOT NULL,
-PRIMARY KEY (`id`
-)
-)
-  ENGINE = InnoDB;*/
+
+create table handle_params(
+id bigserial primary key,
+id_handle bigint not null,
+center_distance integer not null,
+price decimal(10,2) not  null,
+foreign key (id_handle) references handle_catalog (id)
+);
 
 -- -----------------------------------------------------
--- Table `Furniture`.`order_has_details`
+-- Table `Furniture`.`handle_colors`
 -- -----------------------------------------------------
-/*CREATE TABLE IF NOT EXISTS ` Furniture`.`order_has_details` (
-  `order_id` INT NOT NULL,
-  `details_id` INT NOT NULL,
-PRIMARY KEY (`order_id`, `details_id`
-),
-INDEX `fk_order_has_details_details1_idx` (`details_id` ASC
-),
-INDEX `fk_order_has_details_order1_idx` (`order_id` ASC
-),
-CONSTRAINT `fk_order_has_details_order1`
-FOREIGN KEY (`order_id`
-)
-REFERENCES `Furniture`.` order ` (`id`
-)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION,
-CONSTRAINT `fk_order_has_details_details1`
-FOREIGN KEY (`details_id`
-)
-REFERENCES `Furniture`.`details` (`id`
-)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-)
-  ENGINE = InnoDB;*/
 
--- -----------------------------------------------------
--- Table `Furniture`.`order_has_furniture`
--- -----------------------------------------------------
-/*CREATE TABLE IF NOT EXISTS ` Furniture`.`order_has_furniture` (
-  `order_id` INT NOT NULL,
-  `furniture_id` INT NOT NULL,
-PRIMARY KEY (`order_id`, `furniture_id`
-),
-INDEX `fk_order_has_furniture_furniture1_idx` (`furniture_id` ASC
-),
-INDEX `fk_order_has_furniture_order1_idx` (`order_id` ASC
-),
-CONSTRAINT `fk_order_has_furniture_order1`
-FOREIGN KEY (`order_id`
-)
-REFERENCES `Furniture`.` order ` (`id`
-)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION,
-CONSTRAINT `fk_order_has_furniture_furniture1`
-FOREIGN KEY (`furniture_id`
-)
-REFERENCES `Furniture`.`furniture` (`id`
-)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-)
-  ENGINE = InnoDB;
-*/
--- -----------------------------------------------------
--- Table `Furniture`.`order_has_facade`
--- -----------------------------------------------------
-/*CREATE TABLE IF NOT EXISTS ` Furniture`.`order_has_facade` (
-  `order_id` INT NOT NULL,
-  `facade_id` INT NOT NULL,
-PRIMARY KEY (`order_id`, `facade_id`
-),
-INDEX `fk_order_has_facade_facade1_idx` (`facade_id` ASC
-),
-INDEX `fk_order_has_facade_order1_idx` (`order_id` ASC
-),
-CONSTRAINT `fk_order_has_facade_order1`
-FOREIGN KEY (`order_id`
-)
-REFERENCES `Furniture`.` order ` (`id`
-)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION,
-CONSTRAINT `fk_order_has_facade_facade1`
-FOREIGN KEY (`facade_id`
-)
-REFERENCES `Furniture`.`facade` (`id`
-)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-)
-  ENGINE = InnoDB;*/
+create table handle_colors(
+id_handle bigint not null,
+color varchar (100),
+foreign key (id_handle) references handle_catalog (id)
+);
 
 
 
 -- -----------------------------------------------------
--- Table `Furniture`.`module_has_facade`
+-- Table `Furniture`.`fitting`
 -- -----------------------------------------------------
-/*CREATE TABLE IF NOT EXISTS ` Furniture`.`module_has_facade` (
-  `module_id` INT NOT NULL,
-  `facade_id` INT NOT NULL,
-PRIMARY KEY (`module_id`, `facade_id`
-),
-INDEX `fk_module_has_facade_facade1_idx` (`facade_id` ASC
-),
-INDEX `fk_module_has_facade_module1_idx` (`module_id` ASC
-),
-CONSTRAINT `fk_module_has_facade_module1`
-FOREIGN KEY (`module_id`
-)
-REFERENCES `Furniture`.`module` (`id`
-)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION,
-CONSTRAINT `fk_module_has_facade_facade1`
-FOREIGN KEY (`facade_id`
-)
-REFERENCES `Furniture`.`facade` (`id`
-)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-)
-  ENGINE = InnoDB;
+
+/*create table fitting(
+id bigserial primary key,
+count bigint not null,
+price DECIMAL (10,2),
+module_id bigint
+);
+
 
 -- -----------------------------------------------------
--- Table `Furniture`.`module_has_furniture`
+-- Table `Furniture`.`fitting_params`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS ` Furniture`.`module_has_furniture` (
-  `module_id` INT NOT NULL,
-  `furniture_id` INT NOT NULL,
-PRIMARY KEY (`module_id`, `furniture_id`
-),
-INDEX `fk_module_has_furniture_furniture1_idx` (`furniture_id` ASC
-),
-INDEX `fk_module_has_furniture_module1_idx` (`module_id` ASC
-),
-CONSTRAINT `fk_module_has_furniture_module1`
-FOREIGN KEY (`module_id`
-)
-REFERENCES `Furniture`.`module` (`id`
-)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION,
-CONSTRAINT `fk_module_has_furniture_furniture1`
-FOREIGN KEY (`furniture_id`
-)
-REFERENCES `Furniture`.`furniture` (`id`
-)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-)
-  ENGINE = InnoDB;
 
--- -----------------------------------------------------
--- Table `Furniture`.`articuls`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS ` Furniture`.`articuls` (
-  `articuls` INT NOT NULL AUTO_INCREMENT,
-  `furniture_id` INT NOT NULL,
-PRIMARY KEY (`articuls`
-),
-INDEX `fk_articuls_furniture1_idx` (`furniture_id` ASC
-),
-CONSTRAINT `fk_articuls_furniture1`
-FOREIGN KEY (`furniture_id`
-)
-REFERENCES `Furniture`.`furniture` (`id`
-)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-)
-  ENGINE = InnoDB;
-
--- -----------------------------------------------------
--- Table `Furniture`.`lifts`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS ` Furniture`.`lifts` (
-  `articul` INT NOT NULL,
-  `name_manufacture` VARCHAR (45
-) NOT NULL,
-  `county` VARCHAR (45
-) NOT NULL,
-  `articuls_articuls` INT NOT NULL,
-PRIMARY KEY (`articul`
-),
-INDEX `fk_lifts_articuls1_idx` (`articuls_articuls` ASC
-),
-CONSTRAINT `fk_lifts_articuls1`
-FOREIGN KEY (`articuls_articuls`
-)
-REFERENCES `Furniture`.`articuls` (`articuls`
-)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-)
-  ENGINE = InnoDB;
-
--- -----------------------------------------------------
--- Table `Furniture`.`angle`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS ` Furniture`.`angle` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  ` NAME ` VARCHAR (45
-) NOT NULL,
-  `angle` DOUBLE NOT NULL,
-PRIMARY KEY (`id`
-)
-)
-  ENGINE = InnoDB;
-
--- -----------------------------------------------------
--- Table `Furniture`.`loops`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS ` Furniture`.`loops` (
-  `articul` INT NOT NULL,
-  `name_manufacture` VARCHAR (45
-) NOT NULL,
-  `country` VARCHAR (45
-) NOT NULL,
-  `angle_id` INT NOT NULL,
-  `microlift` TINYINT NOT NULL,
-  `articuls_articuls` INT NOT NULL,
-PRIMARY KEY (`articul`
-),
-INDEX `fk_loops_angle1_idx` (`angle_id` ASC
-),
-INDEX `fk_loops_articuls1_idx` (`articuls_articuls` ASC
-),
-CONSTRAINT `fk_loops_angle1`
-FOREIGN KEY (`angle_id`
-)
-REFERENCES `Furniture`.`angle` (`id`
-)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION,
-CONSTRAINT `fk_loops_articuls1`
-FOREIGN KEY (`articuls_articuls`
-)
-REFERENCES `Furniture`.`articuls` (`articuls`
-)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-)
-  ENGINE = InnoDB;
-
--- -----------------------------------------------------
--- Table `Furniture`.`type_lifts`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS ` Furniture`.`type_lifts` (
-  `lifts_articul` INT NOT NULL,
-  ` TYPE ` VARCHAR (45
-) NOT NULL,
-INDEX `fk_type_lifts_lifts1_idx` (`lifts_articul` ASC
-),
-CONSTRAINT `fk_type_lifts_lifts1`
-FOREIGN KEY (`lifts_articul`
-)
-REFERENCES `Furniture`.`lifts` (`articul`
-)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-)
-  ENGINE = InnoDB;
-
--- -----------------------------------------------------
--- Table `Furniture`.`type_loop`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS ` Furniture`.`type_loop` (
-  `loops_articul` INT NOT NULL,
-  ` TYPE ` VARCHAR (45
-) NOT NULL,
-INDEX `fk_type_loop_loops1_idx` (`loops_articul` ASC
-),
-CONSTRAINT `fk_type_loop_loops1`
-FOREIGN KEY (`loops_articul`
-)
-REFERENCES `Furniture`.`loops` (`articul`
-)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-)
-  ENGINE = InnoDB;
-
--- -----------------------------------------------------
--- Table `Furniture`.`handle`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS ` Furniture`.`handle` (
-  `articul` INT NOT NULL,
-  `center_distance` INT NOT NULL,
-  `articuls_articuls` INT NOT NULL,
-PRIMARY KEY (`articul`
-),
-INDEX `fk_handle_articuls1_idx` (`articuls_articuls` ASC
-),
-CONSTRAINT `fk_handle_articuls1`
-FOREIGN KEY (`articuls_articuls`
-)
-REFERENCES `Furniture`.`articuls` (`articuls`
-)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-)
-  ENGINE = InnoDB;
-
--- -----------------------------------------------------
--- Table `Furniture`.`handle_color`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS ` Furniture`.`handle_color` (
-  `handle_articul` INT NOT NULL,
-  `colorId` VARCHAR (45
-) NULL,
-INDEX `fk_handle_color_handle1_idx` (`handle_articul` ASC
-),
-CONSTRAINT `fk_handle_color_handle1`
-FOREIGN KEY (`handle_articul`
-)
-REFERENCES `Furniture`.`handle` (`articul`
-)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-)
-  ENGINE = InnoDB;
-
--- -----------------------------------------------------
--- Table `Furniture`.`guiedes`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS ` Furniture`.`guiedes` (
-  `articul` INT NOT NULL,
-  `name_manufacture` VARCHAR (45
-) NOT NULL,
-  ` LENGTH ` INT NOT NULL,
-  `microlift` TINYINT NULL,
-  `articuls_articuls` INT NOT NULL,
-PRIMARY KEY (`articul`
-),
-INDEX `fk_guiedes_articuls1_idx` (`articuls_articuls` ASC
-),
-CONSTRAINT `fk_guiedes_articuls1`
-FOREIGN KEY (`articuls_articuls`
-)
-REFERENCES `Furniture`.`articuls` (`articuls`
-)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-)
-  ENGINE = InnoDB;
-
--- -----------------------------------------------------
--- Table `Furniture`.`other`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS ` Furniture`.`other` (
-  `articul` INT NOT NULL,
-  ` NAME ` VARCHAR (45
-) NOT NULL,
-  `articuls_articuls` INT NOT NULL,
-PRIMARY KEY (`articul`
-),
-INDEX `fk_other_articuls1_idx` (`articuls_articuls` ASC
-),
-CONSTRAINT `fk_other_articuls1`
-FOREIGN KEY (`articuls_articuls`
-)
-REFERENCES `Furniture`.`articuls` (`articuls`
-)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
+create table fitting_params(
+id bigserial primary key,
+id_param bigint,
+id_fitting bigint ,
+foreign key (id_fitting) references fitting (id)
 );*/
+
 

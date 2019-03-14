@@ -1,8 +1,9 @@
 package azarenka.entity.furnitures;
 
-import azarenka.entity.stillunused.Fitting;
+import azarenka.entity.BaseEntity;
+import azarenka.entity.Fitting;
 
-public class Other extends Fitting<Other> {
+public class Other extends BaseEntity {
     private String name;
 
 

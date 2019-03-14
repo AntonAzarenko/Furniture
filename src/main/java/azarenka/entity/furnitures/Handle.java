@@ -1,31 +1,49 @@
 package azarenka.entity.furnitures;
 
-import azarenka.entity.stillunused.Fitting;
+import azarenka.entity.BaseEntity;
+import azarenka.entity.furnitures.params.HandleParams;
 
-public class Handle extends Fitting<Handle> {
+import javax.persistence.*;
+import java.util.List;
 
-    private int article;
+@Entity
+@Table(name = "handle_catalog")
+public class Handle extends BaseEntity {
 
-    private HandleColor color;
+    @Column(name = "article")
+    private String article;
 
-    private int centerDistance;
+    @Column(name = "file_name")
+    private String fileName;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<HandleParams> params;
 
     public Handle() {
     }
 
-    public HandleColor getColor() {
-        return color;
+    public String getArticle() {
+        return article;
     }
 
-    public void setColor(HandleColor color) {
-        this.color = color;
+    public void setArticle(String article) {
+        this.article = article;
     }
 
-    public int getCenterDistance() {
-        return centerDistance;
+    public String getFileName() {
+        return fileName;
     }
 
-    public void setCenterDistance(int centerDistance) {
-        this.centerDistance = centerDistance;
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
+
+    public List<HandleParams> getParams() {
+        return params;
+    }
+
+    public void setParams(List<HandleParams> params) {
+        this.params = params;
+    }
+
 }

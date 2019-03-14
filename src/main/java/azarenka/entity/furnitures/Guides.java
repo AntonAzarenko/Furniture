@@ -1,8 +1,8 @@
 package azarenka.entity.furnitures;
 
-import azarenka.entity.stillunused.Fitting;
+import azarenka.entity.BaseEntity;
 
-public class Guides extends Fitting<Guides> {
+public class Guides extends BaseEntity {
 
     private int article;
 

@@ -1,6 +1,7 @@
 package azarenka.service.logic;
 
 import azarenka.dto.BookerDTO;
+import azarenka.entity.Fitting;
 import azarenka.entity.Module;
 import azarenka.service.BookerService;
 import azarenka.service.DetailService;
@@ -8,6 +9,7 @@ import azarenka.service.ModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
