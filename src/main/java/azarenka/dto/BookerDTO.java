@@ -1,9 +1,7 @@
 package azarenka.dto;
 
-import azarenka.entity.Material;
-import azarenka.entity.Module;
-import azarenka.service.logic.Booker;
-import azarenka.service.logic.ManagerQuadCount;
+import azarenka.service.logic.bookers.Booker;
+import azarenka.service.logic.bookers.ManagerQuadCount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -35,49 +33,6 @@ public class BookerDTO {
     private BigDecimal total;
 
     public BookerDTO() {
-    }
-
-    public BookerDTO asBookerDTO(Module module) {
-        BookerDTO bookerDTO = new BookerDTO();
-        bookerDTO.setModuleName(module.getName());
-        bookerDTO.setModuleType(module.getModuleType().toString());
-        bookerDTO.setPriceForSquareDSP(getCostSquareDSP(module));
-        bookerDTO.setPriceForSquareDVP(getCostSquareDVP(module));
-        bookerDTO.setPriceForEdge(getCostLengthEdge(module));
-        bookerDTO.setTotal(getPriceTotalOFModule(module));
-        return bookerDTO;
-    }
-
-    private BigDecimal getPriceTotalOfOrder(Module module) {
-        return booker.getPriceOrder(module.getOrder());
-    }
-
-    private BigDecimal getCostLengthEdge(Module module) {
-        return booker.getPriceEdgeByModule(module);
-    }
-
-    private BigDecimal getCostSquareDSP(Module module) {
-        return booker.getPriceDetailByType(module, Material.DSP);
-    }
-
-    private BigDecimal getCostSquareDVP(Module module) {
-        return booker.getPriceDetailByType(module, Material.DVP);
-    }
-
-    private BigDecimal getCostSquareWOOD(Module module) {
-        return booker.getPriceDetailByType(module, Material.WOOD);
-    }
-
-    private BigDecimal getCostSquareMDF(Module module) {
-        return booker.getPriceDetailByType(module, Material.MDF);
-    }
-
-    private BigDecimal getPriceTotalOFModule(Module module) {
-        return booker.getPriceModule(module);
-    }
-
-    public String getModuleName() {
-        return moduleName;
     }
 
     public void setModuleName(String moduleName) {

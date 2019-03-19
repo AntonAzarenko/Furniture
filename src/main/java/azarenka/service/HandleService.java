@@ -1,12 +1,12 @@
 package azarenka.service;
 
-import azarenka.entity.furnitures.Handle;
-import azarenka.entity.furnitures.HandleColor;
-import azarenka.entity.furnitures.params.HandleParams;
+import azarenka.entity.fitting.Handle;
+import azarenka.entity.fitting.oforder.HandleOfOrder;
+import azarenka.entity.fitting.params.HandleColors;
+import azarenka.entity.fitting.params.HandleParams;
 import azarenka.exceptions.NotUniqueElementException;
 
 import java.util.List;
-import java.util.Set;
 
 public interface HandleService {
 
@@ -22,7 +22,17 @@ public interface HandleService {
 
     void addHandleParams(List<HandleParams> params);
 
-    List<HandleParams> getParamsById(Long id);
+    List<HandleParams> getAllParamsById(Long id);
 
-    Set<HandleColor> getHandleColorsByHandleId(Long id);
+    List<HandleColors> getHandleColorsByHandleId(Long id);
+
+    void addHandleColors(List<HandleColors> colors);
+
+    HandleParams getParamsById(Long id);
+
+    void addHandleOfOrder(HandleOfOrder handleOfOrder);
+
+    HandleOfOrder getHandleOfOrderByModuleId(Long moduleId);
+
+    HandleColors getHandleColorsById(Long id);
 }

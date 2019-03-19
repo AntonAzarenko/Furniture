@@ -1,6 +1,7 @@
 package azarenka.web;
 
 import azarenka.dto.OrderDTO;
+import azarenka.entity.Order;
 import azarenka.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -28,9 +29,9 @@ public class OrderController {
         service.deleteById(id);
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void save(@RequestBody OrderDTO order) {
-        service.create(order.asOrder());
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Order save(@RequestBody OrderDTO order) {
+        return service.create(order.asOrder());
     }
 
 }

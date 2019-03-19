@@ -1,7 +1,7 @@
 package azarenka.web;
 
-import azarenka.entity.furnitures.Handle;
-import azarenka.entity.furnitures.params.HandleParams;
+import azarenka.entity.fitting.Handle;
+import azarenka.entity.fitting.params.HandleParams;
 import azarenka.service.HandleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -21,11 +21,12 @@ public class CatalogController {
 
     @GetMapping(value = "/handles",produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Handle> getHandles(){
+        List<Handle> list = service.getAll();
         return service.getAll();
     }
 
     @GetMapping(value = "/handles/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<HandleParams> getParam(@PathVariable("id") Long id){
-        return service.getParamsById(id);
+        return service.getAllParamsById(id);
     }
 }

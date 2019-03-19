@@ -1,6 +1,6 @@
 package azarenka.util;
 
-import azarenka.entity.furnitures.Handle;
+import azarenka.entity.fitting.Handle;
 import azarenka.exceptions.NotUniqueElementException;
 import azarenka.repository.HandleRepository;
 

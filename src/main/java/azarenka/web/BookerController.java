@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import static azarenka.web.DetailController.URL;
@@ -21,5 +22,10 @@ public class BookerController {
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<BookerDTO> getToCostOrder(@PathVariable("id") Long id) {
         return service.getCalculationOfOrder(id);
+    }
+
+    @GetMapping(value = "/total/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public BigDecimal getTotalCost(@PathVariable("id") Long id){
+        return service.getTotalCalc(id);
     }
 }

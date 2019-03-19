@@ -1,6 +1,6 @@
 package azarenka.repository;
 
-import azarenka.entity.furnitures.Handle;
+import azarenka.entity.fitting.Handle;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
