@@ -3,7 +3,6 @@ package azarenka.dto;
 import azarenka.entity.Module;
 import azarenka.entity.ModuleType;
 import azarenka.entity.Order;
-import org.springframework.transaction.annotation.Transactional;
 
 
 public class ModuleDTO {

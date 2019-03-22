@@ -2,10 +2,9 @@ package azarenka.entity.fitting;
 
 import azarenka.entity.BaseEntity;
 import azarenka.entity.Country;
-import azarenka.entity.fitting.params.LoopParams;
 
 import javax.persistence.*;
-import java.util.List;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "loops")
@@ -20,8 +19,17 @@ public class Loops extends BaseEntity {
     @Column(name = "country")
     private Country manufactureCountry;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<LoopParams> params;
+    @Column(name = "angle")
+    private String angle;
+
+    @Column(name = "type_loop")
+    private TypeLoop typeLoop;
+
+    @Column(name = "micro_Lift")
+    private boolean microLift;
+
+    @Column(name = "price")
+    private BigDecimal price;
 
     public Loops() {
     }
@@ -50,11 +58,35 @@ public class Loops extends BaseEntity {
         this.fileName = fileName;
     }
 
-    public List<LoopParams> getParams() {
-        return params;
+    public String getAngle() {
+        return angle;
     }
 
-    public void setParams(List<LoopParams> params) {
-        this.params = params;
+    public void setAngle(String angle) {
+        this.angle = angle;
+    }
+
+    public TypeLoop getTypeLoop() {
+        return typeLoop;
+    }
+
+    public void setTypeLoop(TypeLoop typeLoop) {
+        this.typeLoop = typeLoop;
+    }
+
+    public boolean isMicroLift() {
+        return microLift;
+    }
+
+    public void setMicroLift(boolean microLift) {
+        this.microLift = microLift;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 }

@@ -50,7 +50,7 @@ public class HandleController {
         return service.getHandleColorsByHandleId(id);
     }
 
-    @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Fittings add(@RequestBody HandleAddDTO handleAddDTO) {
         Fittings fittings = handleAddDTO.asFitting();
         HandleOfOrder handleOfOrder = handleAddDTO.getHandleOfOrder();

@@ -1,5 +1,6 @@
 package azarenka.entity;
 
+import azarenka.entity.fitting.Loops;
 import azarenka.entity.fitting.oforder.HandleOfOrder;
 
 import javax.persistence.*;
@@ -12,6 +13,10 @@ public class Fittings extends BaseEntity {
     @OneToOne
     @JoinColumn(name = "handle_order_id")
     private HandleOfOrder handle;
+
+    @OneToOne
+    @JoinColumn(name = "loops")
+    private Loops loops;
 
     @Column(name = "count")
     private int count;
@@ -56,5 +61,13 @@ public class Fittings extends BaseEntity {
 
     public void setHandle(HandleOfOrder handle) {
         this.handle = handle;
+    }
+
+    public Loops getLoops() {
+        return loops;
+    }
+
+    public void setLoops(Loops loops) {
+        this.loops = loops;
     }
 }

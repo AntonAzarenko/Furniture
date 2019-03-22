@@ -14,4 +14,5 @@ import java.util.List;
 public interface LoopRepository extends JpaRepository<Loops, Long> {
 
     Loops save(Loops loops);
+
 }

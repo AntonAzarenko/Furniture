@@ -195,21 +195,16 @@ create table  loops (
 id bigserial not null primary key,
 manufacture_name varchar(25) not null,
 country varchar (255),
-file_name varchar (255)
+file_name varchar (255),
+angle varchar(255) not null,
+type_loop varchar (100) not null,
+micro_Lift boolean not null,
+price decimal(10,2) not  null
 );
 
 -- -----------------------------------------------------
 -- Table `Furniture`.`loops_params`
 -- -----------------------------------------------------
 
-create table loops_params(
-id bigserial primary key,
-id_loop bigint not null,
-angle varchar(255) not null,
-type_loop varchar (100) not null,
-micro_Lift boolean not null,
-price decimal(10,2) not  null,
-constraint a_l_fk foreign key (id_loop) references loops (id)
-);
 
 

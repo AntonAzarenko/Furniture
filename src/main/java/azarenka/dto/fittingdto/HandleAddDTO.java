@@ -7,7 +7,7 @@ import azarenka.entity.fitting.oforder.HandleOfOrder;
 import java.math.BigDecimal;
 
 public class HandleAddDTO {
-    //params of handle
+
     private Integer count;
 
     private BigDecimal price;
@@ -33,16 +33,12 @@ public class HandleAddDTO {
     }
 
     private void createTypeOfFitting(Fittings fittings) {
-        switch (type) {
-            case "Handle":
-                HandleOfOrder handle = new HandleOfOrder();
-                handle.setHandleId(handleId);
-                handle.setHandleColorId(handleColorsId);
-                handle.setHandleParamId(handleParamsId);
-                fittings.setHandle(handle);
-                this.handleOfOrder = handle;
-                break;
-        }
+        HandleOfOrder handle = new HandleOfOrder();
+        handle.setHandleId(handleId);
+        handle.setHandleColorId(handleColorsId);
+        handle.setHandleParamId(handleParamsId);
+        fittings.setHandle(handle);
+        this.handleOfOrder = handle;
     }
 
     private Module createModule() {

@@ -2,7 +2,6 @@ package azarenka.dto.fittingdto;
 
 import azarenka.entity.fitting.Loops;
 import azarenka.entity.fitting.TypeLoop;
-import azarenka.entity.fitting.params.LoopParams;
 import azarenka.util.CountryFormatterUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

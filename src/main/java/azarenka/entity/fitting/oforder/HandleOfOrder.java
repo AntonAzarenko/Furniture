@@ -17,7 +17,6 @@ public class HandleOfOrder extends BaseEntity {
     @Column(name = "handle_param_id")
     private Long handleParamId;
 
-
     @Column(name = "handle_color_id")
     private Long handleColorId;
 

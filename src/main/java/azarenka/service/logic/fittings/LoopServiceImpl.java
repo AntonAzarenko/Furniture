@@ -1,7 +1,6 @@
 package azarenka.service.logic.fittings;
 
 import azarenka.entity.fitting.Loops;
-import azarenka.entity.fitting.params.LoopParams;
 import azarenka.repository.LoopParamsRepository;
 import azarenka.repository.LoopRepository;
 import azarenka.service.LoopService;
@@ -25,8 +24,8 @@ public class LoopServiceImpl implements LoopService {
     }
 
     @Override
-    public List<Loops> getAll(Long id) {
-        return null;
+    public List<Loops> getAll() {
+        return repository.findAll();
     }
 
     @Override
@@ -42,5 +41,15 @@ public class LoopServiceImpl implements LoopService {
     @Override
     public void save(LoopParams params) {
         paramsRepository.save(params);
+    }
+
+    @Override
+    public LoopParams getParamsById(Long id) {
+        return paramsRepository.getById(id);
+    }
+
+    @Override
+    public void save(LoopsOfOrder loopsOfOrder) {
+
     }
 }
