@@ -1,7 +1,6 @@
 package azarenka.service.logic.fittings;
 
 import azarenka.entity.fitting.Loops;
-import azarenka.repository.LoopParamsRepository;
 import azarenka.repository.LoopRepository;
 import azarenka.service.LoopService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +13,6 @@ public class LoopServiceImpl implements LoopService {
 
     @Autowired
     private LoopRepository repository;
-
-    @Autowired
-    private LoopParamsRepository paramsRepository;
 
     @Override
     public List<Loops> getAllByModule(Long id) {
@@ -38,18 +34,5 @@ public class LoopServiceImpl implements LoopService {
        return repository.save(loop);
     }
 
-    @Override
-    public void save(LoopParams params) {
-        paramsRepository.save(params);
-    }
 
-    @Override
-    public LoopParams getParamsById(Long id) {
-        return paramsRepository.getById(id);
-    }
-
-    @Override
-    public void save(LoopsOfOrder loopsOfOrder) {
-
-    }
 }

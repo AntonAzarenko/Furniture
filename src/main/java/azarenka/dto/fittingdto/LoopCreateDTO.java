@@ -45,7 +45,7 @@ public class LoopCreateDTO {
         return loop;
     }
 
-    public LoopParams asLoopsParam() {
+   /* public LoopParams asLoopsParam() {
         LoopParams params = new LoopParams();
         params.setAngle(angle);
         params.setPrice(price);
@@ -53,7 +53,7 @@ public class LoopCreateDTO {
         params.setTypeLoop(initTypeLoops(type));
         params.setLoops(loops);
         return params;
-    }
+    }*/
 
     private TypeLoop initTypeLoops(String type) {
         switch (type) {

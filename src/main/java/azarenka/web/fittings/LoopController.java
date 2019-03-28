@@ -29,14 +29,14 @@ public class LoopController {
     public void save(@RequestBody LoopCreateDTO createDTO) {
         Loops loops = this.service.save(createDTO.asLoops());
         createDTO.setLoops(loops);
-        this.service.save(createDTO.asLoopsParam());
+        //this.service.save(createDTO.asLoopsParam());
     }
 
     @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Fittings add(@RequestBody LoopAddDTO dto) {
         Fittings fittings = dto.asFittings();
-        LoopsOfOrder loopsOfOrder = dto.getOrder();
-        service.save(loopsOfOrder);
+       /* LoopsOfOrder loopsOfOrder = dto.getOrder();
+        service.save(loopsOfOrder);*/
         return fittingsService.save(fittings);
     }
 

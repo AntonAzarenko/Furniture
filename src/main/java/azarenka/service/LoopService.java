@@ -13,10 +13,4 @@ public interface LoopService {
     List<Loops> getAllByManufacturerName(String name);
 
     Loops save(Loops loop);
-
-    void save(LoopParams params);
-
-    LoopParams getParamsById(Long id);
-
-    void save(LoopsOfOrder loopsOfOrder);
 }
