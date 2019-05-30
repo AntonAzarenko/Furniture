@@ -61,7 +61,6 @@ public class AuthController {
                     HttpStatus.BAD_REQUEST);
         }
 
-        // Creating user's account
         User user = new User();
         user.setEmail(signUpRequest.getUsername());
         user.setPassword(encoder.encode(signUpRequest.getPassword()));
