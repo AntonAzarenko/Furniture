@@ -1,6 +1,6 @@
 package azarenka.web;
 
-import azarenka.dto.BookerDTO;
+import azarenka.dto.BookerResponse;
 import azarenka.service.BookerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -19,7 +19,7 @@ public class BookerController {
     private BookerService service;
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<BookerDTO> getToCostOrder(@PathVariable("id") Long id) {
+    public List<BookerResponse> getToCostOrder(@PathVariable("id") Long id) {
         return service.getCalculationOfOrder(id);
     }
 }

@@ -32,8 +32,6 @@ public class FileServiceImpl implements FileService {
 
             String filePath = context.getRealPath("") + "/resources" + File.separator + "uploads" + File.separator +
                     LoggedUser.safeGet().getUsername() + File.separator + "image";
-
-
             Path resourceDirectory = Paths.get(filePath);
 
                 File dir = new File(resourceDirectory + File.separator);

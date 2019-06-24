@@ -34,6 +34,7 @@ public class Booker {
             price = price.add(getPriceForDetailMap(priceDetail));
 
             price = price.add(getPriceForEdgeMap(priceEdge));
+            price = round(price);
 
             //TODO for furniture and facadeList
         }
@@ -48,6 +49,7 @@ public class Booker {
             for (Map.Entry<Material, Map<BigDecimal, Double>> pair : materialMap.entrySet()) {
                 if (pair.getKey().equals(material)) {
                     price = getPriceForDetailMap(pair.getValue());
+                    price = round(price);
                     break;
                 }
             }
@@ -60,6 +62,7 @@ public class Booker {
         List<Detail> details = module.getDetailList();
         Map<BigDecimal, Double> priceEdge = getPriceEdge(details);
         price = getPriceForEdgeMap(priceEdge);
+        price = round(price);
         return price;
     }
 
@@ -69,6 +72,7 @@ public class Booker {
             if (Objects.nonNull(order.getModuleList())) {
                 for (Module module : order.getModuleList()) {
                     price = price.add(getPriceModule(module));
+                    price = round(price);
                 }
             }
         }
@@ -105,5 +109,9 @@ public class Booker {
 
     private Map<BigDecimal, Double> getPriceEdge(List<Detail> object) {
         return managerEdgeCount.getLengthEdgeMaterialForDetailList(object);
+    }
+
+    private BigDecimal round(BigDecimal price) {
+        return price.setScale(2, BigDecimal.ROUND_UP);
     }
 }

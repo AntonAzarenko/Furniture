@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 
 @Component
-public class BookerDTO {
+public class BookerResponse {
 
     @Autowired
     private Booker booker;
@@ -34,18 +34,18 @@ public class BookerDTO {
 
     private BigDecimal total;
 
-    public BookerDTO() {
+    public BookerResponse() {
     }
 
-    public BookerDTO asBookerDTO(Module module) {
-        BookerDTO bookerDTO = new BookerDTO();
-        bookerDTO.setModuleName(module.getName());
-        bookerDTO.setModuleType(module.getModuleType().toString());
-        bookerDTO.setPriceForSquareDSP(getCostSquareDSP(module));
-        bookerDTO.setPriceForSquareDVP(getCostSquareDVP(module));
-        bookerDTO.setPriceForEdge(getCostLengthEdge(module));
-        bookerDTO.setTotal(getPriceTotalOFModule(module));
-        return bookerDTO;
+    public BookerResponse asBookerDTO(Module module) {
+        BookerResponse bookerResponse = new BookerResponse();
+        bookerResponse.setModuleName(module.getName());
+        bookerResponse.setModuleType(module.getModuleType().toString());
+        bookerResponse.setPriceForSquareDSP(getCostSquareDSP(module));
+        bookerResponse.setPriceForSquareDVP(getCostSquareDVP(module));
+        bookerResponse.setPriceForEdge(getCostLengthEdge(module));
+        bookerResponse.setTotal(getPriceTotalOFModule(module));
+        return bookerResponse;
     }
 
     private BigDecimal getPriceTotalOfOrder(Module module) {

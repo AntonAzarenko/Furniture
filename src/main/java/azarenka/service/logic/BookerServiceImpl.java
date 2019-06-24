@@ -1,6 +1,6 @@
 package azarenka.service.logic;
 
-import azarenka.dto.BookerDTO;
+import azarenka.dto.BookerResponse;
 import azarenka.entity.Module;
 import azarenka.service.BookerService;
 import azarenka.service.DetailService;
@@ -15,7 +15,7 @@ import java.util.List;
 public class BookerServiceImpl implements BookerService {
 
     @Autowired
-    private BookerDTO bookerDTO;
+    private BookerResponse bookerResponse;
 
     @Autowired
     private DetailService detailService;
@@ -24,13 +24,13 @@ public class BookerServiceImpl implements BookerService {
     private ModuleService moduleService;
 
     @Override
-    public List<BookerDTO> getCalculationOfOrder(Long id) {
-        List<BookerDTO> bookerDTOList = new ArrayList<>();
+    public List<BookerResponse> getCalculationOfOrder(Long id) {
+        List<BookerResponse> bookerResponseList = new ArrayList<>();
         List<Module> moduleList = moduleService.getAllByOrderId(id);
         for (Module current : moduleList) {
             current.setDetailList(detailService.getByModuleId(current.getId()));
-            bookerDTOList.add(bookerDTO.asBookerDTO(current));
+            bookerResponseList.add(bookerResponse.asBookerDTO(current));
         }
-        return bookerDTOList;
+        return bookerResponseList;
     }
 }
