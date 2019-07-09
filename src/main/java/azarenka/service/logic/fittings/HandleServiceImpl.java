@@ -1,5 +1,13 @@
 package azarenka.service.logic.fittings;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+import azarenka.dto.fittingdto.HandleCreateDTO;
 import azarenka.entity.fitting.Handle;
 import azarenka.entity.fitting.oforder.HandleOfOrder;
 import azarenka.entity.fitting.params.HandleColors;
@@ -12,10 +20,6 @@ import azarenka.repository.HandleParamsRepository;
 import azarenka.repository.HandleRepository;
 import azarenka.service.HandleService;
 import azarenka.util.CheckUniqueElementHandle;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class HandleServiceImpl implements HandleService {
@@ -36,10 +40,19 @@ public class HandleServiceImpl implements HandleService {
     private HandleColorsRepository handleColorsRepository;
 
     @Override
-    public Handle save(Handle handle) throws NotUniqueElementException {
-        CheckUniqueElementHandle checkUniqueElement = abstractFactory.create();
-        checkUniqueElement.check(handle, repository);
-        return repository.save(handle);
+    public Handle save(HandleCreateDTO handleCreateDTO)  {
+        Handle handle = null;
+        try {
+            handle = handleCreateDTO.asHandle();
+            handleCreateDTO.setHandle(handle);
+            addHandleParams(handleCreateDTO.asHandleParams());
+            addHandleColors(handleCreateDTO.asHandleColors());
+            save(handle);
+        } catch (Exception e) {
+            deleteById(handle.getId());
+            return null;
+        }
+        return handle;
     }
 
     @Override
@@ -64,9 +77,7 @@ public class HandleServiceImpl implements HandleService {
 
     @Override
     public void addHandleParams(List<HandleParams> params) {
-        for (HandleParams current : params) {
-            save(current);
-        }
+        params.forEach(this::save);
     }
 
     @Override
@@ -105,6 +116,12 @@ public class HandleServiceImpl implements HandleService {
     @Override
     public HandleColors getHandleColorsById(Long id) {
         return handleColorsRepository.getById(id);
+    }
+
+    private Handle save(Handle handle) throws NotUniqueElementException {
+        CheckUniqueElementHandle checkUniqueElement = abstractFactory.create();
+        checkUniqueElement.check(handle, repository);
+        return repository.save(handle);
     }
 
     private void save(HandleOfOrder handleOfOrder) {

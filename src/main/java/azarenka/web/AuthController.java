@@ -23,6 +23,15 @@ import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Authentification controller.
+ * <p>
+ * Copyright (C) 2018 Anton_Azarenka@epam.com
+ * </p>
+ * Date: 7/9/18
+ *
+ * @author Anton Azarenka
+ */
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("furniture/auth")
@@ -30,13 +39,10 @@ public class AuthController {
 
     @Autowired
     private AuthenticationManager authenticationManager;
-
     @Autowired
     private UserService userService;
-
     @Autowired
     private PasswordEncoder encoder;
-
     @Autowired
     private JwtProvider jwtProvider;
 

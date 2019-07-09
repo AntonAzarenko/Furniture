@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicReference;
 
 import static java.math.BigInteger.ZERO;
 
@@ -28,11 +29,8 @@ public class Booker {
             List<Detail> list = module.getDetailList();
             Map<BigDecimal, Double> priceDetail = getPriceDetail(list);
             Map<BigDecimal, Double> priceEdge = getPriceEdge(list);
-
             price = price.add(getPriceForDetailMap(priceDetail));
-
             price = price.add(getPriceForEdgeMap(priceEdge));
-
             price = price.add(getPriceModuleFitting(module));
             //TODO for furniture and facadeList
         }
@@ -52,27 +50,25 @@ public class Booker {
         if (module.getFittings() != null) {
             Map<BigDecimal, Integer> map = new HashMap<>();
             List<Fittings> fittings = module.getFittings();
-            for(Fittings current : fittings){
-                map.put(current.getPrice(), current.getCount());
-            }
+            fittings.forEach(element -> map.put(element.getPrice(), element.getCount()));
             price = getPriceOfFittingModule(map);
         }
         return price;
     }
 
     public BigDecimal getPriceDetailByType(Module module, Material material) {
-        BigDecimal price = new BigDecimal(ZERO);
+        AtomicReference<BigDecimal> price = new AtomicReference<>(new BigDecimal(ZERO));
         if (Objects.nonNull(module)) {
             List<Detail> list = module.getDetailList();
             Map<Material, Map<BigDecimal, Double>> materialMap = managerQuadCount.getSquareDetails(list);
             for (Map.Entry<Material, Map<BigDecimal, Double>> pair : materialMap.entrySet()) {
                 if (pair.getKey().equals(material)) {
-                    price = getPriceForDetailMap(pair.getValue());
+                    price.set(getPriceForDetailMap(pair.getValue()));
                     break;
                 }
             }
         }
-        return price;
+        return price.get();
     }
 
     public BigDecimal getPriceEdgeByModule(Module module) {
@@ -121,7 +117,8 @@ public class Booker {
                 int ONE_HUNDRED_PERCENT = 100;
                 int ONE_THOUSAND_MM = 1000;
                 int COUNT_PERCENT = 10;
-                BigDecimal temp = new BigDecimal((pair.getValue() + (pair.getValue() / ONE_HUNDRED_PERCENT * COUNT_PERCENT)) / ONE_THOUSAND_MM);
+                BigDecimal temp = new BigDecimal((pair.getValue() + (pair.getValue()
+                    / ONE_HUNDRED_PERCENT * COUNT_PERCENT)) / ONE_THOUSAND_MM);
                 price = price.add(new BigDecimal(String.valueOf(pair.getKey().multiply(temp))));
             }
         }

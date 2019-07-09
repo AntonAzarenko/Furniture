@@ -1,16 +1,17 @@
 package azarenka.service;
 
+import java.util.List;
+
+import azarenka.dto.fittingdto.HandleCreateDTO;
 import azarenka.entity.fitting.Handle;
 import azarenka.entity.fitting.oforder.HandleOfOrder;
 import azarenka.entity.fitting.params.HandleColors;
 import azarenka.entity.fitting.params.HandleParams;
 import azarenka.exceptions.NotUniqueElementException;
 
-import java.util.List;
-
 public interface HandleService {
 
-    Handle save(Handle handle) throws NotUniqueElementException;
+    Handle save(HandleCreateDTO handle);
 
     void deleteById(Long id);
 
