@@ -1,6 +1,7 @@
 package azarenka.service.logic;
 
 import azarenka.entity.*;
+import azarenka.service.logic.bookers.Booker;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;

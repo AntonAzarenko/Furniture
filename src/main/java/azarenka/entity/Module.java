@@ -18,8 +18,11 @@ public class Module extends BaseEntity {
     private ModuleType moduleType;
 
     @ManyToOne
-    @JoinColumn(name = "order_id",nullable = false)
+    @JoinColumn(name = "order_id", nullable = false)
     private Order order;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Fittings> fittings;
 
     public Module() {
     }
@@ -62,12 +65,12 @@ public class Module extends BaseEntity {
     public void setModuleType(ModuleType moduleType) {
         this.moduleType = moduleType;
     }
-/*
-    public Long getOrderId() {
-        return orderId;
+
+    public List<Fittings> getFittings() {
+        return fittings;
     }
 
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
-    }*/
+    public void setFittings(List<Fittings> fittings) {
+        this.fittings = fittings;
+    }
 }

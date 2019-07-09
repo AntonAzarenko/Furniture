@@ -1,6 +1,6 @@
 package azarenka.repository;
 
-import azarenka.entity.furnitures.Lifts;
+import azarenka.entity.fitting.Lifts;
 import azarenka.repository.mybatis.CrudRepository;
 import org.springframework.stereotype.Repository;
 

@@ -2,29 +2,36 @@ package azarenka.web;
 
 import azarenka.entity.Role;
 import azarenka.entity.User;
-import azarenka.entity.message.JwtResponse;
-import azarenka.entity.message.LoginForm;
-import azarenka.entity.message.ResponseMessage;
-import azarenka.entity.message.SignUpForm;
+import azarenka.entity.auth.JwtResponse;
+import azarenka.entity.auth.LoginForm;
+import azarenka.entity.auth.ResponseMessage;
+import azarenka.entity.auth.SignUpForm;
 import azarenka.security.jwt.JwtProvider;
 import azarenka.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Authentification controller.
+ * <p>
+ * Copyright (C) 2018 Anton_Azarenka@epam.com
+ * </p>
+ * Date: 7/9/18
+ *
+ * @author Anton Azarenka
+ */
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("furniture/auth")
@@ -32,13 +39,10 @@ public class AuthController {
 
     @Autowired
     private AuthenticationManager authenticationManager;
-
     @Autowired
     private UserService userService;
-
     @Autowired
     private PasswordEncoder encoder;
-
     @Autowired
     private JwtProvider jwtProvider;
 
@@ -63,7 +67,6 @@ public class AuthController {
                     HttpStatus.BAD_REQUEST);
         }
 
-        // Creating user's account
         User user = new User();
         user.setEmail(signUpRequest.getUsername());
         user.setPassword(encoder.encode(signUpRequest.getPassword()));
