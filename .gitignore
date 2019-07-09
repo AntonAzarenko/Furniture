@@ -3,5 +3,10 @@ log
 *.iml
 target
 node_modules
+
 out
 .gradle
+
+build
+out
+

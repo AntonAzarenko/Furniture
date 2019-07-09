@@ -15,8 +15,8 @@ insert into color_detail (id, title, title_manufacturer, country_manufacturer, p
   (14, 'Апельсин', 'SWISSPAN', 'UKRAINE',7.5);
 
 
-/*INSERT INTO edge (id, name, edge_type, color, price, thickness, country) VALUES
-  (1, 'Пепел', 'PVH', 'ПЕПЕЛ', '1.23', '0.8', 'UKRAINE');*/
+INSERT INTO edge (id, name, edge_type, color, price, thickness, country) VALUES
+  (1, 'Пепел', 'PVH', 'ПЕПЕЛ', '1.23', '0.8', 'UKRAINE');
 
 /*INSERT INTO orders (id, name, author, user_name) VALUES
   (1, 'заказ №1', 'anton_azarenka','');*/

@@ -1,9 +1,13 @@
 package azarenka.repository;
 
-import azarenka.entity.furnitures.Handle;
-import azarenka.repository.mybatis.CrudRepository;
+import azarenka.entity.fitting.Handle;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface HandleRepository extends CrudRepository<String, Handle> {
+public interface HandleRepository extends JpaRepository<Handle, Long> {
+
+    Handle getByArticle(String id);
+
+    Handle getById(Long id);
 }

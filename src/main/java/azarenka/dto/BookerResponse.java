@@ -2,8 +2,8 @@ package azarenka.dto;
 
 import azarenka.entity.Material;
 import azarenka.entity.Module;
-import azarenka.service.logic.Booker;
-import azarenka.service.logic.ManagerQuadCount;
+import azarenka.service.logic.bookers.Booker;
+import azarenka.service.logic.bookers.ManagerQuadCount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

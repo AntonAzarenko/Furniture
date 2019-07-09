@@ -1,20 +1,18 @@
 package azarenka.repository;
 
 import azarenka.entity.Country;
-import azarenka.entity.furnitures.Loops;
-import azarenka.entity.furnitures.TypeLoop;
+import azarenka.entity.fitting.Loops;
+import azarenka.entity.fitting.TypeLoop;
 import azarenka.repository.mybatis.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
-public interface LoopRepository extends CrudRepository<String, Loops> {
+@Repository
+public interface LoopRepository extends JpaRepository<Loops, Long> {
 
-    List<Loops> getByNameManufacture(String name);
-
-    List<Loops> getByManufactureCountry(Country country);
-
-    List<Loops> getByAngle(String angle);
-
-    List<Loops> getByTypeLoop(TypeLoop tLoop);
+    Loops save(Loops loops);
 
 }

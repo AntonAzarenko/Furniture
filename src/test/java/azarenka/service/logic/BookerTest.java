@@ -1,6 +1,7 @@
 package azarenka.service.logic;
 
 import azarenka.entity.*;
+import azarenka.service.logic.bookers.Booker;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,37 +30,45 @@ public class BookerTest {
 
     @Test
     public void testGetPriceModule() {
-        BigDecimal expectedPrice = new BigDecimal(25.379999999999998561150960085797123610973358154296875);
+        BigDecimal expectedPrice = new BigDecimal("25");
         expectedPrice = expectedPrice.setScale(2, BigDecimal.ROUND_UP);
-        BigDecimal price = new BigDecimal(18.768 + (18.768 / 100 * 10));
+        BigDecimal price = new BigDecimal("21.02");
 
         expectedPrice = expectedPrice.add(price);
         expectedPrice = expectedPrice.setScale(2, BigDecimal.ROUND_UP);
-
-        assertEquals(expectedPrice, booker.getPriceModule(buildModule()));
+        BigDecimal actualPrice = booker.getPriceModule(buildModule());
+        actualPrice = actualPrice.setScale(2, BigDecimal.ROUND_HALF_UP);
+        assertEquals(expectedPrice, actualPrice);
     }
 
     @Test
     public void testGetPriceDetailByType() {
-        BigDecimal price = new BigDecimal(25.379999999999998561150960085797123610973358154296875);
+        BigDecimal price = new BigDecimal("25.38");
         price = price.setScale(2, BigDecimal.ROUND_UP);
-        assertEquals(price, booker.getPriceDetailByType(buildModule(), Material.DSP));
+
+        BigDecimal actualPrice = booker.getPriceDetailByType(buildModule(), Material.DSP);
+        actualPrice = actualPrice.setScale(2, BigDecimal.ROUND_HALF_UP);
+        assertEquals(price, actualPrice);
     }
 
     @Test
     public void testGetPriceEdgeByModule() {
-        BigDecimal expectedPrice = new BigDecimal(18.768 + (18.768 / 100 * 10));
+        BigDecimal expectedPrice = new BigDecimal("20.64");
         expectedPrice = expectedPrice.setScale(2, BigDecimal.ROUND_UP);
 
-        assertEquals(expectedPrice, booker.getPriceEdgeByModule(buildModule()));
+        BigDecimal actualPrice = booker.getPriceEdgeByModule(buildModule());
+        actualPrice = actualPrice.setScale(2, BigDecimal.ROUND_HALF_UP);
+        assertEquals(expectedPrice, actualPrice);
     }
 
     @Test
     public void testGetPriceOrder() {
-        BigDecimal price = new BigDecimal(46.025);
-        price = price.setScale(2, BigDecimal.ROUND_UP);
+        BigDecimal expectedPrice = new BigDecimal("46.02");
+        expectedPrice = expectedPrice.setScale(2, BigDecimal.ROUND_UP);
 
-        assertEquals(price, booker.getPriceOrder(buildOrder()));
+        BigDecimal actualPrice = booker.getPriceOrder(buildOrder());
+        actualPrice = actualPrice.setScale(2, BigDecimal.ROUND_HALF_UP);
+        assertEquals(expectedPrice, actualPrice);
     }
 
     private Order buildOrder() {

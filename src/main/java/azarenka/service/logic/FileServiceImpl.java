@@ -4,6 +4,7 @@ import azarenka.security.service.LoggedUser;
 import azarenka.security.service.UserPrinciple;
 import azarenka.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -34,15 +35,15 @@ public class FileServiceImpl implements FileService {
                     LoggedUser.safeGet().getUsername() + File.separator + "image";
             Path resourceDirectory = Paths.get(filePath);
 
-                File dir = new File(resourceDirectory + File.separator);
-                if (!dir.exists()) {
-                    dir.mkdirs();
-                }
-                File loadFile = new File(dir.getAbsolutePath() + File.separator + name);
-                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(loadFile));
-                stream.write(bytes);
-                stream.flush();
-                stream.close();
+            File dir = new File(resourceDirectory + File.separator);
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            File loadFile = new File(dir.getAbsolutePath() + File.separator + name);
+            BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(loadFile));
+            stream.write(bytes);
+            stream.flush();
+            stream.close();
         } catch (IOException e) {
 
         }
@@ -60,6 +61,20 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
+    public File getPath(String name) {
+        return null;
+    }
+
+    @Override
+    public Resource loadFile(String filename) {
+        return null;
+    }
+
+    @Override
+    public void abort(String name) {
+
+    }
+
     public String getPath(Long id) {
         String path = "resources/uploads/" + LoggedUser.safeGet().getUsername() + "/image/";
         return path;

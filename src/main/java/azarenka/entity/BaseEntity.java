@@ -1,21 +1,16 @@
 package azarenka.entity;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-
-import javax.persistence.*;
-
 @MappedSuperclass
 @Access(AccessType.FIELD)
-/*@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY,
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY,
         getterVisibility = JsonAutoDetect.Visibility.NONE, isGetterVisibility = JsonAutoDetect.Visibility.NONE,
-        setterVisibility = JsonAutoDetect.Visibility.NONE)*/
+        setterVisibility = JsonAutoDetect.Visibility.NONE)
 public abstract class BaseEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
