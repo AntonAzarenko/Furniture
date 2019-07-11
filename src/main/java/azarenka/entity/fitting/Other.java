@@ -3,8 +3,8 @@ package azarenka.entity.fitting;
 import azarenka.entity.BaseEntity;
 
 public class Other extends BaseEntity {
-    private String name;
 
+    private String name;
 
     public Other() {
         super();

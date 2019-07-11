@@ -9,5 +9,4 @@ public enum Country {
     BELARUS,
     CHINA,
     RUSSIAN;
-
 }
