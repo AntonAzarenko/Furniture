@@ -7,5 +7,4 @@ public enum TypeLift {
     AVENTOS_HK,
     AVENTOS_HKS,
     AVENTOS_GASLIFT;
-
 }

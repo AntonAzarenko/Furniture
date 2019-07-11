@@ -2,6 +2,7 @@ package azarenka.service.logic;
 
 import azarenka.dto.OrderDTO;
 import azarenka.entity.Order;
+import azarenka.exceptions.ResponseException;
 import azarenka.repository.OrderRepository;
 import azarenka.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static azarenka.dto.OrderDTO.asOrderDTO;
 
@@ -27,27 +29,40 @@ public class OrderServiceImpl implements OrderService {
     @Override
     //TODO cache
     public List<OrderDTO> getAllByUserName(String name) {
-        List<Order> orders = repository.getAllByUserName(name);
         List<OrderDTO> orderDTOS = new ArrayList<>();
-        orders.forEach(o -> orderDTOS.add(asOrderDTO(o)));
+        if (Objects.nonNull(name) && name.isEmpty()) {
+            List<Order> orders = repository.getAllByUserName(name);
+            if (orders.isEmpty()) {
+                orders.forEach(element -> orderDTOS.add(asOrderDTO(element)));
+            }
+        }
         return orderDTOS;
     }
 
     @Override
     @Transactional
     public Order create(Order order) {
-       return repository.save(order);
+        if (Objects.nonNull(order)) {
+            return repository.save(order);
+        }
+        throw new ResponseException("Order can not been null");
     }
 
     @Override
     @Transactional
     public void update(Order order) {
-        repository.save(order);
+        if (Objects.nonNull(order)) {
+            repository.save(order);
+        }
+        throw new ResponseException("Order can not been null");
     }
 
     @Override
     @Transactional
     public void deleteById(Long id) {
-        repository.deleteById(id);
+        if (Objects.nonNull(id)) {
+            repository.deleteById(id);
+        }
+        throw new ResponseException("Order ID can not been null");
     }
 }

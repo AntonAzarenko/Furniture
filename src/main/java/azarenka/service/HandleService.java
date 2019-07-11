@@ -8,12 +8,13 @@ import azarenka.entity.fitting.oforder.HandleOfOrder;
 import azarenka.entity.fitting.params.HandleColors;
 import azarenka.entity.fitting.params.HandleParams;
 import azarenka.exceptions.NotUniqueElementException;
+import azarenka.exceptions.ResponseException;
 
 public interface HandleService {
 
     Handle save(HandleCreateDTO handle);
 
-    void deleteById(Long id);
+    void deleteById(Long id) throws ResponseException;
 
     Handle getById(Long id);
 

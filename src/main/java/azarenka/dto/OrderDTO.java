@@ -11,19 +11,12 @@ import java.util.Date;
 public class OrderDTO {
 
     private Long id;
-
     private String name;
-
     private String address;
-
     private String customersName;
-
     private String telNumber;
-
     private String dateOfContract;
-
     private String dateOfCreate;
-
     private String userName;
 
     public OrderDTO() {

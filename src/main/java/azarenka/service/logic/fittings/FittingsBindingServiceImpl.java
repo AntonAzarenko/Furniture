@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @Service
 public class FittingsBindingServiceImpl implements FittingsBindingService {
@@ -23,25 +25,21 @@ public class FittingsBindingServiceImpl implements FittingsBindingService {
     @Override
     public List<FittingsDTO> get(List<Fittings> fittings) {
         List<FittingsDTO> fittingsDTOS = new ArrayList<>();
-        for (Fittings current : fittings) {
-            FittingsDTO dto = init();
-            intiType(dto, current);
-            dto.setCount(current.getCount());
+        fittings.forEach(element -> {
+            FittingsDTO dto = intiType(element);
+            dto.setCount(element.getCount());
             fittingsDTOS.add(dto);
-        }
+        });
         return fittingsDTOS;
     }
 
-
-    private FittingsDTO init() {
-        return new FittingsDTO();
-    }
-
-    private void intiType(FittingsDTO dto, Fittings fittings) {
+    private FittingsDTO intiType(Fittings fittings) {
+        FittingsDTO dto = new FittingsDTO();
         if (fittings.getHandle() != null) {
             dto.setType("Ручка");
             getInternalObjects(fittings.getHandle().getId(), dto);
         }
+        return dto;
     }
 
     private void getInternalObjects(Long handleOfOrderId, FittingsDTO fittingsDTO) {
@@ -85,6 +83,4 @@ public class FittingsBindingServiceImpl implements FittingsBindingService {
         Long colorsId = handleOfOrder.getHandleColorId();
         return handleService.getHandleColorsById(colorsId);
     }
-
-
 }

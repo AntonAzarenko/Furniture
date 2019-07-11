@@ -15,17 +15,11 @@ import java.util.Set;
 public class HandleCreateDTO {
 
     private Long id;
-
     private String article;
-
     private Integer centerDistance;
-
     private HandleColor colors;
-
     private String fileName;
-
     private List<HandleParams> params;
-
     private Handle handle;
 
     private boolean gold;
