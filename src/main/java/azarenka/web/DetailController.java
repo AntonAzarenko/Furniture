@@ -89,7 +89,7 @@ public class DetailController {
     }
 
     /**
-     * Returns moduule by id {@link Module}.
+     * Returns module by id {@link Module}.
      *
      * @param id module id
      * @return module id.

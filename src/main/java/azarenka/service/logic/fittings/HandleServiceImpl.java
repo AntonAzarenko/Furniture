@@ -1,9 +1,8 @@
 package azarenka.service.logic.fittings;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -12,7 +11,6 @@ import azarenka.entity.fitting.Handle;
 import azarenka.entity.fitting.oforder.HandleOfOrder;
 import azarenka.entity.fitting.params.HandleColors;
 import azarenka.entity.fitting.params.HandleParams;
-import azarenka.exceptions.NotUniqueElementException;
 import azarenka.factories.AbstractFactory;
 import azarenka.repository.HandleColorsRepository;
 import azarenka.repository.HandleOfOrderRepository;
@@ -40,18 +38,13 @@ public class HandleServiceImpl implements HandleService {
     private HandleColorsRepository handleColorsRepository;
 
     @Override
+    @Transactional
     public Handle save(HandleCreateDTO handleCreateDTO)  {
-        Handle handle = null;
-        try {
-            handle = handleCreateDTO.asHandle();
-            handleCreateDTO.setHandle(handle);
-            addHandleParams(handleCreateDTO.asHandleParams());
-            addHandleColors(handleCreateDTO.asHandleColors());
-            save(handle);
-        } catch (Exception e) {
-            deleteById(handle.getId());
-            return null;
-        }
+        Handle handle = handleCreateDTO.asHandle();
+        repository.save(handle);
+        handleCreateDTO.setHandle(handle);
+        addHandleParams(handleCreateDTO.asHandleParams());
+        addHandleColors(handleCreateDTO.asHandleColors());
         return handle;
     }
 
@@ -118,12 +111,15 @@ public class HandleServiceImpl implements HandleService {
         return handleColorsRepository.getById(id);
     }
 
+<<<<<<< HEAD
     private Handle save(Handle handle) throws NotUniqueElementException {
         CheckUniqueElementHandle checkUniqueElement = abstractFactory.create();
         checkUniqueElement.check(handle);
         return repository.save(handle);
     }
 
+=======
+>>>>>>> ef61efed94f8892a669cd929ce03de98d4bdeca9
     private void save(HandleOfOrder handleOfOrder) {
         handleOfOrderRepository.save(handleOfOrder);
     }
@@ -136,4 +132,7 @@ public class HandleServiceImpl implements HandleService {
         paramsRepository.save(handleParams);
     }
 
+    public void setRepository(HandleRepository repository) {
+        this.repository = repository;
+    }
 }

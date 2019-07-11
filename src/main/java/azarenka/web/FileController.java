@@ -33,7 +33,7 @@ public class FileController {
      * Uploads file.
      *
      * @param file file.
-     * @return Responce entity.
+     * @return Response entity.
      */
     @PostMapping(value = "/upload")
     public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {

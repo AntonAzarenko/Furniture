@@ -4,6 +4,7 @@ import static azarenka.web.DetailController.URL;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,9 +38,9 @@ public class HandleController {
     @Autowired
     FittingsService fittingsService;
 
+    @PreAuthorize("@checkUniqueElementHandle.check(#handleCreateDTO)")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Handle save(@RequestBody HandleCreateDTO handleCreateDTO) {
-        service.save(handleCreateDTO);
         return service.save(handleCreateDTO);
     }
 
