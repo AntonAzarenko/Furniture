@@ -28,8 +28,6 @@ public class PriceForMaterials {
                 '}';
     }
 
-
-
     public Material getMaterial() {
         return material;
     }

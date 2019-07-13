@@ -65,7 +65,6 @@ public class LoopCreateDTO {
 
             case "HALF_OVERHEAD":
                 return TypeLoop.HALF_OVERHEAD;
-
         }
         return null;
     }

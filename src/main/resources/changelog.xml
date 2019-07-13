@@ -37,11 +37,11 @@
 
 
     </changeSet>
-    <changeSet id="1.2.1" author="asad" context="text">
+    <changeSet id="1.2.1" author="anton azarenka" context="text">
         <insert tableName="color_detail">
             <column name="id" valueNumeric="1"/>
             <column name="title" value="Кантри"/>
-            <column name="title_manufacrurer" value="SWISSPAN"/>
+            <column name="title_manufacturer" value="SWISSPAN"/>
             <column name="country_manufacturer" value="UKRAINE"/>
             <column name="price" valueNumeric="9"/>
         </insert>

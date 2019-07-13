@@ -6,5 +6,4 @@ public enum HandleColor {
     CHROME_MATT,
     SATIN,
     OTHER;
-
 }

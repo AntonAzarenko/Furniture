@@ -4,6 +4,8 @@ import azarenka.entity.BaseEntity;
 import azarenka.entity.Country;
 import azarenka.entity.fitting.params.HandleColors;
 import azarenka.entity.fitting.params.HandleParams;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.persistence.*;
 import java.util.List;
@@ -75,5 +77,35 @@ public class Handle extends BaseEntity {
 
     public void setCountry(Country country) {
         this.country = country;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Handle handle = (Handle) o;
+
+        return new EqualsBuilder()
+                .appendSuper(super.equals(o))
+                .append(article, handle.article)
+                .append(fileName, handle.fileName)
+                .append(param, handle.param)
+                .append(color, handle.color)
+                .append(country, handle.country)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .appendSuper(super.hashCode())
+                .append(article)
+                .append(fileName)
+                .append(param)
+                .append(color)
+                .append(country)
+                .toHashCode();
     }
 }

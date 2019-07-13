@@ -28,7 +28,6 @@ public class CountryFormatterUtil {
 
             case "CHINA":
                 return Country.CHINA;
-
         }
         return null;
     }

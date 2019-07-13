@@ -1,12 +1,16 @@
 package azarenka.service.logic.fittings;
 
-import static org.easymock.EasyMock.createMock;
-import static org.easymock.EasyMock.expect;
-import static org.easymock.EasyMock.replay;
+
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Collections;
 import java.util.List;
@@ -15,41 +19,52 @@ import azarenka.dto.fittingdto.HandleCreateDTO;
 import azarenka.entity.Country;
 import azarenka.entity.fitting.Handle;
 import azarenka.entity.fitting.params.HandleColors;
+import azarenka.repository.HandleColorsRepository;
+import azarenka.repository.HandleParamsRepository;
 import azarenka.repository.HandleRepository;
 
+@RunWith(MockitoJUnitRunner.class)
 public class HandleServiceImplTest {
 
+    @Mock
     private HandleRepository repository;
+    @Mock
+    private HandleParamsRepository handleParamsRepository;
+    @Mock
+    private HandleColorsRepository handleColorsRepository;
 
+    @InjectMocks
     private HandleServiceImpl handleService;
 
     private final static String HANDLE_ARTICLE = "AS23";
 
     @Before
     public void setUp() {
-        repository = createMock(HandleRepository.class);
-        handleService = createMock(HandleServiceImpl.class);
-        handleService.setRepository(repository);
     }
 
     @Test
     public void testSave() {
-        expect(handleService.save(buildHandleCreateDTO())).andReturn(buildHanle());
-        expect(repository.save(buildHanle())).andReturn(buildHanle()).once();
-        expect(handleService.save(buildHandleCreateDTO())).andReturn(buildHanle());
-        replay(repository);
-        //assertEquals(buildHanle(), handleService.save(buildHandleCreateDTO()));
+        Handle handle = new Handle();
+        handle.setId(25L);
+        handle.setArticle(HANDLE_ARTICLE);
+        handle.setCountry(Country.BELARUS);
+        handle.setFileName("picture.jpg");
+        when(repository.save(handle)).thenReturn(handle);
+        assertEquals(handle, handleService.save(buildHandleCreateDTO()));
     }
 
     @Test
     public void deleteById() {
+        Handle handle = buildHandle();
+        handleService.deleteById(handle.getId());
+        verify(repository).deleteById(handle.getId());
     }
 
     @Test
     public void testGetById() {
-        expect(repository.getByArticle(HANDLE_ARTICLE)).andReturn(buildHanle());
-        replay(repository);
-//        assertEquals(=);
+        Handle handle = buildHandle();
+        when(repository.getById(handle.getId())).thenReturn(handle);
+        assertEquals(handle, handleService.getById(handle.getId()));
     }
 
     @Test
@@ -92,8 +107,9 @@ public class HandleServiceImplTest {
     public void getHandleColorsById() {
     }
 
-    private Handle buildHanle() {
+    private Handle buildHandle() {
         Handle handle = new Handle();
+        handle.setId(25L);
         handle.setArticle(HANDLE_ARTICLE);
         handle.setColor(buildHandleColor());
         handle.setCountry(Country.BELARUS);
@@ -110,9 +126,13 @@ public class HandleServiceImplTest {
 
     private HandleCreateDTO buildHandleCreateDTO() {
         HandleCreateDTO handleCreateDTO = new HandleCreateDTO();
+        handleCreateDTO.setId(25L);
         handleCreateDTO.setArticle(HANDLE_ARTICLE);
         handleCreateDTO.setFileName("picture.jpg");
         handleCreateDTO.setCountry("BELARUS");
+        handleCreateDTO.setChrome_bright(true);
+        handleCreateDTO.setNinetySix(true);
+        handleCreateDTO.setPriceNinetySix("2.45");
         return handleCreateDTO;
     }
 }
