@@ -48,7 +48,7 @@ public class OrderController {
     }
 
     /**
-     * Removes oreder bu id.
+     * Removes order by id.
      *
      * @param id order id.
      */

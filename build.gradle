@@ -19,8 +19,6 @@ buildscript {
 group = 'com.azarenka'
 version 'alpha_0.7'
 
-
-
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
@@ -66,6 +64,9 @@ dependencies {
     testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile group: 'org.easymock', name: 'easymock', version: '3.1'
     testCompile group: 'org.mockito', name: 'mockito-all', version: '1.9.5'
+    testCompile group: 'ru.yandex.qatools.embed', name: 'postgresql-embedded', version: '1.0'
+    compile 'junit:junit:4.12'
+    compile 'junit:junit:4.12'
 }
 
 

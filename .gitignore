@@ -3,7 +3,7 @@ log
 *.iml
 target
 node_modules
-
+classes
 out
 .gradle
 

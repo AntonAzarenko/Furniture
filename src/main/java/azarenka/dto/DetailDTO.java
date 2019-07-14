@@ -1,6 +1,9 @@
 package azarenka.dto;
 
 import azarenka.entity.*;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -458,5 +461,71 @@ public class DetailDTO {
 
     public void setModuleId(Long moduleId) {
         this.moduleId = moduleId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        DetailDTO detailDTO = (DetailDTO) o;
+
+        return new EqualsBuilder()
+            .append(x, detailDTO.x)
+            .append(y, detailDTO.y)
+            .append(count, detailDTO.count)
+            .append(thickness, detailDTO.thickness)
+            .append(edgeOnX, detailDTO.edgeOnX)
+            .append(edgeOnY, detailDTO.edgeOnY)
+            .append(id, detailDTO.id)
+            .append(name, detailDTO.name)
+            .append(material, detailDTO.material)
+            .append(colorId, detailDTO.colorId)
+            .append(edgeTypeY, detailDTO.edgeTypeY)
+            .append(edgeTypeX, detailDTO.edgeTypeX)
+            .append(edgeSideX, detailDTO.edgeSideX)
+            .append(edgeSideY, detailDTO.edgeSideY)
+            .append(edgeIdSideX, detailDTO.edgeIdSideX)
+            .append(edgeIdSideY, detailDTO.edgeIdSideY)
+            .append(moduleId, detailDTO.moduleId)
+            .append(colorTitle, detailDTO.colorTitle)
+            .append(detailsColor, detailDTO.detailsColor)
+            .append(edgeMaterialIdX, detailDTO.edgeMaterialIdX)
+            .append(edgeMaterialIdY, detailDTO.edgeMaterialIdY)
+            .append(module, detailDTO.module)
+            .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+            .append(id)
+            .append(name)
+            .append(x)
+            .append(y)
+            .append(count)
+            .append(thickness)
+            .append(material)
+            .append(colorId)
+            .append(edgeOnX)
+            .append(edgeOnY)
+            .append(edgeTypeY)
+            .append(edgeTypeX)
+            .append(edgeSideX)
+            .append(edgeSideY)
+            .append(edgeIdSideX)
+            .append(edgeIdSideY)
+            .append(moduleId)
+            .append(colorTitle)
+            .append(detailsColor)
+            .append(edgeMaterialIdX)
+            .append(edgeMaterialIdY)
+            .append(module)
+            .toHashCode();
     }
 }

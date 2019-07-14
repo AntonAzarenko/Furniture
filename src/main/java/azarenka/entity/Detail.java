@@ -1,6 +1,9 @@
 package azarenka.entity;
 
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -114,5 +117,43 @@ public class Detail extends BaseEntity {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Detail detail = (Detail) o;
+
+        return new EqualsBuilder()
+                .appendSuper(super.equals(o))
+                .append(thickness, detail.thickness)
+                .append(x, detail.x)
+                .append(y, detail.y)
+                .append(count, detail.count)
+                .append(edgeMaterial, detail.edgeMaterial)
+                .append(name, detail.name)
+                .append(material, detail.material)
+                .append(detailsColor, detail.detailsColor)
+                .append(module, detail.module)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .appendSuper(super.hashCode())
+                .append(edgeMaterial)
+                .append(name)
+                .append(thickness)
+                .append(x)
+                .append(y)
+                .append(count)
+                .append(material)
+                .append(detailsColor)
+                .append(module)
+                .toHashCode();
     }
 }
