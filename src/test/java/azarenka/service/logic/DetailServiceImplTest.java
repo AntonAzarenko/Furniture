@@ -1,27 +1,26 @@
 package azarenka.service.logic;
 
-import azarenka.dto.DetailDTO;
-import azarenka.entity.Detail;
-import azarenka.repository.DetailRepository;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.Arrays;
-import java.util.List;
-
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.Arrays;
+import java.util.List;
+
+import azarenka.dto.DetailResponse;
+import azarenka.entity.Detail;
+import azarenka.repository.DetailRepository;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
 public class DetailServiceImplTest {
 
     @InjectMocks
@@ -31,15 +30,7 @@ public class DetailServiceImplTest {
     private DetailRepository detailRepository;
 
     @Mock
-    private DetailDTO detailDTO;
-
-    @Before
-    public void setUp() throws Exception {
-    }
-
-    @After
-    public void tearDown() throws Exception {
-    }
+    private DetailResponse detailResponse;
 
     @Test
     public void getAll() {
@@ -73,7 +64,7 @@ public class DetailServiceImplTest {
     @Test
     public void getDTOByModuleId() {
         when(detailRepository.getAllByModule_Id(1L)).thenReturn(Arrays.asList(buildDetail()));
-        when(detailDTO.asDetailDTO(Arrays.asList(buildDetail()))).thenReturn(Arrays.asList(buildDetailDTO()));
+        when(detailResponse.asDetailDTO(Arrays.asList(buildDetail()))).thenReturn(Arrays.asList(buildDetailDTO()));
         assertEquals(Arrays.asList(buildDetailDTO()),detailService.getDTOByModuleId(1L));
     }
 
@@ -93,11 +84,11 @@ public class DetailServiceImplTest {
         return detail;
     }
 
-    private DetailDTO buildDetailDTO(){
-        DetailDTO detailDTO = new DetailDTO();
-        detailDTO.setX(500);
-        detailDTO.setY(2500);
-        detailDTO.setCount(50);
-        return detailDTO;
+    private DetailResponse buildDetailDTO(){
+        DetailResponse detailResponse = new DetailResponse();
+        detailResponse.setX(500);
+        detailResponse.setY(2500);
+        detailResponse.setCount(50);
+        return detailResponse;
     }
 }

@@ -1,11 +1,17 @@
 package azarenka.entity;
 
-import azarenka.util.DateTimeUtil;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "orders")
@@ -111,5 +117,43 @@ public class Order extends BaseEntity {
 
     public Date getDateOfCreate() {
         return dateOfCreate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Order order = (Order) o;
+
+        return new EqualsBuilder()
+            .appendSuper(super.equals(o))
+            .append(name, order.name)
+            .append(author, order.author)
+            .append(moduleList, order.moduleList)
+            .append(address, order.address)
+            .append(customersName, order.customersName)
+            .append(telNumber, order.telNumber)
+            .append(userName, order.userName)
+            .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+            .appendSuper(super.hashCode())
+            .append(name)
+            .append(author)
+            .append(moduleList)
+            .append(address)
+            .append(customersName)
+            .append(telNumber)
+            .append(userName)
+            .toHashCode();
     }
 }

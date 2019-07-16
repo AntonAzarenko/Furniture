@@ -16,13 +16,11 @@ import azarenka.entity.fitting.oforder.HandleOfOrder;
 import azarenka.entity.fitting.params.HandleColors;
 import azarenka.entity.fitting.params.HandleParams;
 import azarenka.exceptions.ResponseException;
-import azarenka.factories.AbstractFactory;
 import azarenka.repository.HandleColorsRepository;
 import azarenka.repository.HandleOfOrderRepository;
 import azarenka.repository.HandleParamsRepository;
 import azarenka.repository.HandleRepository;
 import azarenka.service.HandleService;
-import azarenka.util.CheckUniqueElementHandle;
 
 @Service
 public class HandleServiceImpl implements HandleService {
@@ -31,8 +29,6 @@ public class HandleServiceImpl implements HandleService {
 
     @Autowired
     private HandleOfOrderRepository handleOfOrderRepository;
-    @Autowired
-    private AbstractFactory<CheckUniqueElementHandle> abstractFactory;
     @Autowired
     private HandleRepository repository;
     @Autowired

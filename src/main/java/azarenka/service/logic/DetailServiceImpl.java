@@ -1,6 +1,6 @@
 package azarenka.service.logic;
 
-import azarenka.dto.DetailDTO;
+import azarenka.dto.DetailResponse;
 import azarenka.entity.Detail;
 import azarenka.entity.Module;
 import azarenka.repository.DetailRepository;
@@ -22,7 +22,7 @@ public class DetailServiceImpl implements DetailService {
     private ModuleService moduleService;
 
     @Autowired
-    private DetailDTO detailDTO;
+    private DetailResponse detailResponse;
 
     @Override
     public List<Detail> getAll() {
@@ -47,10 +47,10 @@ public class DetailServiceImpl implements DetailService {
     }
 
     @Override
-    public List<DetailDTO> getDTOByModuleId(Long id) {
+    public List<DetailResponse> getDTOByModuleId(Long id) {
         List<Detail> details = repository.getAllByModule_Id(id);
-        List<DetailDTO> detailDTOList = detailDTO.asDetailDTO(details);
-        return detailDTOList;
+        List<DetailResponse> detailResponseList = detailResponse.asDetailDTO(details);
+        return detailResponseList;
     }
 
     @Override

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import azarenka.dto.DetailDTO;
+import azarenka.dto.DetailResponse;
 import azarenka.entity.Detail;
 import azarenka.entity.Module;
 import azarenka.service.DetailService;
@@ -56,7 +56,7 @@ public class DetailController {
      * @return full list of details for REST API.
      */
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<DetailDTO> getAllByModuleId(@PathVariable("id") Long id){
+    public List<DetailResponse> getAllByModuleId(@PathVariable("id") Long id){
         return service.getDTOByModuleId(id);
     }
 
@@ -73,12 +73,12 @@ public class DetailController {
     /**
      * Saves detail and returns it on UI.
      *
-     * @param detailDTO details dto {@link DetailDTO}
+     * @param detailResponse details dto {@link DetailResponse}
      * @return details {@link Detail}
      */
     @PostMapping (consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Detail save(@RequestBody DetailDTO detailDTO){
-        return service.save(detailDTO.asDetail());
+    public Detail save(@RequestBody DetailResponse detailResponse){
+        return service.save(detailResponse.asDetail());
     }
 
     @Deprecated

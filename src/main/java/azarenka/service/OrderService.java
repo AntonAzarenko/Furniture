@@ -1,6 +1,6 @@
 package azarenka.service;
 
-import azarenka.dto.OrderDTO;
+import azarenka.dto.OrderResponse;
 import azarenka.entity.Order;
 
 import java.util.List;
@@ -15,5 +15,5 @@ public interface OrderService {
 
     void deleteById(Long id);
 
-    List<OrderDTO> getAllByUserName(String name);
+    List<OrderResponse> getAllByUserName(String name);
 }

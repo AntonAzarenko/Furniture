@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 @Component
-public class DetailDTO {
+public class DetailResponse {
 
     private Long id;
 
@@ -58,18 +58,18 @@ public class DetailDTO {
 
     private Module module;
 
-    public DetailDTO() {
+    public DetailResponse() {
     }
 
-    public List<DetailDTO> asDetailDTO(List<Detail> details) {
-        List<DetailDTO> detailDTOList = new ArrayList<>();
+    public  List<DetailResponse> asDetailDTO(List<Detail> details) {
+        List<DetailResponse> detailResponseList = new ArrayList<>();
         for (Detail detail : details) {
-            DetailDTO detailDTO = createDetailDTO(detail);
+            DetailResponse detailResponse = createDetailDTO(detail);
             Set<EdgeMaterial> edgeMaterials = detail.getEdgeMaterial();
-            initOtherFields(edgeMaterials, detailDTO);
-            detailDTOList.add(detailDTO);
+            initOtherFields(edgeMaterials, detailResponse);
+            detailResponseList.add(detailResponse);
         }
-        return detailDTOList;
+        return detailResponseList;
     }
 
     public Detail asDetail() {
@@ -100,89 +100,89 @@ public class DetailDTO {
     }
 
 
-    private DetailDTO createDetailDTO(Detail detail) {
-        DetailDTO detailDTO = new DetailDTO();
-        detailDTO.setId(detail.getId());
-        detailDTO.setName(detail.getName());
-        detailDTO.setModuleId(detail.getModule().getId());
-        detailDTO.setX(detail.getX());
-        detailDTO.setY(detail.getY());
-        detailDTO.setCount(detail.getCount());
-        detailDTO.setColorId(detail.getDetailsColor().getId());
-        detailDTO.setThickness(detail.getThickness());
-        detailDTO.setMaterial(detail.getMaterial());
-        detailDTO.setColorTitle(detail.getDetailsColor().getTitle());
+    private DetailResponse createDetailDTO(Detail detail) {
+        DetailResponse detailResponse = new DetailResponse();
+        detailResponse.setId(detail.getId());
+        detailResponse.setName(detail.getName());
+        detailResponse.setModuleId(detail.getModule().getId());
+        detailResponse.setX(detail.getX());
+        detailResponse.setY(detail.getY());
+        detailResponse.setCount(detail.getCount());
+        detailResponse.setColorId(detail.getDetailsColor().getId());
+        detailResponse.setThickness(detail.getThickness());
+        detailResponse.setMaterial(detail.getMaterial());
+        detailResponse.setColorTitle(detail.getDetailsColor().getTitle());
         Set<EdgeMaterial> edgeMaterialSet = detail.getEdgeMaterial();
         for (EdgeMaterial cur : edgeMaterialSet) {
             if (cur.getId() != null) {
                 if (cur.getEdgeSide().equals(EdgeSide.SIDE_X) || cur.getEdgeSide().equals(EdgeSide.SIDE_DOUBLE_X) ||
                         cur.getEdgeSide().equals(EdgeSide.SIDE_DOUBLE_X_AND_Y)) {
-                    detailDTO.setEdgeMaterialIdX(cur.getId());
+                    detailResponse.setEdgeMaterialIdX(cur.getId());
                 } else if (cur.getEdgeSide().equals(EdgeSide.SIDE_Y) || cur.getEdgeSide().equals(EdgeSide.SIDE_DOUBLE_Y) ||
                         cur.getEdgeSide().equals(EdgeSide.SIDE_DOUBLE_Y_AND_X)) {
-                    detailDTO.setEdgeMaterialIdY(cur.getId());
+                    detailResponse.setEdgeMaterialIdY(cur.getId());
                 }
             } else continue;
         }
 
-        return detailDTO;
+        return detailResponse;
     }
 
-    private void initOtherFields(Set<EdgeMaterial> edgeMaterials, DetailDTO detailDTO) {
+    private void initOtherFields(Set<EdgeMaterial> edgeMaterials, DetailResponse detailResponse) {
         if (edgeMaterials != null) {
             for (EdgeMaterial current : edgeMaterials) {
                 switch (current.getEdgeSide()) {
                     case SIDE_X:
-                        setSideX(current, 1, detailDTO);
+                        setSideX(current, 1, detailResponse);
                         break;
                     case SIDE_DOUBLE_X:
-                        setSideX(current, 2, detailDTO);
+                        setSideX(current, 2, detailResponse);
                         break;
                     case SIDE_Y:
-                        setSideY(current, 1, detailDTO);
+                        setSideY(current, 1, detailResponse);
                         break;
                     case SIDE_DOUBLE_Y:
-                        setSideY(current, 2, detailDTO);
+                        setSideY(current, 2, detailResponse);
                         break;
                     case SIDE_DOUBLE_X_AND_Y:
-                        setSideX(current, 2, detailDTO);
-                        setSideY(current, 1, detailDTO);
+                        setSideX(current, 2, detailResponse);
+                        setSideY(current, 1, detailResponse);
                         break;
                     case SIDE_X_AND_Y:
-                        setSideY(current, 1, detailDTO);
-                        setSideX(current, 1, detailDTO);
+                        setSideY(current, 1, detailResponse);
+                        setSideX(current, 1, detailResponse);
                         break;
                     case SIDE_DOUBLE_Y_AND_X:
-                        setSideY(current, 2, detailDTO);
-                        setSideX(current, 1, detailDTO);
+                        setSideY(current, 2, detailResponse);
+                        setSideX(current, 1, detailResponse);
                         break;
                     case SIDE_AROUND:
-                        setSideX(current, 2, detailDTO);
-                        setSideY(current, 2, detailDTO);
+                        setSideX(current, 2, detailResponse);
+                        setSideY(current, 2, detailResponse);
                 }
             }
         }
     }
 
-    private void setSideY(EdgeMaterial edgeMaterial, int countSide, DetailDTO detailDTO) {
-        detailDTO.setEdgeOnY(true);
-        detailDTO.setEdgeTypeY(edgeMaterial.getEdge().getEdgeType());
-        detailDTO.setEdgeIdSideY(edgeMaterial.getEdge().getId());
+    private void setSideY(EdgeMaterial edgeMaterial, int countSide, DetailResponse detailResponse) {
+        detailResponse.setEdgeOnY(true);
+        detailResponse.setEdgeTypeY(edgeMaterial.getEdge().getEdgeType());
+        detailResponse.setEdgeIdSideY(edgeMaterial.getEdge().getId());
         if (countSide == 1) {
-            detailDTO.setEdgeSideY("onceSide");
+            detailResponse.setEdgeSideY("onceSide");
         } else {
-            detailDTO.setEdgeSideY("bothSide");
+            detailResponse.setEdgeSideY("bothSide");
         }
     }
 
-    private void setSideX(EdgeMaterial edgeMaterial, int countSide, DetailDTO detailDTO) {
-        detailDTO.setEdgeOnX(true);
-        detailDTO.setEdgeIdSideX(edgeMaterial.getEdge().getId());
-        detailDTO.setEdgeTypeX(edgeMaterial.getEdge().getEdgeType());
+    private void setSideX(EdgeMaterial edgeMaterial, int countSide, DetailResponse detailResponse) {
+        detailResponse.setEdgeOnX(true);
+        detailResponse.setEdgeIdSideX(edgeMaterial.getEdge().getId());
+        detailResponse.setEdgeTypeX(edgeMaterial.getEdge().getEdgeType());
         if (countSide == 1) {
-            detailDTO.setEdgeSideX("onceSide");
+            detailResponse.setEdgeSideX("onceSide");
         } else {
-            detailDTO.setEdgeSideX("bothSide");
+            detailResponse.setEdgeSideX("bothSide");
         }
     }
 
@@ -473,31 +473,31 @@ public class DetailDTO {
             return false;
         }
 
-        DetailDTO detailDTO = (DetailDTO) o;
+        DetailResponse detailResponse = (DetailResponse) o;
 
         return new EqualsBuilder()
-            .append(x, detailDTO.x)
-            .append(y, detailDTO.y)
-            .append(count, detailDTO.count)
-            .append(thickness, detailDTO.thickness)
-            .append(edgeOnX, detailDTO.edgeOnX)
-            .append(edgeOnY, detailDTO.edgeOnY)
-            .append(id, detailDTO.id)
-            .append(name, detailDTO.name)
-            .append(material, detailDTO.material)
-            .append(colorId, detailDTO.colorId)
-            .append(edgeTypeY, detailDTO.edgeTypeY)
-            .append(edgeTypeX, detailDTO.edgeTypeX)
-            .append(edgeSideX, detailDTO.edgeSideX)
-            .append(edgeSideY, detailDTO.edgeSideY)
-            .append(edgeIdSideX, detailDTO.edgeIdSideX)
-            .append(edgeIdSideY, detailDTO.edgeIdSideY)
-            .append(moduleId, detailDTO.moduleId)
-            .append(colorTitle, detailDTO.colorTitle)
-            .append(detailsColor, detailDTO.detailsColor)
-            .append(edgeMaterialIdX, detailDTO.edgeMaterialIdX)
-            .append(edgeMaterialIdY, detailDTO.edgeMaterialIdY)
-            .append(module, detailDTO.module)
+            .append(x, detailResponse.x)
+            .append(y, detailResponse.y)
+            .append(count, detailResponse.count)
+            .append(thickness, detailResponse.thickness)
+            .append(edgeOnX, detailResponse.edgeOnX)
+            .append(edgeOnY, detailResponse.edgeOnY)
+            .append(id, detailResponse.id)
+            .append(name, detailResponse.name)
+            .append(material, detailResponse.material)
+            .append(colorId, detailResponse.colorId)
+            .append(edgeTypeY, detailResponse.edgeTypeY)
+            .append(edgeTypeX, detailResponse.edgeTypeX)
+            .append(edgeSideX, detailResponse.edgeSideX)
+            .append(edgeSideY, detailResponse.edgeSideY)
+            .append(edgeIdSideX, detailResponse.edgeIdSideX)
+            .append(edgeIdSideY, detailResponse.edgeIdSideY)
+            .append(moduleId, detailResponse.moduleId)
+            .append(colorTitle, detailResponse.colorTitle)
+            .append(detailsColor, detailResponse.detailsColor)
+            .append(edgeMaterialIdX, detailResponse.edgeMaterialIdX)
+            .append(edgeMaterialIdY, detailResponse.edgeMaterialIdY)
+            .append(module, detailResponse.module)
             .isEquals();
     }
 

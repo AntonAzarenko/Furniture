@@ -1,6 +1,6 @@
 package azarenka.service.logic;
 
-import azarenka.dto.OrderDTO;
+import azarenka.dto.OrderResponse;
 import azarenka.entity.Order;
 import azarenka.exceptions.ResponseException;
 import azarenka.repository.OrderRepository;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static azarenka.dto.OrderDTO.asOrderDTO;
+import static azarenka.dto.OrderResponse.asOrderDTO;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -28,15 +28,15 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     //TODO cache
-    public List<OrderDTO> getAllByUserName(String name) {
-        List<OrderDTO> orderDTOS = new ArrayList<>();
+    public List<OrderResponse> getAllByUserName(String name) {
+        List<OrderResponse> orderResponses = new ArrayList<>();
         if (Objects.nonNull(name)) {
             List<Order> orders = repository.getAllByUserName(name);
             if (!orders.isEmpty()) {
-                orders.forEach(element -> orderDTOS.add(asOrderDTO(element)));
+                orders.forEach(element -> orderResponses.add(asOrderDTO(element)));
             }
         }
-        return orderDTOS;
+        return orderResponses;
     }
 
     @Override
@@ -44,7 +44,7 @@ public class OrderServiceImpl implements OrderService {
     public Order create(Order order) {
         if (Objects.nonNull(order)) {
             return repository.save(order);
-        }
+        } else
         throw new ResponseException("Order can not been null");
     }
 
@@ -53,7 +53,7 @@ public class OrderServiceImpl implements OrderService {
     public void update(Order order) {
         if (Objects.nonNull(order)) {
             repository.save(order);
-        }
+        } else
         throw new ResponseException("Order can not been null");
     }
 

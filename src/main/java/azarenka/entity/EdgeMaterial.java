@@ -1,5 +1,8 @@
 package azarenka.entity;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -36,17 +39,29 @@ public class EdgeMaterial extends BaseEntity {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
         EdgeMaterial that = (EdgeMaterial) o;
-        return edgeSide == that.edgeSide &&
-                Objects.equals(edge, that.edge);
+
+        return new EqualsBuilder()
+            .appendSuper(super.equals(o))
+            .append(edgeSide, that.edgeSide)
+            .append(edge, that.edge)
+            .isEquals();
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(super.hashCode(), edgeSide, edge);
+        return new HashCodeBuilder(17, 37)
+            .appendSuper(super.hashCode())
+            .append(edgeSide)
+            .append(edge)
+            .toHashCode();
     }
 }

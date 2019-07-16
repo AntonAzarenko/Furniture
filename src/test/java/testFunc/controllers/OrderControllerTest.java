@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import java.util.Date;
 
-import azarenka.dto.OrderDTO;
+import azarenka.dto.OrderResponse;
 import azarenka.util.DateTimeUtil;
 import testFunc.WebTest;
 
@@ -12,7 +12,7 @@ public class OrderControllerTest extends WebTest {
 
     @Test
     public void getAllByUser() throws Exception {
-       // List<OrderDTO> orderDTOList = dozerBeanMapper.map(buildOrderDTO().
+       // List<OrderResponse> orderDTOList = dozerBeanMapper.map(buildOrderDTO().
     }
 
     @Test
@@ -23,12 +23,12 @@ public class OrderControllerTest extends WebTest {
     public void save() {
     }
 
-    private OrderDTO buildOrderDTO(){
-        OrderDTO orderDTO = new OrderDTO();
-        orderDTO.setId(1L);
-        orderDTO.setName("Шкаф");
-        orderDTO.setTelNumber("+375294564563");
-        orderDTO.setDateOfCreate(DateTimeUtil.toString(new Date()));
-        return orderDTO;
+    private OrderResponse buildOrderDTO(){
+        OrderResponse orderResponse = new OrderResponse();
+        orderResponse.setId(1L);
+        orderResponse.setName("Шкаф");
+        orderResponse.setTelNumber("+375294564563");
+        orderResponse.setDateOfCreate(DateTimeUtil.toString(new Date()));
+        return orderResponse;
     }
 }

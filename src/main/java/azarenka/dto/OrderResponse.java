@@ -1,14 +1,14 @@
 package azarenka.dto;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import azarenka.entity.Order;
 import azarenka.util.DateTimeUtil;
 
-import java.sql.Time;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
 
-public class OrderDTO {
+public class OrderResponse {
 
     private Long id;
     private String name;
@@ -19,7 +19,7 @@ public class OrderDTO {
     private String dateOfCreate;
     private String userName;
 
-    public OrderDTO() {
+    public OrderResponse() {
     }
 
     public Order asOrder() {
@@ -35,16 +35,16 @@ public class OrderDTO {
         return order;
     }
 
-    public static OrderDTO asOrderDTO(Order order) {
-        OrderDTO orderDTO = new OrderDTO();
-        orderDTO.setId(order.getId());
-        orderDTO.setName(order.getName());
-        orderDTO.setAddress(order.getAddress());
-        orderDTO.setTelNumber(order.getTelNumber());
-        orderDTO.setCustomersName(order.getCustomersName());
-        orderDTO.setDateOfCreate(DateTimeUtil.toString(order.getDateOfCreate()));
-        orderDTO.setDateOfContract(DateTimeUtil.toString(order.getDateOfContract()));
-        return orderDTO;
+    public static OrderResponse asOrderDTO(Order order) {
+        OrderResponse orderResponse = new OrderResponse();
+        orderResponse.setId(order.getId());
+        orderResponse.setName(order.getName());
+        orderResponse.setAddress(order.getAddress());
+        orderResponse.setTelNumber(order.getTelNumber());
+        orderResponse.setCustomersName(order.getCustomersName());
+        orderResponse.setDateOfCreate(DateTimeUtil.toString(order.getDateOfCreate()));
+        orderResponse.setDateOfContract(DateTimeUtil.toString(order.getDateOfContract()));
+        return orderResponse;
     }
 
     public String getUserName() {
@@ -109,5 +109,39 @@ public class OrderDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        OrderResponse that = (OrderResponse) o;
+
+        return new EqualsBuilder()
+            .append(id, that.id)
+            .append(name, that.name)
+            .append(address, that.address)
+            .append(customersName, that.customersName)
+            .append(telNumber, that.telNumber)
+            .append(userName, that.userName)
+            .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+            .append(id)
+            .append(name)
+            .append(address)
+            .append(customersName)
+            .append(telNumber)
+            .append(userName)
+            .toHashCode();
     }
 }

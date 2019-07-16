@@ -34,14 +34,14 @@ public class BookerServiceImpl implements BookerService {
 
     @Override
     public List<BookerResponse> getCalculationOfOrder(Long id) {
-        List<BookerResponse> bookerDTOList = new ArrayList<>();
+        List<BookerResponse> bookerResponseList = new ArrayList<>();
         List<Module> moduleList = moduleService.getAllByOrderId(id);
         for (Module current : moduleList) {
             current.setDetailList(detailService.getByModuleId(current.getId()));
             current.setFittings(fittingsService.getFittingsOfModule(current.getId()));
-            bookerDTOList.add(asBookerDTO(current));
+            bookerResponseList.add(asBookerDTO(current));
         }
-        return bookerDTOList;
+        return bookerResponseList;
     }
 
     @Override

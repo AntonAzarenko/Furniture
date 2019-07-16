@@ -1,6 +1,6 @@
 package azarenka.service;
 
-import azarenka.dto.DetailDTO;
+import azarenka.dto.DetailResponse;
 import azarenka.entity.Detail;
 import azarenka.entity.Module;
 
@@ -17,7 +17,7 @@ public interface DetailService {
 
     void delete(Long id);
 
-    List<DetailDTO> getDTOByModuleId(Long id);
+    List<DetailResponse> getDTOByModuleId(Long id);
 
     List<Detail> getByModuleId(Long id);
 

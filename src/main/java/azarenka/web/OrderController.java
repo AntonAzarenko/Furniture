@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import azarenka.dto.OrderDTO;
+import azarenka.dto.OrderResponse;
 import azarenka.entity.Order;
 import azarenka.service.OrderService;
 
@@ -37,13 +37,13 @@ public class OrderController {
     private OrderService service;
 
     /**
-     * Returns  list of  orders {@link OrderDTO}
+     * Returns  list of  orders {@link OrderResponse}
      *
      * @param name
      * @return
      */
     @GetMapping(value = "/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<OrderDTO> getAllByUser(@PathVariable("name") String name) {
+    public List<OrderResponse> getAllByUser(@PathVariable("name") String name) {
         return service.getAllByUserName(name);
     }
 
@@ -64,7 +64,7 @@ public class OrderController {
      * @return order.
      */
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Order save(@RequestBody OrderDTO order) {
+    public Order save(@RequestBody OrderResponse order) {
         return service.create(order.asOrder());
     }
 

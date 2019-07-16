@@ -7,44 +7,6 @@
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <changeSet id="1.1.0" author="crash" context="postgres">
-        <createProcedure>
-            CREATE FUNCTION MD5(str VARCHAR(100)) RETURNS
-            VARCHAR(100)
-            PARAMETER STYLE JAVA
-            NO SQL LANGUAGE JAVA
-            EXTERNAL NAME 'azarenka.util.MD5.md5';
-        </createProcedure>
-    </changeSet>
-    <changeSet id="1.2.0" author="crash" context="test">
 
-    <createTable tableName="color_detail">
-        <column name="id" autoIncrement="true" type="bigint">
-            <constraints primaryKey="true" nullable="false" primaryKeyName="pk_color_detail"/>
-        </column>
-        <column name="title" type="varchar(50)">
-            <constraints nullable="false" unique="true" uniqueConstraintName="color_detail_uk"/>
-        </column>
-        <column name="country_manufacturer" type="varchar(50)">
-            <constraints nullable="false"/>
-        </column>
-        <column name="title_manufacturer" type="varchar(50)">
-            <constraints nullable="false"/>
-        </column>
-        <column name="price" type="decimal">
-            <constraints nullable="false"/>
-        </column>
-    </createTable>
-
-
-    </changeSet>
-    <changeSet id="1.2.1" author="anton azarenka" context="text">
-        <insert tableName="color_detail">
-            <column name="id" valueNumeric="1"/>
-            <column name="title" value="Кантри"/>
-            <column name="title_manufacturer" value="SWISSPAN"/>
-            <column name="country_manufacturer" value="UKRAINE"/>
-            <column name="price" valueNumeric="9"/>
-        </insert>
-</changeSet>
 
 </databaseChangeLog>
