@@ -10,13 +10,10 @@ public class User extends BaseEntity {
 
     @Column(name = "name")
     private String name;
-
     @Column(name = "email")
     private String email;
-
     @Column(name = "password")
     private String password;
-
     @Column(name = "enabled")
     private boolean enabled = true;
 
@@ -52,7 +49,7 @@ public class User extends BaseEntity {
     public void setName(String name) {
         if(name == null){
             name = " ";
-        }
+        } else
         this.name = name;
     }
 

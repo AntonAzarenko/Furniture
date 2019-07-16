@@ -60,9 +60,7 @@ public class DetailServiceImpl implements DetailService {
 
     @Override
     public void delete(List<Detail> list) {
-        for (Detail cur : list) {
-            repository.delete(cur);
-        }
+       list.forEach(repository::delete);
     }
 
     @Override

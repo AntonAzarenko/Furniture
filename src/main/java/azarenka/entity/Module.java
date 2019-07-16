@@ -9,18 +9,14 @@ public class Module extends BaseEntity {
 
     @Column(name = "title")
     private String name;
-
     @OneToMany(fetch = FetchType.LAZY)
     private List<Detail> detailList;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "module_type")
     private ModuleType moduleType;
-
     @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)
     private Order order;
-
     @OneToMany(fetch = FetchType.LAZY)
     private List<Fittings> fittings;
 

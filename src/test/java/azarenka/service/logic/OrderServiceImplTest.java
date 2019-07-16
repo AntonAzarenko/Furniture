@@ -69,6 +69,14 @@ public class OrderServiceImplTest {
 
     @Test
     public void deleteById() {
+        doNothing().when(repository).deleteById(1L);
+        service.deleteById(1L);
+        verify(repository).deleteById(1L);
+    }
+
+    @Test(expected = ResponseException.class)
+    public void deleteByIdIfIdNull() {
+        service.deleteById(null);
     }
 
     private Order buildOrder() {
